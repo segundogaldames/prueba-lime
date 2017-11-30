@@ -1,0 +1,43 @@
+/*estilos generales*/
+
+/*fuentes generales*/
+h2{font-family:Arial, Helvetica, sans-serif; color: #0B0B61;}
+h3{font-family:Arial, Helvetica, sans-serif; color: #08088A; text-align: center;}
+h4{font-family:Arial, Helvetica, sans-serif; color: #08088A;}
+.enlace{
+	display: block;
+	padding-left: 20px;
+}
+
+.arriba{
+	position: fixed;
+    bottom: 2em;
+    right: 0px;
+    text-decoration: none;
+    color: #000000;
+    background-color: black;
+    font-size: 12px;
+    padding: 1em;
+    display: none;
+}
+.arriba:hover{
+	background-color: rgba(135, 135, 135, 0.50);
+}
+.cotizar{
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px
+}
+.cotizar:hover{
+    color: #AEB404;
+}
+
+.menu-top{
+    display: block;
+    font-size: 16px;
+    margin-left: 10px !important;
+    padding-top: 10px !important; 
+    -webkit-margin-left: 10px !important;
+    -webkit-padding-top: 10px !important; 
+}	
+
