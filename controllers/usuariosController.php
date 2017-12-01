@@ -153,7 +153,55 @@ class usuariosController extends Controller
 	public function edit($id = null){
 		$this->verificarSession();
 		$this->verificarRolAdmin();
+		$this->verificarParams($id);
 
 		$this->_view->assign('titulo', 'Editar Usuario');
+		$this->_view->assign('dato', $this->_usuario->getUsuarioId($this->filtrarInt($id)));
+		$this->_view->assign('roles', $this->_role->getRoles());
+
+		if ($this->getInt('enviar') == 1) {
+			if (!$this->getSql('nombre')) {
+				$this->_view->assign('_error', 'Debe ingresar el nombre');
+				$this->_view->renderizar('add');
+				exit;	
+			}
+
+			if (!$this->getInt('role')) {
+				$this->_view->assign('_error', 'Debe asignar un rol');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			$this->_usuario->editUsuario(
+				$this->filtrarInt($id),
+				$this->getAlphaNum('nombre'),
+				$this->getInt('role')
+			);
+
+			$this->redireccionar('usuarios');
+		}
+
+		$this->_view->renderizar('edit');
+	}
+
+	public function delete($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdmin();
+		$this->verificarParams($id);
+
+		$this->_usuario->deleteUsuario($this->filtrarInt($id));
+		$this->redireccionar('usuarios');
+	}
+
+	//**********************************************************************
+
+	private function verificarParams($id){
+		if (!$this->filtrarInt($id)) {
+			$this->redireccionar('usuarios');
+		}
+
+		if (!$this->_usuario->getUsuarioId($this->filtrarInt($id))) {
+			$this->redireccionar('usuarios');
+		}
 	}
 }

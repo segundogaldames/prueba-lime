@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-30 11:38:46
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-30 16:51:29
          compiled from "/var/www/html/prueba-lime/views/usuarios/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:11240023865a200ba115f870-38322912%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cbb7c03d1a9b369072c3ba5ebf78e1ee32240aa9' => 
     array (
       0 => '/var/www/html/prueba-lime/views/usuarios/index.tpl',
-      1 => 1512056323,
+      1 => 1512075086,
       2 => 'file',
     ),
   ),
@@ -33,6 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<tr>
 				<th>Nombre</th>
 				<th>Email</th>
+				<th>Rol</th>
 				<th>Creado</th>
 				<th>Actualizado</th>
 				<th>Acciones</th>

@@ -4,24 +4,76 @@
 		"selected_items":
 		[
 			[
-				"lo",
-				"loadModel〔function〕"
+				"veri",
+				"verificarParams〔function〕"
+			],
+			[
+				"ver",
+				"verificarSession〔function〕"
+			],
+			[
+				"get",
+				"getInt〔function〕"
+			],
+			[
+				"us",
+				"$usu〔variable〕"
+			],
+			[
+				"ingre",
+				"ingresar"
+			],
+			[
+				"form",
+				"form-control"
+			],
+			[
+				"pa",
+				"placeholder\tAttr"
+			],
+			[
+				"Date",
+				"DateTime〔class〕"
+			],
+			[
+				"onc",
+				"onclick\tAttr"
+			],
+			[
+				"ca",
+				"class\tAttr"
 			],
 			[
 				"bt",
 				"btn-link"
 			],
 			[
-				"get",
-				"getAlphaNum〔function〕"
+				"btn",
+				"btn-sm"
+			],
+			[
+				"usua",
+				"usuarios"
+			],
+			[
+				"e",
+				"email"
+			],
+			[
+				"fec",
+				"fetch"
+			],
+			[
+				"u",
+				"$usu〔variable〕"
+			],
+			[
+				"lo",
+				"loadModel〔function〕"
 			],
 			[
 				"rol",
 				"roles"
-			],
-			[
-				"form",
-				"form-group"
 			],
 			[
 				"p",
@@ -64,14 +116,6 @@
 				"$object〔variable〕"
 			],
 			[
-				"veri",
-				"verificarSession〔function〕"
-			],
-			[
-				"ver",
-				"verificarParams〔function〕"
-			],
-			[
 				"fon",
 				"font-size"
 			],
@@ -82,10 +126,6 @@
 			[
 				"padd",
 				"padding-top"
-			],
-			[
-				"pa",
-				"padding-left"
 			],
 			[
 				"ro",
@@ -104,10 +144,6 @@
 				"_role〔variable〕"
 			],
 			[
-				"us",
-				"usuario"
-			],
-			[
 				"usu",
 				"usuarios"
 			],
@@ -120,20 +156,12 @@
 				"roles_id"
 			],
 			[
-				"usua",
-				"usuario"
-			],
-			[
 				"Se",
 				"Session"
 			],
 			[
 				"plan",
 				"plan_id"
-			],
-			[
-				"ca",
-				"capilla"
 			],
 			[
 				"cine",
@@ -252,63 +280,19 @@
 	"buffers":
 	[
 		{
-			"file": "application/Config.php",
+			"file": "controllers/clientesController.php",
 			"settings":
 			{
-				"buffer_size": 354,
+				"buffer_size": 450,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "controllers/usuariosController.php",
+			"file": "views/clientes/add.tpl",
 			"settings":
 			{
-				"buffer_size": 1939,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/usuarios/add.tpl",
-			"settings":
-			{
-				"buffer_size": 1270,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "models/roleModel.php",
-			"settings":
-			{
-				"buffer_size": 595,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "models/usuarioModel.php",
-			"settings":
-			{
-				"buffer_size": 697,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/index/index.tpl",
-			"settings":
-			{
-				"buffer_size": 39,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/layout/default/template.tpl",
-			"settings":
-			{
-				"buffer_size": 2683,
+				"buffer_size": 399,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -317,16 +301,16 @@
 			"file": "views/layout/default/menu.tpl",
 			"settings":
 			{
-				"buffer_size": 1630,
+				"buffer_size": 2195,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "controllers/indexController.php",
+			"file": "models/clienteModel.php",
 			"settings":
 			{
-				"buffer_size": 356,
+				"buffer_size": 489,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -374,16 +358,28 @@
 		"/var/www/html/prueba-lime/controllers",
 		"/var/www/html/prueba-lime/models",
 		"/var/www/html/prueba-lime/views",
-		"/var/www/html/prueba-lime/views/index"
+		"/var/www/html/prueba-lime/views/layout",
+		"/var/www/html/prueba-lime/views/layout/default"
 	],
 	"file_history":
 	[
+		"/var/www/html/prueba-lime/views/usuarios/index.tpl",
+		"/var/www/html/prueba-lime/controllers/usuariosController.php",
+		"/var/www/html/prueba-lime/controllers/indexController.php",
+		"/var/www/html/prueba-lime/views/index/index.tpl",
+		"/var/www/html/prueba-lime/views/layout/default/menu.tpl",
+		"/var/www/html/prueba-lime/models/usuarioModel.php",
+		"/var/www/html/prueba-lime/views/usuarios/edit.tpl",
+		"/var/www/html/prueba-lime/application/Controller.php",
+		"/var/www/html/prueba-lime/controllers/rolesController.php",
+		"/var/www/html/prueba-lime/views/roles/index.tpl",
+		"/var/www/html/prueba-lime/views/usuarios/login.tpl",
+		"/var/www/html/prueba-lime/views/usuarios/add.tpl",
+		"/var/www/html/prueba-lime/application/Config.php",
+		"/var/www/html/prueba-lime/views/layout/default/template.tpl",
 		"/var/www/html/prueba-lime/models/roleModel.php",
 		"/var/www/html/prueba-lime/views/roles/add.tpl",
-		"/var/www/html/prueba-lime/views/roles/index.tpl",
-		"/var/www/html/prueba-lime/controllers/rolesController.php",
 		"/var/www/html/prueba-lime/views/layout/default/header.tpl",
-		"/var/www/html/prueba-lime/views/layout/default/menu.tpl",
 		"/var/www/html/prueba-lime/views/layout/default/footer.tpl",
 		"/var/www/html/qepd/views/tipoempresas/index.tpl",
 		"/var/www/html/qepd/views/empresas/add.tpl",
@@ -471,24 +467,24 @@
 	"groups":
 	[
 		{
-			"selected": 8,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "application/Config.php",
+					"file": "controllers/clientesController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 354,
+						"buffer_size": 450,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								100,
-								100
+								292,
+								292
 							]
 						],
 						"settings":
@@ -499,56 +495,26 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "controllers/usuariosController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1939,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1894,
-								1894
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 714.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "views/usuarios/add.tpl",
+					"buffer": 1,
+					"file": "views/clientes/add.tpl",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1270,
+						"buffer_size": 399,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								748,
-								748
+								331,
+								331
 							]
 						],
 						"settings":
@@ -561,54 +527,55 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "models/roleModel.php",
-					"semi_transient": true,
+					"buffer": 2,
+					"file": "views/layout/default/menu.tpl",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 595,
+						"buffer_size": 2195,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1929,
+								1929
 							]
 						],
 						"settings":
 						{
+							"auto_complete": false,
 							"git_gutter_is_enabled": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 153.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "models/usuarioModel.php",
+					"buffer": 3,
+					"file": "models/clienteModel.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 697,
+						"buffer_size": 489,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								425,
-								420
+								308,
+								308
 							]
 						],
 						"settings":
@@ -621,131 +588,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "views/index/index.tpl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 39,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								13,
-								13
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "views/layout/default/template.tpl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2683,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2167,
-								2167
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 408.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "views/layout/default/menu.tpl",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1630,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								960,
-								960
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "controllers/indexController.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 356,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								314,
-								314
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -832,7 +675,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 265.0,
+	"side_bar_width": 272.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

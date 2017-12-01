@@ -5,6 +5,7 @@
 			<tr>
 				<th>Nombre</th>
 				<th>Email</th>
+				<th>Rol</th>
 				<th>Creado</th>
 				<th>Actualizado</th>
 				<th>Acciones</th>

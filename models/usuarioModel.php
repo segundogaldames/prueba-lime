@@ -50,4 +50,22 @@ class usuarioModel extends Model
 		$usu->bindParam(4, $role);
 		$usu->execute();
 	}
+
+	public function editUsuario($id, $nombre, $role){
+		$id = (int) $id;
+
+		$usu = $this->_db->prepare("UPDATE usuarios SET nombre = ?, role_id = ?, updated_at = now() WHERE id = ?");
+		$usu->bindParam(1, $nombre);
+		$usu->bindParam(2, $role);
+		$usu->bindParam(3, $id);
+		$usu->execute();
+	}
+
+	public function deleteUsuario($id){
+		$id = (int) $id;
+
+		$usu = $this->_db->prepare("DELETE FROM usuarios WHERE id = ?");
+		$usu->bindParam(1, $id);
+		$usu->execute();
+	}
 }

@@ -34,7 +34,7 @@
 	          <a class="dropdown-item" href="{$_layoutParams.root}usuarios">Usuarios</a>
 	          <a class="dropdown-item" href="{$_layoutParams.root}roles">Roles</a>
 	          <div class="dropdown-divider"></div>
-	          <a class="dropdown-item" href="#">Clientes</a>
+	          <a class="dropdown-item" href="{$_layoutParams.root}clientes">Clientes</a>
 	           <a class="dropdown-item" href="#">Campañas</a>
 	        </div>
 	      </li>
