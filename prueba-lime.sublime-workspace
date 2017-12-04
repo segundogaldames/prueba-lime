@@ -4,6 +4,74 @@
 		"selected_items":
 		[
 			[
+				"fetc",
+				"fetchall"
+			],
+			[
+				"cli",
+				"$cliente〔variable〕"
+			],
+			[
+				"clie",
+				"cliente_id"
+			],
+			[
+				"cod",
+				"cod_vicidial_id"
+			],
+			[
+				"form",
+				"form-group"
+			],
+			[
+				"for",
+				"form-control"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"ac",
+				"action\tAttr"
+			],
+			[
+				"co",
+				"$cod_vici_dial〔variable〕"
+			],
+			[
+				"cam",
+				"campaign"
+			],
+			[
+				"ca",
+				"campaign"
+			],
+			[
+				"getCliente",
+				"getClienteId"
+			],
+			[
+				"verificarRol",
+				"verificarRolAdminSuper"
+			],
+			[
+				"bt",
+				"btn"
+			],
+			[
+				"client",
+				"clientes"
+			],
+			[
+				"verificar",
+				"verificarSession"
+			],
+			[
+				"exec",
+				"execute"
+			],
+			[
 				"veri",
 				"verificarParams〔function〕"
 			],
@@ -24,10 +92,6 @@
 				"ingresar"
 			],
 			[
-				"form",
-				"form-control"
-			],
-			[
 				"pa",
 				"placeholder\tAttr"
 			],
@@ -38,14 +102,6 @@
 			[
 				"onc",
 				"onclick\tAttr"
-			],
-			[
-				"ca",
-				"class\tAttr"
-			],
-			[
-				"bt",
-				"btn-link"
 			],
 			[
 				"btn",
@@ -88,20 +144,12 @@
 				"option\tTag"
 			],
 			[
-				"for",
-				"form-group"
-			],
-			[
 				"ge",
 				"getSql〔function〕"
 			],
 			[
 				"fo",
 				"form-group"
-			],
-			[
-				"in",
-				"input\tTag"
 			],
 			[
 				"no",
@@ -240,10 +288,6 @@
 				"conflores"
 			],
 			[
-				"ac",
-				"acompanamiento"
-			],
-			[
 				"pre",
 				"prepare"
 			],
@@ -280,39 +324,67 @@
 	"buffers":
 	[
 		{
+			"file": "controllers/campaignController.php",
+			"settings":
+			{
+				"buffer_size": 3256,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
 			"file": "controllers/clientesController.php",
 			"settings":
 			{
-				"buffer_size": 450,
+				"buffer_size": 2693,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "views/clientes/add.tpl",
+			"file": "views/clientes/view.tpl",
 			"settings":
 			{
-				"buffer_size": 399,
+				"buffer_size": 732,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "views/layout/default/menu.tpl",
+			"file": "views/campaign/view.tpl",
 			"settings":
 			{
-				"buffer_size": 2195,
+				"buffer_size": 663,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "models/clienteModel.php",
+			"file": "views/campaign/edit.tpl",
 			"settings":
 			{
-				"buffer_size": 489,
+				"buffer_size": 1065,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/campaign/add.tpl",
+			"settings":
+			{
+				"buffer_size": 1043,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models/campaignModel.php",
+			"settings":
+			{
+				"buffer_size": 1898,
+				"encoding": "UTF-8",
+				"line_ending": "Unix",
+				"name": "<?php"
 			}
 		}
 	],
@@ -358,16 +430,28 @@
 		"/var/www/html/prueba-lime/controllers",
 		"/var/www/html/prueba-lime/models",
 		"/var/www/html/prueba-lime/views",
+		"/var/www/html/prueba-lime/views/campaign",
+		"/var/www/html/prueba-lime/views/clientes",
+		"/var/www/html/prueba-lime/views/index",
 		"/var/www/html/prueba-lime/views/layout",
 		"/var/www/html/prueba-lime/views/layout/default"
 	],
 	"file_history":
 	[
+		"/var/www/html/prueba-lime/views/campaign/index.tpl",
+		"/var/www/html/prueba-lime/views/campaign/view.tpl",
+		"/var/www/html/prueba-lime/views/layout/default/menu.tpl",
+		"/var/www/html/prueba-lime/views/index/index.tpl",
+		"/var/www/html/prueba-lime/controllers/indexController.php",
+		"/var/www/html/prueba-lime/controllers/clientesController.php",
+		"/var/www/html/prueba-lime/views/clientes/view.tpl",
+		"/var/www/html/prueba-lime/views/clientes/edit.tpl",
+		"/var/www/html/prueba-lime/views/clientes/add.tpl",
+		"/var/www/html/prueba-lime/views/layout/default/css/estilos.css",
+		"/var/www/html/prueba-lime/views/clientes/index.tpl",
+		"/var/www/html/prueba-lime/models/clienteModel.php",
 		"/var/www/html/prueba-lime/views/usuarios/index.tpl",
 		"/var/www/html/prueba-lime/controllers/usuariosController.php",
-		"/var/www/html/prueba-lime/controllers/indexController.php",
-		"/var/www/html/prueba-lime/views/index/index.tpl",
-		"/var/www/html/prueba-lime/views/layout/default/menu.tpl",
 		"/var/www/html/prueba-lime/models/usuarioModel.php",
 		"/var/www/html/prueba-lime/views/usuarios/edit.tpl",
 		"/var/www/html/prueba-lime/application/Controller.php",
@@ -467,24 +551,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "controllers/clientesController.php",
+					"file": "controllers/campaignController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 450,
+						"buffer_size": 3256,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								292,
-								292
+								2930,
+								2930
 							]
 						],
 						"settings":
@@ -494,27 +578,151 @@
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1479.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "views/clientes/add.tpl",
+					"file": "controllers/clientesController.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 399,
+						"buffer_size": 2693,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								331,
-								331
+								2218,
+								2218
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1020.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/clientes/view.tpl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 732,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								365,
+								365
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/campaign/view.tpl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 663,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								460,
+								460
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "views/campaign/edit.tpl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1065,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								994,
+								994
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "views/campaign/add.tpl",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1043,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1043
 							]
 						],
 						"settings":
@@ -527,65 +735,35 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "views/layout/default/menu.tpl",
+					"buffer": 6,
+					"file": "models/campaignModel.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2195,
+						"buffer_size": 1898,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1929,
-								1929
+								929,
+								957
 							]
 						],
 						"settings":
 						{
 							"auto_complete": false,
-							"git_gutter_is_enabled": true,
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 153.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "models/clienteModel.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 489,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								308,
-								308
-							]
-						],
-						"settings":
-						{
-							"auto_complete": false,
+							"auto_name": "<?php",
 							"git_gutter_is_enabled": true,
 							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 306.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 3,

@@ -24,7 +24,7 @@
 	        <a class="nav-link" href="{$_layoutParams.root}usuarios/add">Crear Usuario</a>
 	      </li>
 	       <li class="nav-item">
-	        <a class="nav-link" href="{$_layoutParams.root}limesurvey/index.php/admin/authentication/sa/login">Encuestas</a>
+	        <a class="nav-link" href="{$_layoutParams.root}limesurvey/index.php/admin/authentication/sa/login" target="_blank">Encuestas</a>
 	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,7 +35,8 @@
 	          <a class="dropdown-item" href="{$_layoutParams.root}roles">Roles</a>
 	          <div class="dropdown-divider"></div>
 	          <a class="dropdown-item" href="{$_layoutParams.root}clientes">Clientes</a>
-	           <a class="dropdown-item" href="#">Campañas</a>
+	           <a class="dropdown-item" href="{$_layoutParams.root}campaign">Campañas</a>
+	           <a class="dropdown-item" href="{$_layoutParams.root}encuestas">Encuestas</a>
 	        </div>
 	      </li>
 	      	{/if}

@@ -5,9 +5,16 @@
 		<h2>Panel de Administración</h2>
 
 		<h3>Clientes</h3>
-		<ul>
-			<li>Lista de clientes</li>
+		{if isset($clientes) && count($clientes)}
+		<ul type="square">
+			{foreach from=$clientes item=c}
+			<li><a href="{$_layoutParams.root}clientes/view/{$c.id}">{$c.nombre}</a></li>
+			{/foreach}
 		</ul>
+		{else}
+			<strong>No hay clientes disponibles</strong>
+			<p><a href="{$_layoutParams.root}clientes/add" class="btn btn-link btn-sm">Crear cliente</a></p>
+		{/if}
 		<h3>Campañas</h3>
 		<ul>
 			<li>Lista de campañas</li>

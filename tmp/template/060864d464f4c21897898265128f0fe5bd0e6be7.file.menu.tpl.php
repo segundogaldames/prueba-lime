@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-30 16:58:44
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-04 11:27:33
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1512075518,
+      1 => 1512401251,
       2 => 'file',
     ),
   ),
@@ -55,7 +55,7 @@ usuarios/add">Crear Usuario</a>
 	      </li>
 	       <li class="nav-item">
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-limesurvey/index.php/admin/authentication/sa/login">Encuestas</a>
+limesurvey/index.php/admin/authentication/sa/login" target="_blank">Encuestas</a>
 	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,7 +69,10 @@ roles">Roles</a>
 	          <div class="dropdown-divider"></div>
 	          <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 clientes">Clientes</a>
-	           <a class="dropdown-item" href="#">Campañas</a>
+	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign">Campañas</a>
+	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+encuestas">Encuestas</a>
 	        </div>
 	      </li>
 	      	<?php }?>
