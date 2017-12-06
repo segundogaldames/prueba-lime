@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-01 11:48:20
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-05 11:52:44
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1512143298,
+      1 => 1512489161,
       2 => 'file',
     ),
   ),
@@ -23,6 +23,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'clientes' => 0,
     '_layoutParams' => 0,
     'c' => 0,
+    'campaign' => 0,
+    'ejecutivos' => 0,
+    'ej' => 0,
+    'encuestas' => 0,
+    'e' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -31,40 +36,94 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </h4>
 	<hr>
 	<?php if (Session::get('role_id')!=2) {?>
-		<h2>Panel de Administración</h2>
-
-		<h3>Clientes</h3>
+		<h3>Panel de Administración</h3>
+		<hr>
+		<h4>Clientes</h4>
 		<?php if (isset($_smarty_tpl->tpl_vars['clientes']->value)&&count($_smarty_tpl->tpl_vars['clientes']->value)) {?>
-		<ul type="square">
-			<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
+			<ul type="square">
+				<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['clientes']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c']->value) {
 $_smarty_tpl->tpl_vars['c']->_loop = true;
 ?>
-			<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+					<li>
+						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 clientes/view/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['c']->value['nombre'];?>
-</a></li>
-			<?php } ?>
-		</ul>
+" class="btn btn-link btn-sm"><?php echo $_smarty_tpl->tpl_vars['c']->value['nombre'];?>
+</a>
+					</li>
+				<?php } ?>
+			</ul>
 		<?php } else { ?>
 			<strong>No hay clientes disponibles</strong>
 			<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 clientes/add" class="btn btn-link btn-sm">Crear cliente</a></p>
 		<?php }?>
-		<h3>Campañas</h3>
-		<ul>
-			<li>Lista de campañas</li>
-		</ul>
-		<h3>Ejecutivos</h3>
-		<ul>
-			<li>Lista de ejecutivos</li>
-		</ul>
+		<hr>
+		<h4>Campañas</h4>
+		<?php if (isset($_smarty_tpl->tpl_vars['campaign']->value)&&count($_smarty_tpl->tpl_vars['campaign']->value)) {?>
+			<ul type="square">
+				<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['campaign']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c']->value) {
+$_smarty_tpl->tpl_vars['c']->_loop = true;
+?>
+					<li>
+						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign/view/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
+" class="btn btn-link btn-sm"><?php echo $_smarty_tpl->tpl_vars['c']->value['nombre'];?>
+</a>
+					</li>
+				<?php } ?>
+			</ul>
+		<?php } else { ?>
+			<strong>No hay campañas disponibles</strong>
+			<p>
+				<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign/add" class="btn btn-link btn-sm">Crear Campaña</a>
+			</p>
+		<?php }?>
+		<hr>
+		<?php if (isset($_smarty_tpl->tpl_vars['ejecutivos']->value)&&count($_smarty_tpl->tpl_vars['ejecutivos']->value)) {?>
+			<h4>Ejecutivos</h4>
+			<ul type="square">
+				<?php  $_smarty_tpl->tpl_vars['ej'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['ej']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['ejecutivos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['ej']->key => $_smarty_tpl->tpl_vars['ej']->value) {
+$_smarty_tpl->tpl_vars['ej']->_loop = true;
+?>
+					<li>
+						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/view/<?php echo $_smarty_tpl->tpl_vars['ej']->value['id'];?>
+" class="btn btn-link btn-sm"><?php echo $_smarty_tpl->tpl_vars['ej']->value['nombre'];?>
+</a>
+					</li>
+				<?php } ?>
+			</ul>
+		<?php } else { ?>
+			<strong>No hay ejecutivos registrados</strong>
+			<p>
+				<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/add" class="btn btn-link btn-sm">Crear Ejecutivo</a>
+			</p>
+		<?php }?>
 	<?php } else { ?>
-		<h3>Mis Campañas</h3>
-		<ul>
-			<li>Mis campañas</li>
-		</ul>
+		<?php if (isset($_smarty_tpl->tpl_vars['encuestas']->value)&&count($_smarty_tpl->tpl_vars['encuestas']->value)) {?>
+			<h4>Mis Encuestas</h4>
+			<ul type="square">
+				<?php  $_smarty_tpl->tpl_vars['e'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['e']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['encuestas']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['e']->key => $_smarty_tpl->tpl_vars['e']->value) {
+$_smarty_tpl->tpl_vars['e']->_loop = true;
+?>
+					<li><a href="<?php echo $_smarty_tpl->tpl_vars['e']->value['link'];?>
+"><?php echo $_smarty_tpl->tpl_vars['e']->value['nombre'];?>
+</a></li>
+				<?php } ?>
+			</ul>
+		<?php } else { ?>
+			<strong>No hay encuestas disponibles</strong>
+		<?php }?>
 	<?php }?>
 
 </div>

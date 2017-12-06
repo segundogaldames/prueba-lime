@@ -41,6 +41,14 @@ class encuestaModel extends Model
 		return $enc->fetch();
 	}
 
+	public function getEncuestaLink($link){
+		$enc = $this->_db->prepare("SELECT id FROM encuestas WHERE link = ?");
+		$enc->bindParam(1, $link);
+		$enc->execute();
+
+		return $enc->fetch();
+	}
+
 	public function getEncuestasCampaign($campaign){
 		$campaign = (int) $campaign;
 
@@ -71,6 +79,14 @@ class encuestaModel extends Model
 		$enc->bindParam(3, $status);
 		$enc->bindParam(4, $campaign);
 		$enc->bindParam(5, $id);
+		$enc->execute();
+	}
+
+	public function deleteEncuestas($id){
+		$id = (int) $id;
+
+		$enc = $this->_db->prepare("DELETE FROM encuestas WHERE id = ?");
+		$enc->bindParam(1, $id);
 		$enc->execute();
 	}
 }

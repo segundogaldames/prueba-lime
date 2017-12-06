@@ -62,6 +62,12 @@ class encuestasController extends Controller
 				exit;
 			}
 
+			if ($this->_encuesta->getEncuestaLink($this->getPostParam('link'))) {
+				$this->_view->assign('_error', 'La encuesta ya existe...');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
 			$this->_encuesta->addEncuesta(
 				$this->getAlphaNum('nombre'), 
 				$this->getPostParam('link'), 
@@ -135,6 +141,14 @@ class encuestasController extends Controller
 		}
 
 		$this->_view->renderizar('edit');
+	}
+
+	public function delete($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdmin();
+		$this->verificarParams($id);
+
+		$this->_encuesta->deleteEncuestas($this->filtrarInt());
 	}
 
 	private function verificarParams($id){

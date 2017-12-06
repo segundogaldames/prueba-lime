@@ -37,6 +37,7 @@
 	          <a class="dropdown-item" href="{$_layoutParams.root}clientes">Clientes</a>
 	           <a class="dropdown-item" href="{$_layoutParams.root}campaign">Campañas</a>
 	           <a class="dropdown-item" href="{$_layoutParams.root}encuestas">Encuestas</a>
+	           <a class="dropdown-item" href="{$_layoutParams.root}encuestasusuarios">Encuestas y Usuarios</a>
 	        </div>
 	      </li>
 	      	{/if}

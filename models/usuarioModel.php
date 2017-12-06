@@ -42,6 +42,11 @@ class usuarioModel extends Model
 		return $usu->fetch();
 	}
 
+	public function getUsuariosEjecutivos(){
+		$usu = $this->_db->query("SELECT id, nombre, email FROM usuarios WHERE role_id = 2");
+		return $usu->fetchall();
+	}
+
 	public function addUsuario($nombre, $email, $clave, $role){
 		$usu = $this->_db->prepare("INSERT INTO usuarios VALUES(null, ?, ?, ?, now(), now(), ?)");
 		$usu->bindParam(1, $nombre);

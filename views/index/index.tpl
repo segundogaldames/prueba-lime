@@ -2,32 +2,64 @@
 	<h4>Bienvenido(a) {$saludo.nombre}</h4>
 	<hr>
 	{if Session::get('role_id') != 2}
-		<h2>Panel de Administración</h2>
-
-		<h3>Clientes</h3>
+		<h3>Panel de Administración</h3>
+		<hr>
+		<h4>Clientes</h4>
 		{if isset($clientes) && count($clientes)}
-		<ul type="square">
-			{foreach from=$clientes item=c}
-			<li><a href="{$_layoutParams.root}clientes/view/{$c.id}">{$c.nombre}</a></li>
-			{/foreach}
-		</ul>
+			<ul type="square">
+				{foreach from=$clientes item=c}
+					<li>
+						<a href="{$_layoutParams.root}clientes/view/{$c.id}" class="btn btn-link btn-sm">{$c.nombre}</a>
+					</li>
+				{/foreach}
+			</ul>
 		{else}
 			<strong>No hay clientes disponibles</strong>
 			<p><a href="{$_layoutParams.root}clientes/add" class="btn btn-link btn-sm">Crear cliente</a></p>
 		{/if}
-		<h3>Campañas</h3>
-		<ul>
-			<li>Lista de campañas</li>
-		</ul>
-		<h3>Ejecutivos</h3>
-		<ul>
-			<li>Lista de ejecutivos</li>
-		</ul>
+		<hr>
+		<h4>Campañas</h4>
+		{if isset($campaign) && count($campaign)}
+			<ul type="square">
+				{foreach from=$campaign item=c}
+					<li>
+						<a href="{$_layoutParams.root}campaign/view/{$c.id}" class="btn btn-link btn-sm">{$c.nombre}</a>
+					</li>
+				{/foreach}
+			</ul>
+		{else}
+			<strong>No hay campañas disponibles</strong>
+			<p>
+				<a href="{$_layoutParams.root}campaign/add" class="btn btn-link btn-sm">Crear Campaña</a>
+			</p>
+		{/if}
+		<hr>
+		{if isset($ejecutivos) && count($ejecutivos)}
+			<h4>Ejecutivos</h4>
+			<ul type="square">
+				{foreach from=$ejecutivos item=ej}
+					<li>
+						<a href="{$_layoutParams.root}usuarios/view/{$ej.id}" class="btn btn-link btn-sm">{$ej.nombre}</a>
+					</li>
+				{/foreach}
+			</ul>
+		{else}
+			<strong>No hay ejecutivos registrados</strong>
+			<p>
+				<a href="{$_layoutParams.root}usuarios/add" class="btn btn-link btn-sm">Crear Ejecutivo</a>
+			</p>
+		{/if}
 	{else}
-		<h3>Mis Campañas</h3>
-		<ul>
-			<li>Mis campañas</li>
-		</ul>
+		{if isset($encuestas) && count($encuestas)}
+			<h4>Mis Encuestas</h4>
+			<ul type="square">
+				{foreach from=$encuestas item=e}
+					<li><a href="{$e.link}">{$e.nombre}</a></li>
+				{/foreach}
+			</ul>
+		{else}
+			<strong>No hay encuestas disponibles</strong>
+		{/if}
 	{/if}
 
 </div>

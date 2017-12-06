@@ -7,11 +7,13 @@ class usuariosController extends Controller
 {
 	private $_usuario;
 	private $_role;
+	private $_encuestaUsuario;
 
 	public function __construct(){
 		parent::__construct();
 		$this->_usuario = $this->loadModel('usuario');
 		$this->_role = $this->loadModel('role');
+		$this->_encuestaUsuario = $this->loadModel('encuestausuario');
 	}
 
 	public function index(){
@@ -148,6 +150,17 @@ class usuariosController extends Controller
 		}
 
 		$this->_view->renderizar('add');
+	}
+
+	public function view($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		$this->_view->assign('titulo', 'Editar Usuario');
+		$this->_view->assign('usuario', $this->_usuario->getUsuarioId($this->filtrarInt($id)));
+		$this->_view->assign('usuarioEncuesta', $this->_encuestaUsuario->getEncuestaUsuarioPorUsuario($this->filtrarInt($id)));
+		$this->_view->renderizar('view');
 	}
 
 	public function edit($id = null){
