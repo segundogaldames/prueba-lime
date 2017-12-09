@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-04 13:05:55
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-06 16:52:32
          compiled from "/var/www/html/prueba-lime/views/encuestas/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9185742495a257f02d3df57-44357234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '110ae28df20e9a2cb34bac3e1f9c5ad3e9ea8016' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/view.tpl',
-      1 => 1512407153,
+      1 => 1512593546,
       2 => 'file',
     ),
   ),
@@ -58,5 +58,5 @@ usuarios/view/<?php echo $_smarty_tpl->tpl_vars['u']->value['id'];?>
 		<strong>No hay usuarios asociados</strong>
 	<?php }?>
 	<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-usuariosencuestas/add" class="btn btn-link">Asociar Usuarios</a></p>
+encuestasusuarios/add" class="btn btn-link">Asociar Usuarios</a></p>
 </div><?php }} ?>

@@ -17,5 +17,5 @@
 	{else}
 		<strong>No hay usuarios asociados</strong>
 	{/if}
-	<p><a href="{$_layoutParams.root}usuariosencuestas/add" class="btn btn-link">Asociar Usuarios</a></p>
+	<p><a href="{$_layoutParams.root}encuestasusuarios/add" class="btn btn-link">Asociar Usuarios</a></p>
 </div>
