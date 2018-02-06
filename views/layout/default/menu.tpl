@@ -26,6 +26,9 @@
 	       <li class="nav-item">
 	        <a class="nav-link" href="{$_layoutParams.root}limesurvey/index.php/admin/authentication/sa/login" target="_blank">Encuestas</a>
 	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="{$_layoutParams.root}contactos/add" target="_blank">Contactos</a>
+	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Administración

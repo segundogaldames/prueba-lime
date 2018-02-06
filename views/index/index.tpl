@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-6">
 	<h4>Bienvenido(a) {$saludo.nombre}</h4>
 	<hr>
 	{if Session::get('role_id') != 2}
@@ -54,7 +54,7 @@
 			<h4>Mis Encuestas</h4>
 			<ul type="square">
 				{foreach from=$encuestas item=e}
-					<li><a href="{$e.link}">{$e.nombre}</a></li>
+					<li><a href="{$e.link}" target="popup" onclick="javascript:window.open('{$e.link}','popup','width=500px,height=500px'); return false">{$e.nombre}</a></li>
 				{/foreach}
 			</ul>
 		{else}
@@ -62,6 +62,9 @@
 		{/if}
 	{/if}
 
+</div>
+<div class="col-md-6">
+	<a name="encuestas">Encuestas</a>
 </div>
 
 		
