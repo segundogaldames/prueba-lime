@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-06 12:20:03
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-07 10:26:48
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1517933995,
+      1 => 1518013579,
       2 => 'file',
     ),
   ),
@@ -79,6 +79,8 @@ campaign">Campañas</a>
 encuestas">Encuestas</a>
 	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestasusuarios">Encuestas y Usuarios</a>
+	            <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+estadollamadas">Estado Llamadas</a>
 	        </div>
 	      </li>
 	      	<?php }?>

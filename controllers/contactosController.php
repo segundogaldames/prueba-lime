@@ -28,6 +28,29 @@ class contactosController extends Controller
 
 		$this->_view->assign('titulo', 'Contactar');
 		$this->_view->assign('contacto', $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta)));
+		$id_contacto = $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta));
+
+		if ($this->getInt('enviar') == 1) {
+			
+			if (!$this->getInt('contacto')) {
+				$this->_view->assign('_error', 'Debe seleccionar una opción de contacto');
+				$this->_view->renderizar('contactoEncuesta');
+				exit;
+			}
+
+			if (!$this->getInt('llamada')) {
+				$this->_view->assign('_error', 'Debe seleccionar una opción de llamada');
+				$this->_view->renderizar('contactoEncuesta');
+				exit;
+			}
+
+			$this->_contacto->editContactoEstado(
+				$id_contacto['id'],
+				$this->getInt('contacto'),
+				$this->getInt('llamada')
+			);
+
+		}
 		$this->_view->renderizar('contactoEncuesta');
 	}
 
@@ -61,5 +84,8 @@ class contactosController extends Controller
 			$this->redireccionar();
 		}
 		$this->_view->renderizar('add');
+	}
+	public function cerrar(){
+		$this->redireccionar();
 	}
 }

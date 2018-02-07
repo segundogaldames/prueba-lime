@@ -3,11 +3,11 @@
 	{if isset($contacto) && count($contacto)}
 		<table class="table table-hover">
 			<tr>
-				<th>Nombre</th>
+				<th>Nombre:</th>
 				<td>{$contacto.nombre}</td>
 			</tr>
 			<tr>
-				<th>Rut</th>
+				<th>Teléfono:</th>
 				<td>{$contacto.telefono}</td>
 			</tr>
 		</table>
@@ -40,4 +40,5 @@
 	{else}
 		<p class="alert alert-info">No hay contactos disponibles</p>
 	{/if}
+	<a href="{$_layoutParams.root}contactos/cerrar">Cerrar</a>
 </div>

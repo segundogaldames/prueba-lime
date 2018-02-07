@@ -54,17 +54,18 @@
 			<h4>Mis Encuestas</h4>
 			<ul type="square">
 				{foreach from=$encuestas item=e}
-					<li><a href="{$e.link}" target="popup" onclick="javascript:window.open('{$e.link}','popup','width=500px,height=500px'); return false">{$e.nombre}</a></li>
+					<li>
+						<a href="{$_layoutParams.root}encuestasusuarios/encuestaUsuarioContacto/{$e.encuesta_id}">{$e.nombre}</a>
+					</li>
+
 				{/foreach}
+
 			</ul>
 		{else}
 			<strong>No hay encuestas disponibles</strong>
 		{/if}
 	{/if}
 
-</div>
-<div class="col-md-6">
-	<a name="encuestas">Encuestas</a>
 </div>
 
 		

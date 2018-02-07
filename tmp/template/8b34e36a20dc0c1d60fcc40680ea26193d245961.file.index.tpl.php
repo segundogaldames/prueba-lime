@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-06 13:24:16
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-07 09:31:06
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1517937852,
+      1 => 1518010256,
       2 => 'file',
     ),
   ),
@@ -116,20 +116,21 @@ usuarios/add" class="btn btn-link btn-sm">Crear Ejecutivo</a>
 foreach ($_from as $_smarty_tpl->tpl_vars['e']->key => $_smarty_tpl->tpl_vars['e']->value) {
 $_smarty_tpl->tpl_vars['e']->_loop = true;
 ?>
-					<li><a href="<?php echo $_smarty_tpl->tpl_vars['e']->value['link'];?>
-" target="popup" onclick="javascript:window.open('<?php echo $_smarty_tpl->tpl_vars['e']->value['link'];?>
-','popup','width=500px,height=500px'); return false"><?php echo $_smarty_tpl->tpl_vars['e']->value['nombre'];?>
-</a></li>
+					<li>
+						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+encuestasusuarios/encuestaUsuarioContacto/<?php echo $_smarty_tpl->tpl_vars['e']->value['encuesta_id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['e']->value['nombre'];?>
+</a>
+					</li>
+
 				<?php } ?>
+
 			</ul>
 		<?php } else { ?>
 			<strong>No hay encuestas disponibles</strong>
 		<?php }?>
 	<?php }?>
 
-</div>
-<div class="col-md-6">
-	<a name="encuestas">Encuestas</a>
 </div>
 
 		

@@ -7,12 +7,16 @@ class encuestasusuariosController extends Controller
 	private $_encuesta;
 	private $_usuario;
 	private $_encuestaUsuario;
+	private $_contacto;
+	private $_estadollamadas;
 	
 	public function __construct(){
 		parent::__construct();
 		$this->_encuesta = $this->loadModel('encuesta');
 		$this->_usuario = $this->loadModel('usuario');
 		$this->_encuestaUsuario = $this->loadModel('encuestausuario');
+		$this->_contacto = $this->loadModel('contacto');
+		$this->_estadollamadas = $this->loadModel('estadollamada');
 	}
 
 	public function index(){
@@ -22,6 +26,58 @@ class encuestasusuariosController extends Controller
 		$this->_view->assign('titulo', 'Encuestas Usuarios');
 		$this->_view->assign('encuestasUsuarios', $this->_encuestaUsuario->getEncuestasUsuarios());
 		$this->_view->renderizar('index');
+	}
+
+	public function encuestaUsuarioContacto($encuesta = null){
+
+		if (!$this->filtrarInt($encuesta)) {
+			$this->redireccionar();
+		}
+
+		if (!$this->_encuesta->getEncuestaId($encuesta)) {
+			$this->redireccionar();
+		}
+
+		$this->_view->assign('titulo', 'Ver Encuesta y Contacto');
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
+		$this->_view->assign('contacto', $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta)));
+		$this->_view->assign('estado_llamadas', $this->_estadollamadas->getEstadoLlamadas());
+		$this->_view->assign('enviar', CTRL);
+		$this->_view->renderizar('encuestaUsuarioContacto');
+	}
+
+	public function editEstadoContacto(){
+		//print_r($_POST);exit;
+		$this->verificarSession();
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			if (!$this->getInt('contacto')) {
+				$this->_view->assign('Debe seleccionar una opción de contacto');
+				$this->_view->renderizar('encuestaUsuarioContacto');
+				exit;
+			}
+
+			if (!$this->getInt('llamada')) {
+				$this->_view->assign('Debe seleccionar una opción de llamada');
+				$this->_view->renderizar('encuestaUsuarioContacto');
+				exit;
+			}
+
+			if (!$this->getInt('contacto_id')) {
+				$this->_view->assign('El contacto no existe. Salga y vuelva a ejecutar la acción');
+				$this->_view->renderizar('encuestaUsuarioContacto');
+				exit;
+			}
+
+			$this->_contacto->editContactoEstado(
+				$this->getInt('contacto_id'), 
+				$this->getInt('contacto'), 
+				$this->getInt('llamada')
+			);
+
+			$this->redireccionar();
+		}
+		$this->_view->renderizar('encuestaUsuarioContacto');
 	}
 
 	public function add(){

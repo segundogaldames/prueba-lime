@@ -22,6 +22,13 @@ class encuestasController extends Controller
 		$this->_view->renderizar('index');
 	}
 
+	public function fin(){
+		$this->verificarSession();
+
+		$this->_view->assign('titulo', 'Volver a Encuestar');
+		$this->_view->renderizar('fin');
+	}
+
 	public function add(){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
