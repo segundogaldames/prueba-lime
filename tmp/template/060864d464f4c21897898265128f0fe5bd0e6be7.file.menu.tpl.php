@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-07 10:26:48
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-20 17:12:56
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1518013579,
+      1 => 1519161174,
       2 => 'file',
     ),
   ),
@@ -59,7 +59,7 @@ limesurvey/index.php/admin/authentication/sa/login" target="_blank">Encuestas</a
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos/add" target="_blank">Contactos</a>
+contactos/add" >Cargar Contactos</a>
 	      </li>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -79,6 +79,11 @@ campaign">Campañas</a>
 encuestas">Encuestas</a>
 	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestasusuarios">Encuestas y Usuarios</a>
+	           <div class="dropdown-divider"></div>
+	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+cargas">Cargas</a>
+	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+contactos">Contactos</a>
 	            <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 estadollamadas">Estado Llamadas</a>
 	        </div>

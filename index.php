@@ -22,6 +22,7 @@ try{
 	require_once APP_PATH . 'Session.php';
 	require_once APP_PATH . 'Hash.php';
 
+	//require_once ROOT . 'libs/Classes/PHPExcel/IOFactory.php';
 	
 	Session::init();
 
