@@ -9,32 +9,36 @@ class cargaModel extends Model
 		parent::__construct();
 	}
 
-	public function getCargaIdCarga($id, $carga){
+	public function getCargaId($id){
 		$id = (int) $id;
-		$carga = (int) $carga;
 
-		$car = $this->_db->prepare("SELECT id FROM cargas WHERE id = ? AND carga_id = ?");
+		$car = $this->_db->prepare("SELECT id, usuario_id, created_at as fecha FROM cargas WHERE id = ?");
 		$car->bindParam(1, $id);
-		$car->bindParam(1, $carga);
 		$car->execute();
 
 		return $car->fetch();
 	}
 
+	public function getUltimaCarga(){
+		$car = $this->_db->query("SELECT max(id) as filas FROM cargas");
+		$filas = $car->fetch();
+		$row = $filas['filas'];
+
+		return $row;
+	}
+
 	public function getCargasUsuario($usuario){
-		$car = $this->_db->prepare("SELECT distinct id, carga_id, usuario_id, created_at as fecha FROM cargas ORDER BY fecha");
+		$car = $this->_db->prepare("SELECT distinct id, usuario_id, created_at as fecha FROM cargas WHERE usuario_id = ? ORDER BY fecha");
 		$car->bindParam(1, $usuario);
 		$car->execute();
 
 		return $car->fetchall();
 	}
 
-	public function addCarga($carga, $usuario){
-		$carga = (int) $carga;
+	public function addCarga($usuario){
 
-		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, ?, now())");
-		$car->bindParam(1, $carga);
-		$car->bindParam(2, $usuario);
+		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, now())");
+		$car->bindParam(1, $usuario);
 		$car->execute();
 	}
 }

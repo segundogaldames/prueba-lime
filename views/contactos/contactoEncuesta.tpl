@@ -10,6 +10,10 @@
 				<th>Teléfono:</th>
 				<td>{$contacto.telefono}</td>
 			</tr>
+			<tr>
+				<th>Teléfono2:</th>
+				<td>{$contacto.telefono2}</td>
+			</tr>
 		</table>
 		<hr>
 		<form action="" method="post">

@@ -16,7 +16,12 @@ class contactosController extends Controller
 	}
 
 	public function index(){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
 
+		$this->_view->assign('titulo', 'APP::Contactos');
+		$this->_view->assign('contactos', $this->_contacto->getContactos());
+		$this->_view->renderizar('index');
 	}
 
 	public function contactoEncuesta($encuesta = null){
@@ -56,20 +61,19 @@ class contactosController extends Controller
 		$this->_view->renderizar('contactoEncuesta');
 	}
 
-	public function contactosCarga($id = null, $carga = null){
+	public function contactosCarga($id = null){
 		$this->verificarSession();
-		$this->verficarRolAdminSuper();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
 
-		if (!$this->filtrarInt($carga)) {
-			$this->redireccionar();
-		}
-
-		if (!$this->_carga->getCargaIdCarga($this->filtrarInt($id), $this->filtrarInt($carga))) {
-			$this->redireccionar();
-		}
 
 		$this->_view->assign('titulo', 'APP::Contactos Por Carga');
-		$this->_carga->assign('contactos', $this->_contacto->getContactosCarga($this->filtrarInt($carga)))
+		$this->_view->assign('contactos', $this->_contacto->getContactosCarga($this->filtrarInt($id)));
+		$this->_view->assign('num_contactos', $this->_contacto->getCountContactosCountCarga($this->filtrarInt($id)));
+		$this->_view->assign('num_disponibles', $this->_contacto->getCountContactosDisponiblesCarga($this->filtrarInt($id)));
+		$this->_view->assign('num_encuestados', $this->_contacto->getCountContactosEncuestadosCarga($this->filtrarInt($id)));
+		$this->_view->assign('carga', $this->_carga->getCargaId($this->filtrarInt($id)));
+		$this->_view->renderizar('contactosCarga');
 	}
 
 	public function add(){
@@ -131,14 +135,15 @@ class contactosController extends Controller
 					$this->_view->renderizar('add');
 					exit;
 				}
-
-				if (!$carga) {
-					$this->_view->assign('_error', 'No puede ingresar contactos sin numero de carga');
-					$this->_view->renderizar('add');
-					exit;
-				}
 			}
 
+			//registramos la cargapara asociar contactos
+			$this->_carga->addCarga(Session::get('id_usuario'));
+
+			//recuperamos el ultimo id ingresado
+			$carga = $this->_carga->getUltimaCarga();
+			
+			//print_r($carga);exit;
 			//recuperamos e insertamos los datos
 			for ($i=2; $i <= $lastRow ; $i++) { 
 				$nombre = $workSheet->getCell('A'.$i)->getValue();
@@ -179,19 +184,18 @@ class contactosController extends Controller
 				$telefono8 = $workSheet->getCell('Z'.$i)->getValue();
 				$telefono9 = $workSheet->getCell('AA'.$i)->getValue();
 				$telefono10 = $workSheet->getCell('AB'.$i)->getValue();
-				$dato4 = $workSheet->getCell('AC'.$i)->getValue();
-				$dato5 = $workSheet->getCell('AD'.$i)->getValue();
-				$carga = $workSheet->getCell('AE'.$i)->getValue();
+				$criterio1 = $workSheet->getCell('AC'.$i)->getValue();
+				$criterio2 = $workSheet->getCell('AD'.$i)->getValue();
 
-					
+				//print_r($carga);exit;	
 
 				//se cargan los contactos
-				$this->_contacto->addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $dato4, $dato5, $carga);
+				$this->_contacto->addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga);
 				
 				//se crea un registro con la carga realizada
 				
 			}
-			$this->_carga->addCarga($carga, Session::get('id_usuario'));
+			
 			$this->redireccionar();		
 		}
 
@@ -202,11 +206,14 @@ class contactosController extends Controller
 		$this->redireccionar();
 	}
 
-	protected function getCamposContacto(){
-		return array('nombre', 'rut', 'telefono', 'encuesta');
-	}
+//************************************************************************************
+	protected function verificarParams($id){
+		if (!$this->filtrarInt($id)) {
+			$this->redireccionar();
+		}
 
-	protected function getCamposObligados(){
-		return array('nombre', 'telefono', 'encuesta');
+		if (!$this->_carga->getCargaId($this->filtrarInt($id))) {
+			$this->redireccionar();
+		}
 	}
 }

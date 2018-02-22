@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-07 12:12:27
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-21 13:31:23
          compiled from "/var/www/html/prueba-lime/views/encuestasusuarios/encuestaUsuarioContacto.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20067816475a7afc579db465-19860714%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f1935ada180ab43623f731c4d83ac15f816d03f8' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestasusuarios/encuestaUsuarioContacto.tpl',
-      1 => 1518019945,
+      1 => 1519234280,
       2 => 'file',
     ),
   ),
@@ -28,7 +28,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a7afc57a077a1_38409980')) {function content_5a7afc57a077a1_38409980($_smarty_tpl) {?><div class="col-md-12">
+<?php if ($_valid && !is_callable('content_5a7afc57a077a1_38409980')) {function content_5a7afc57a077a1_38409980($_smarty_tpl) {?><style type="text/css">
+	th{
+		text-align: right;
+	}
+</style>
+<div class="col-md-12">
 	<div class="col-md-6">
 		<h3>Contactar</h3>
 		<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value)&&count($_smarty_tpl->tpl_vars['contacto']->value)) {?>
@@ -43,6 +48,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['telefono'];?>
 </td>
 				</tr>
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['rut'])) {?>
+				<tr>
+					<th>RUT:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['rut'];?>
+</td>
+				</tr>
+				<?php }?>
+				<tr>
+					<th>Teléfono 2:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['telefono2'];?>
+</td>
+				</tr>
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['telefono3'])) {?>
+				<tr>
+					<th>Teléfono 3:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['telefono3'];?>
+</td>
+				</tr>
+				<?php }?>
 			</table>
 			<hr>
 			<form action="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>

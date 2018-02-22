@@ -10,16 +10,16 @@
 		{foreach from=$cargas item=c}
 			<tr>
 				<td>{$c.fecha|date_format:"%d-%m-%Y %H:%M"}</td>
-				<td>{$c.carga_id}</td>
+				<td>{$c.id}</td>
 				<td>
-					<a href="{$_layoutParams.root}contactos/contactosCarga/{$c.id}/{$c.carga_id}" class="btn btn-link btn-sm">Ver Contactos</a>
-					<a href="{$_layoutParams.root}contactos/deleteContactosCarga/{$c.id}/{$c.carga_id}" class="btn btn-link btn-sm">Eliminar Carga</a>
+					<a href="{$_layoutParams.root}contactos/contactosCarga/{$c.id}" class="btn btn-link btn-sm">Ver Contactos</a>
+					<a href="{$_layoutParams.root}contactos/deleteContactosCarga/{$c.id}" class="btn btn-link btn-sm">Eliminar Carga</a>
 				</td>
 			</tr>
 		{/foreach}
 	</table>
 
 	{else}
-		<p class="text-info">No se han realizado cargas</p>
+		<p class="text-info">Usted no ha realizado cargas</p>
 	{/if}
 </div>

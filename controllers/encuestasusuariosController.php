@@ -51,22 +51,17 @@ class encuestasusuariosController extends Controller
 		$this->verificarSession();
 
 		if ($this->getAlphaNum('enviar') == CTRL) {
+			//print_r($_POST);exit;
 			if (!$this->getInt('contacto')) {
-				$this->_view->assign('Debe seleccionar una opción de contacto');
-				$this->_view->renderizar('encuestaUsuarioContacto');
-				exit;
+				$this->redireccionar();
 			}
 
 			if (!$this->getInt('llamada')) {
-				$this->_view->assign('Debe seleccionar una opción de llamada');
-				$this->_view->renderizar('encuestaUsuarioContacto');
-				exit;
+				$this->redireccionar();
 			}
 
 			if (!$this->getInt('contacto_id')) {
-				$this->_view->assign('El contacto no existe. Salga y vuelva a ejecutar la acción');
-				$this->_view->renderizar('encuestaUsuarioContacto');
-				exit;
+				$this->redireccionar();
 			}
 
 			$this->_contacto->editContactoEstado(

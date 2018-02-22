@@ -1,3 +1,8 @@
+<style type="text/css">
+	th{
+		text-align: right;
+	}
+</style>
 <div class="col-md-12">
 	<div class="col-md-6">
 		<h3>Contactar</h3>
@@ -11,6 +16,22 @@
 					<th>Teléfono:</th>
 					<td>{$contacto.telefono}</td>
 				</tr>
+				{if isset($contacto.rut)}
+				<tr>
+					<th>RUT:</th>
+					<td>{$contacto.rut}</td>
+				</tr>
+				{/if}
+				<tr>
+					<th>Teléfono 2:</th>
+					<td>{$contacto.telefono2}</td>
+				</tr>
+				{if isset($contacto.telefono3)}
+				<tr>
+					<th>Teléfono 3:</th>
+					<td>{$contacto.telefono3}</td>
+				</tr>
+				{/if}
 			</table>
 			<hr>
 			<form action="{$_layoutParams.root}encuestasusuarios/editEstadoContacto" method="post">
