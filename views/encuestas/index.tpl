@@ -21,8 +21,7 @@
 					<td>{$e.actualizado|date_format:"%d-%m-%Y %H:%M"}</td>
 					<td>
 						<a href="{$_layoutParams.root}encuestas/edit/{$e.id}" class="btn btn-link btn-sm">Editar</a>
-					</td>
-					<td>
+					
 						<a href="{$_layoutParams.root}encuestas/delete/{$e.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestas/delete/{$e.id}', '{$e.nombre}');">Eliminar</a>
 					</td>
 				</tr>

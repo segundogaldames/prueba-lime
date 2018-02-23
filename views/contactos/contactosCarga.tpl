@@ -1,6 +1,7 @@
 <style type="text/css">
-	th{
+	#table-datos{
 		text-align: center;
+		font-size: 14px;
 	}
 </style>
 <div class="row">
@@ -17,7 +18,7 @@
 						</tr>
 						<tr>
 							<th>Fecha de carga:</th>
-							<td>{$carga.fecha|date_format:"%d-%m-%Y %H:%I"}</td>
+							<td>{$carga.fecha|date_format:"%d-%m-%Y %H:%M"}</td>
 						</tr>
 						<tr>
 							<th>Cargados:</th>
@@ -36,38 +37,27 @@
 				
 				
 			</div>
-				<table class="table table-hover" style="font-size: 14px">
-					<tr>
+				<table class="table table-hover" id="table-datos">
+					<tr style="background-color: #eeebeb">
 						<th>Nombre</th>
 						<th>Teléfono</th>
 						<th>Teléfono 2</th>
 						<th>Teléfono 3</th>
-						<th>Teléfono 4</th>
-						<th>Teléfono 5</th>
-						<th>Teléfono 6</th>
 						<th>Encuesta</th>
 						<th>Fecha de Carga</th>
 						<th>Estado del Contacto</th>
 						<th>Estado de Llamada</th>
-						<th>Acciones</th>
 					</tr>
 					{foreach from=$contactos item=c}
 						<tr>
-							<td>{ucwords($c.nombre)}</td>
+							<td><a href="{$_layoutParams.root}contactos/view/{$c.id}">{ucwords($c.nombre)}</a></td>
 							<td>{$c.telefono}</td>
 							<td>{$c.telefono2}</td>
 							<td>{$c.telefono3}</td>
-							<td>{$c.telefono4}</td>
-							<td>{$c.telefono5}</td>
-							<td>{$c.telefono6}</td>
 							<td>{ucwords($c.nom_encuesta)}</td>
 							<td>{$c.creado|date_format:"%d-%m-%Y %H:%M"}</td>
 							<td>{if $c.estado_contacto==1}Disponible{else}No Disponible{/if}</td>
 							<td>{ucwords($c.llamada)}</td>
-							<td>
-								<a href="{$_layoutParams.root}contactos/edit/{$c.id}" class="btn btn-link btn-sm">Editar</a>
-								<a href="{$_layoutParams.root}contactos/delete/{$c.id}" class="btn btn-link btn-sm">Eliminar</a>
-							</td>
 						</tr>
 					{/foreach}
 

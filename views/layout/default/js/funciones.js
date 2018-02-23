@@ -6,6 +6,14 @@ function eliminar(url, valor){
 	}
 }
 
+function desactivar(url, valor){
+	if (confirm('Deseas desactivar ' + valor + '?')) {
+		window.location = url;
+	}else{
+		return false;
+	}
+}
+
 function volver(url)
 {
 	window.location=url;

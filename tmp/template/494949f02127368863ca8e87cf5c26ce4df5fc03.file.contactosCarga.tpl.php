@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-21 12:24:00
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-23 12:18:13
          compiled from "/var/www/html/prueba-lime/views/contactos/contactosCarga.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20651652335a8d82a9ee8961-77050485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '494949f02127368863ca8e87cf5c26ce4df5fc03' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/contactosCarga.tpl',
-      1 => 1519230237,
+      1 => 1519402686,
       2 => 'file',
     ),
   ),
@@ -24,15 +24,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'num_contactos' => 0,
     'num_disponibles' => 0,
     'num_encuestados' => 0,
-    'c' => 0,
     '_layoutParams' => 0,
+    'c' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a8d82aa0093f6_66418201')) {function content_5a8d82aa0093f6_66418201($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/var/www/html/prueba-lime/libs/smarty/libs/plugins/modifier.date_format.php';
 ?><style type="text/css">
-	th{
+	#table-datos{
 		text-align: center;
+		font-size: 14px;
 	}
 </style>
 <div class="row">
@@ -50,7 +51,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 						</tr>
 						<tr>
 							<th>Fecha de carga:</th>
-							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['carga']->value['fecha'],"%d-%m-%Y %H:%I");?>
+							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['carga']->value['fecha'],"%d-%m-%Y %H:%M");?>
 </td>
 						</tr>
 						<tr>
@@ -73,20 +74,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				
 				
 			</div>
-				<table class="table table-hover" style="font-size: 14px">
-					<tr>
+				<table class="table table-hover" id="table-datos">
+					<tr style="background-color: #eeebeb">
 						<th>Nombre</th>
 						<th>Teléfono</th>
 						<th>Teléfono 2</th>
 						<th>Teléfono 3</th>
-						<th>Teléfono 4</th>
-						<th>Teléfono 5</th>
-						<th>Teléfono 6</th>
 						<th>Encuesta</th>
 						<th>Fecha de Carga</th>
 						<th>Estado del Contacto</th>
 						<th>Estado de Llamada</th>
-						<th>Acciones</th>
 					</tr>
 					<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['contactos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -94,19 +91,15 @@ foreach ($_from as $_smarty_tpl->tpl_vars['c']->key => $_smarty_tpl->tpl_vars['c
 $_smarty_tpl->tpl_vars['c']->_loop = true;
 ?>
 						<tr>
-							<td><?php echo ucwords($_smarty_tpl->tpl_vars['c']->value['nombre']);?>
-</td>
+							<td><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+contactos/view/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
+"><?php echo ucwords($_smarty_tpl->tpl_vars['c']->value['nombre']);?>
+</a></td>
 							<td><?php echo $_smarty_tpl->tpl_vars['c']->value['telefono'];?>
 </td>
 							<td><?php echo $_smarty_tpl->tpl_vars['c']->value['telefono2'];?>
 </td>
 							<td><?php echo $_smarty_tpl->tpl_vars['c']->value['telefono3'];?>
-</td>
-							<td><?php echo $_smarty_tpl->tpl_vars['c']->value['telefono4'];?>
-</td>
-							<td><?php echo $_smarty_tpl->tpl_vars['c']->value['telefono5'];?>
-</td>
-							<td><?php echo $_smarty_tpl->tpl_vars['c']->value['telefono6'];?>
 </td>
 							<td><?php echo ucwords($_smarty_tpl->tpl_vars['c']->value['nom_encuesta']);?>
 </td>
@@ -115,14 +108,6 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
 							<td><?php if ($_smarty_tpl->tpl_vars['c']->value['estado_contacto']==1) {?>Disponible<?php } else { ?>No Disponible<?php }?></td>
 							<td><?php echo ucwords($_smarty_tpl->tpl_vars['c']->value['llamada']);?>
 </td>
-							<td>
-								<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos/edit/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
-" class="btn btn-link btn-sm">Editar</a>
-								<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos/delete/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
-" class="btn btn-link btn-sm">Eliminar</a>
-							</td>
 						</tr>
 					<?php } ?>
 

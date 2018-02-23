@@ -1,19 +1,27 @@
-<div class="col-md-6">
-	<h2>Lista de Cargas Realizadas</h2>
+<div class="col-md-10">
+	<h2>Listas de Contactos Cargados</h2>
 	{if isset($cargas) && count($cargas)}
+	<p class="text-danger">Si desea desactivar o eliminar una lista, debe tener en cuenta que se desactivarán o eliminarán los contactos asociados a la lista seleccionada</p>
 	<table class="table table-hover">
 		<tr>
 			<th>Fecha</th>
-			<th>Carga N°</th>
+			<th>Lista N°</th>
+			<th>Estado</th>
+			<th>Modificado</th>
 			<th>Acciones</th>
 		</tr>
 		{foreach from=$cargas item=c}
 			<tr>
 				<td>{$c.fecha|date_format:"%d-%m-%Y %H:%M"}</td>
 				<td>{$c.id}</td>
+				<td>{if $c.estado ==1}Activa{else}No Activa{/if}</td>
+				<td>{$c.modificado|date_format:"%d-%m-%Y %H:%M"}</td>
 				<td>
 					<a href="{$_layoutParams.root}contactos/contactosCarga/{$c.id}" class="btn btn-link btn-sm">Ver Contactos</a>
-					<a href="{$_layoutParams.root}contactos/deleteContactosCarga/{$c.id}" class="btn btn-link btn-sm">Eliminar Carga</a>
+
+					<a href="{$_layoutParams.root}cargas/edit/{$c.id}" class="btn btn-link btn-sm">Editar Lista</a>
+
+					<a href="{$_layoutParams.root}cargas/delete/{$c.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}cargas/delete/{$c.id}', 'la lista {$c.id} y eliminar sus contactos?')">Eliminar Lista</a>
 				</td>
 			</tr>
 		{/foreach}

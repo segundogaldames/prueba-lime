@@ -81,8 +81,16 @@ class contactosController extends Controller
 		$this->verificarRolAdminSuper();
 
 		$this->_view->assign('titulo', 'Carga Contactos');
+		$this->_view->assign('encuestas', $this->_encuesta->getEncuestasActivas());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			if (!$this->getInt('encuesta')) {
+				$this->_view->assign('_error', 'No es posible asociar los contactos a una encuesta. Inténtelo nuevamente');
+				$this->_view->renderizar('add');
+				exit;
+			}
+			
 			$archivo = $_FILES['excel']['name'];
 			$ruta_tmp = $_FILES['excel']['tmp_name'];
 			//print_r($ruta_tmp);
@@ -130,11 +138,13 @@ class contactosController extends Controller
 					exit;
 				}
 
+				/*
 				if (!$encuesta) {
 					$this->_view->assign('_error', 'No puede ingresar contactos sin encuesta');
 					$this->_view->renderizar('add');
 					exit;
 				}
+				*/
 			}
 
 			//registramos la cargapara asociar contactos
@@ -148,49 +158,49 @@ class contactosController extends Controller
 			for ($i=2; $i <= $lastRow ; $i++) { 
 				$nombre = $workSheet->getCell('A'.$i)->getValue();
 				$telefono = $workSheet->getCell('B'.$i)->getValue();
-				$encuesta = $workSheet->getCell('C'.$i)->getValue();
-				$rut = $workSheet->getCell('D'.$i)->getValue();
-				$comuna = $workSheet->getCell('E'.$i)->getValue();
-				$region = $workSheet->getCell('F'.$i)->getValue();
-				$empresa = $workSheet->getCell('G'.$i)->getValue();
-				$email = $workSheet->getCell('H'.$i)->getValue();
-				$direccion = $workSheet->getCell('I'.$i)->getValue();
-				$profesion = $workSheet->getCell('J'.$i)->getValue();
-				$edad = $workSheet->getCell('K'.$i)->getValue();
-				$codigo = $workSheet->getCell('L'.$i)->getValue();
-				$tienda = $workSheet->getCell('M'.$i)->getValue();
-				$dato1 = $workSheet->getCell('N'.$i)->getValue();
-				$dato2 = $workSheet->getCell('O'.$i)->getValue();
-				$dato3 = $workSheet->getCell('P'.$i)->getValue();
+				//$encuesta = $workSheet->getCell('C'.$i)->getValue();
+				$rut = $workSheet->getCell('C'.$i)->getValue();
+				$comuna = $workSheet->getCell('D'.$i)->getValue();
+				$region = $workSheet->getCell('E'.$i)->getValue();
+				$empresa = $workSheet->getCell('F'.$i)->getValue();
+				$email = $workSheet->getCell('G'.$i)->getValue();
+				$direccion = $workSheet->getCell('H'.$i)->getValue();
+				$profesion = $workSheet->getCell('I'.$i)->getValue();
+				$edad = $workSheet->getCell('J'.$i)->getValue();
+				$codigo = $workSheet->getCell('K'.$i)->getValue();
+				$tienda = $workSheet->getCell('L'.$i)->getValue();
+				$dato1 = $workSheet->getCell('M'.$i)->getValue();
+				$dato2 = $workSheet->getCell('N'.$i)->getValue();
+				$dato3 = $workSheet->getCell('O'.$i)->getValue();
 
-				$fecha1 = $workSheet->getCell('Q'.$i)->getValue();
+				$fecha1 = $workSheet->getCell('P'.$i)->getValue();
 				$timestamp = PHPExcel_Shared_Date::ExcelToPHP($fecha1);
 				$fecha1 = date("d-m-Y", $timestamp);
 
-				$fecha2 = $workSheet->getCell('R'.$i)->getValue();
+				$fecha2 = $workSheet->getCell('Q'.$i)->getValue();
 				$timestamp = PHPExcel_Shared_Date::ExcelToPHP($fecha2);
 				$fecha2 = date("d-m-Y", $timestamp);
 
-				$fecha3 = $workSheet->getCell('S'.$i)->getValue();
+				$fecha3 = $workSheet->getCell('R'.$i)->getValue();
 				$timestamp = PHPExcel_Shared_Date::ExcelToPHP($fecha3);
 				$fecha3 = date("d-m-Y", $timestamp);
 
-				$telefono2 = $workSheet->getCell('T'.$i)->getValue();
-				$telefono3 = $workSheet->getCell('U'.$i)->getValue();
-				$telefono4 = $workSheet->getCell('V'.$i)->getValue();
-				$telefono5 = $workSheet->getCell('W'.$i)->getValue();
-				$telefono6 = $workSheet->getCell('X'.$i)->getValue();
-				$telefono7 = $workSheet->getCell('Y'.$i)->getValue();
-				$telefono8 = $workSheet->getCell('Z'.$i)->getValue();
-				$telefono9 = $workSheet->getCell('AA'.$i)->getValue();
-				$telefono10 = $workSheet->getCell('AB'.$i)->getValue();
-				$criterio1 = $workSheet->getCell('AC'.$i)->getValue();
-				$criterio2 = $workSheet->getCell('AD'.$i)->getValue();
+				$telefono2 = $workSheet->getCell('S'.$i)->getValue();
+				$telefono3 = $workSheet->getCell('T'.$i)->getValue();
+				$telefono4 = $workSheet->getCell('U'.$i)->getValue();
+				$telefono5 = $workSheet->getCell('V'.$i)->getValue();
+				$telefono6 = $workSheet->getCell('W'.$i)->getValue();
+				$telefono7 = $workSheet->getCell('X'.$i)->getValue();
+				$telefono8 = $workSheet->getCell('Y'.$i)->getValue();
+				$telefono9 = $workSheet->getCell('Z'.$i)->getValue();
+				$telefono10 = $workSheet->getCell('AA'.$i)->getValue();
+				$criterio1 = $workSheet->getCell('AB'.$i)->getValue();
+				$criterio2 = $workSheet->getCell('AC'.$i)->getValue();
 
 				//print_r($carga);exit;	
 
 				//se cargan los contactos
-				$this->_contacto->addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga);
+				$this->_contacto->addContactos($nombre, $telefono, $this->getInt('encuesta'), $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga);
 				
 				//se crea un registro con la carga realizada
 				

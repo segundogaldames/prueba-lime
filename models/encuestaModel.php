@@ -26,7 +26,7 @@ class encuestaModel extends Model
 	}
 
 	public function getEncuestasActivas(){
-		$status = (int) $status;
+		//$status = (int) $status;
 
 		$enc = $this->_db->query("SELECT e.id, e.nombre, e.link, e.status, e.created_at as creado, e.updated_at as actualizado, e.campaign_id, c.nombre as campaign FROM encuestas as e INNER JOIN campaign as c ON e.campaign_id = c.id WHERE e.status = 1 ORDER BY e.id dESC");
 		

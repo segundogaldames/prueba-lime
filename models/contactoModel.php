@@ -74,17 +74,34 @@ class contactoModel extends Model
 		return $row;
 	}
 
-	public function editContactoEstado($id, $contacto, $llamada){
+	public function editContactoContactado($id, $llamada){
 		//print_r($llamada);exit;
 		$id = (int) $id;
 		$contacto = (int) $contacto;
 		$llamada = (int) $llamada;
 
-		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = ?, estado_llamada = ?, modified_at = now() WHERE id = ?");
+		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = 2, estado_llamada = ?, modified_at = now() WHERE id = ?");
 		$cont->bindParam(1, $contacto);
 		$cont->bindParam(2, $llamada);
 		$cont->bindParam(3, $id);
 		$cont->execute();
+	}
+
+	public function editContactoEstado($carga, $estado){
+		$carga = (int) $carga;
+		$estado = (int) $estado;
+
+		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = ?, modified_at = now() WHERE num_carga = ?");
+		$cont->bindParam(1, $estado);
+		$cont->bindParam(2, $carga);
+		$cont->execute();
+
+		//contamos cuantas filas se vieron afectadas por el cambio
+		$num_cont = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE estado_contacto = 2 AND num_carga = {$carga}");
+		$filas = $num_cont->fetch();
+		$row = $filas['filas'];
+
+		return $row;
 	}
 
 	public function addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga){
@@ -122,6 +139,14 @@ class contactoModel extends Model
 		$cont->bindParam(29, $dato4);
 		$cont->bindParam(30, $dato5);
 		$cont->bindParam(31, $carga);
+		$cont->execute();
+	}
+
+	public function deleteContactosCarga($carga){
+		$carga = (int) $carga;
+
+		$cont = $this->_db->prepare("DELETE FROM contactos WHERE num_carga = ?");
+		$cont->bindParam(1, $carga);
 		$cont->execute();
 	}
 }
