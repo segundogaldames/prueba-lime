@@ -15,12 +15,22 @@ class contactosController extends Controller
 		$this->_carga = $this->loadModel('carga');
 	}
 
-	public function index(){
+	public function index($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 
+		if (!$this->filtrarInt($pagina)) {
+			$pagina = false;
+		}else{
+			$pagina = $this->filtrarInt($pagina);
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'APP::Contactos');
-		$this->_view->assign('contactos', $this->_contacto->getContactos());
+		$this->_view->assign('contactos', $paginador->paginar($this->_contacto->getContactos(), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'contactos/index'));
 		$this->_view->renderizar('index');
 	}
 

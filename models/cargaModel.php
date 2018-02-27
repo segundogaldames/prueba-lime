@@ -46,8 +46,8 @@ class cargaModel extends Model
 	}
 
 	public function addCarga($usuario){
-
-		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, now()), 1, now()");
+		//print_r($usuario);exit;
+		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, now(), 1, now())");
 		$car->bindParam(1, $usuario);
 		$car->execute();
 	}

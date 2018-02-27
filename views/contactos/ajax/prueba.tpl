@@ -1,14 +1,4 @@
-<style type="text/css">
-	table{
-		font-size: 14px;
-	}
-	th{
-		text-align: center;
-	}
-</style>
-<div class="col-md-12">
-	
-		{if isset($contactos) && count($contactos)}
+{if isset($contactos) && count($contactos)}
 	
 		<table class="table table-hover table-condensed">
 			<tr style="background-color: #eeebeb">
@@ -43,5 +33,3 @@
 		{else}
 			<p class="text-alert">No hay contactos registrados</p>
 		{/if}
-	
-</div>

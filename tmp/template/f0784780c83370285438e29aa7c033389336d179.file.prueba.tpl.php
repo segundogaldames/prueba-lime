@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-26 16:07:24
-         compiled from "/var/www/html/prueba-lime/views/contactos/index.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:3970229955a8de1af072328-52330010%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-26 14:52:58
+         compiled from "/var/www/html/prueba-lime/views/contactos/ajax/prueba.tpl" */ ?>
+<?php /*%%SmartyHeaderCode:19981639495a94578aac2611-31991307%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
-    'c4237ef30e57d5eaa58594e27cca4fb06f018407' => 
+    'f0784780c83370285438e29aa7c033389336d179' => 
     array (
-      0 => '/var/www/html/prueba-lime/views/contactos/index.tpl',
-      1 => 1519675630,
+      0 => '/var/www/html/prueba-lime/views/contactos/ajax/prueba.tpl',
+      1 => 1519665796,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '3970229955a8de1af072328-52330010',
+  'nocache_hash' => '19981639495a94578aac2611-31991307',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a8de1af093643_48748681',
   'variables' => 
   array (
     'contactos' => 0,
@@ -25,19 +23,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'paginacion' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a94578aae0bc4_74077759',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a8de1af093643_48748681')) {function content_5a8de1af093643_48748681($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/var/www/html/prueba-lime/libs/smarty/libs/plugins/modifier.date_format.php';
-?><style type="text/css">
-	table{
-		font-size: 14px;
-	}
-	th{
-		text-align: center;
-	}
-</style>
-<div class="col-md-12">
-	
-		<?php if (isset($_smarty_tpl->tpl_vars['contactos']->value)&&count($_smarty_tpl->tpl_vars['contactos']->value)) {?>
+<?php if ($_valid && !is_callable('content_5a94578aae0bc4_74077759')) {function content_5a94578aae0bc4_74077759($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/var/www/html/prueba-lime/libs/smarty/libs/plugins/modifier.date_format.php';
+?><?php if (isset($_smarty_tpl->tpl_vars['contactos']->value)&&count($_smarty_tpl->tpl_vars['contactos']->value)) {?>
 	
 		<table class="table table-hover table-condensed">
 			<tr style="background-color: #eeebeb">
@@ -88,6 +78,4 @@ echo $_smarty_tpl->tpl_vars['paginacion']->value;
 }?>
 		<?php } else { ?>
 			<p class="text-alert">No hay contactos registrados</p>
-		<?php }?>
-	
-</div><?php }} ?>
+		<?php }?><?php }} ?>

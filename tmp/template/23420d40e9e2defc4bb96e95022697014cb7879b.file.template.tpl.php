@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-21 17:17:45
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-26 15:43:40
          compiled from "/var/www/html/prueba-lime/views/layout/default/template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:6417541945a1f0f02c1b067-05851076%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '23420d40e9e2defc4bb96e95022697014cb7879b' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/template.tpl',
-      1 => 1519247862,
+      1 => 1519674218,
       2 => 'file',
     ),
   ),
@@ -44,8 +44,12 @@ resets.css">
 estilos.css">
       <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
       <?php echo '<script'; ?>
- src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"><?php echo '</script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['ruta_js'];?>
+jquery-3.3.1.min.js"><?php echo '</script'; ?>
 >
+      <!--<?php echo '<script'; ?>
+ src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"><?php echo '</script'; ?>
+>-->
       <?php echo '<script'; ?>
  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"><?php echo '</script'; ?>
 >
@@ -67,6 +71,12 @@ additional-methods.js"><?php echo '</script'; ?>
       <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['ruta_js'];?>
 funciones.js"><?php echo '</script'; ?>
+>
+      <?php echo '<script'; ?>
+ type="text/javascript">
+        var _root_ = '<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+'
+      <?php echo '</script'; ?>
 >
       
       
