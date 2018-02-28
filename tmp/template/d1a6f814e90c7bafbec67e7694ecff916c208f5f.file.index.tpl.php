@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-07 10:48:13
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-27 15:31:17
          compiled from "/var/www/html/prueba-lime/views/estadollamadas/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:17632707215a7b117b7b4ee6-48787422%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'd1a6f814e90c7bafbec67e7694ecff916c208f5f' => 
     array (
       0 => '/var/www/html/prueba-lime/views/estadollamadas/index.tpl',
-      1 => 1518014890,
+      1 => 1519759873,
       2 => 'file',
     ),
   ),
@@ -33,6 +33,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<table class="table table-hover">
 				<tr>
 					<th>Nombre</th>
+					<th>Estado Contacto</th>
 					<th>Acciones</th>
 				</tr>
 				<?php  $_smarty_tpl->tpl_vars['ell'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['ell']->_loop = false;
@@ -43,9 +44,11 @@ $_smarty_tpl->tpl_vars['ell']->_loop = true;
 				<tr>
 					<td><?php echo $_smarty_tpl->tpl_vars['ell']->value['nombre'];?>
 </td>
+					<td><?php echo $_smarty_tpl->tpl_vars['ell']->value['contacto'];?>
+</td>
 					<td>
 						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-estadollamadas/view/<?php echo $_smarty_tpl->tpl_vars['ell']->value['id'];?>
+estadollamadas/edit/<?php echo $_smarty_tpl->tpl_vars['ell']->value['id'];?>
 " class="btn btn-link btn-sm">Editar</a>
 						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 estadollamadas/delete/<?php echo $_smarty_tpl->tpl_vars['ell']->value['id'];?>

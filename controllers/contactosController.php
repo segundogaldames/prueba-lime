@@ -7,12 +7,14 @@ class contactosController extends Controller
 	private $_contacto;
 	private $_encuesta;
 	private $_carga;
+	private $_estadoLlamada;
 	
 	public function __construct(){
 		parent::__construct();
 		$this->_contacto = $this->loadModel('contacto');
 		$this->_encuesta = $this->loadModel('encuesta');
 		$this->_carga = $this->loadModel('carga');
+		$this->_estadoLlamada = $this->loadModel('estadollamada');
 	}
 
 	public function index($pagina = false){
@@ -44,41 +46,53 @@ class contactosController extends Controller
 		}
 
 		$this->_view->assign('titulo', 'Contactar');
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
 		$this->_view->assign('contacto', $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta)));
-		$id_contacto = $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta));
+		$this->_view->assign('estado_llamadas', $this->_estadoLlamada->getEstadoLlamadas());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
-			
-			if (!$this->getInt('contacto')) {
-				$this->_view->assign('_error', 'Debe seleccionar una opción de contacto');
-				$this->_view->renderizar('contactoEncuesta');
-				exit;
-			}
 
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			//print_r($_POST);exit;
 			if (!$this->getInt('llamada')) {
 				$this->_view->assign('_error', 'Debe seleccionar una opción de llamada');
 				$this->_view->renderizar('contactoEncuesta');
 				exit;
 			}
 
-			$this->_contacto->editContactoEstado(
-				$id_contacto['id'],
-				$this->getInt('contacto'),
-				$this->getInt('llamada')
-			);
+			$row = $this->_estadoLlamada->getEstadoLlamadaId($this->getInt('llamada'));
+			$est_contacto = $row['estado_contacto'];
+			//print_r($est_contacto);exit;
 
+			$this->_contacto->editContactoContactado(
+				$this->getInt('contacto'),
+				$this->filtrarInt($est_contacto),
+				$this->getInt('llamada'),
+				Session::get('id_usuario')
+			);
+			$this->redireccionar();
 		}
+		
 		$this->_view->renderizar('contactoEncuesta');
 	}
 
-	public function contactosCarga($id = null){
+	public function contactosCarga($id = null, $pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 		$this->verificarParams($id);
 
+		if (!$this->filtrarInt($pagina)) {
+			$pagina = false;
+		}else{
+			$pagina = $this->filtrarInt($pagina);
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
 
 		$this->_view->assign('titulo', 'APP::Contactos Por Carga');
-		$this->_view->assign('contactos', $this->_contacto->getContactosCarga($this->filtrarInt($id)));
+		$this->_view->assign('contactos', $paginador->paginar($this->_contacto->getContactosCarga($this->filtrarInt($id)), $pagina));
+		$this->_view->assign('paginacion',$paginador->getView('prueba', 'contactos/contactosCarga/' . $id));
 		$this->_view->assign('num_contactos', $this->_contacto->getCountContactosCountCarga($this->filtrarInt($id)));
 		$this->_view->assign('num_disponibles', $this->_contacto->getCountContactosDisponiblesCarga($this->filtrarInt($id)));
 		$this->_view->assign('num_encuestados', $this->_contacto->getCountContactosEncuestadosCarga($this->filtrarInt($id)));

@@ -44,7 +44,9 @@
 	           <div class="dropdown-divider"></div>
 	           <a class="dropdown-item" href="{$_layoutParams.root}cargas">Cargas</a>
 	           <a class="dropdown-item" href="{$_layoutParams.root}contactos">Contactos</a>
+	            <div class="dropdown-divider"></div>
 	            <a class="dropdown-item" href="{$_layoutParams.root}estadollamadas">Estado Llamadas</a>
+	            <a class="dropdown-item" href="{$_layoutParams.root}estadocontactos">Estado Contactos</a>
 	        </div>
 	      </li>
 	      	{/if}

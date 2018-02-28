@@ -6,13 +6,15 @@
 			<table class="table table-hover">
 				<tr>
 					<th>Nombre</th>
+					<th>Estado Contacto</th>
 					<th>Acciones</th>
 				</tr>
 				{foreach from=$estado_llamadas item=ell}
 				<tr>
 					<td>{$ell.nombre}</td>
+					<td>{$ell.contacto}</td>
 					<td>
-						<a href="{$_layoutParams.root}estadollamadas/view/{$ell.id}" class="btn btn-link btn-sm">Editar</a>
+						<a href="{$_layoutParams.root}estadollamadas/edit/{$ell.id}" class="btn btn-link btn-sm">Editar</a>
 						<a href="{$_layoutParams.root}estadollamadas/delete/{$ell.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}estadollamadas/delete/{$ell.id}', '{$ell.nombre}')">Eliminar</a>
 					</td>
 				</tr>

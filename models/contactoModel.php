@@ -10,7 +10,7 @@ class contactoModel extends Model
 	}
 
 	public function getContactos(){
-		$cont = $this->_db->query("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.empresa, c.email, c.direccion, c.profesion, c.edad, c.codigo, c.tienda, c.dato1, c.dato2, c.dato3, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.criterio1, c.criterio2, c.created_at as creado, c.num_carga, c.estado_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id");
+		$cont = $this->_db->query("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.empresa, c.email, c.direccion, c.profesion, c.edad, c.codigo, c.tienda, c.dato1, c.dato2, c.dato3, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.criterio1, c.criterio2, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id");
 
 		return $cont->fetchall();
 	}
@@ -33,10 +33,11 @@ class contactoModel extends Model
 		return $cont->fetch();
 	}
 
+
 	public function getContactosCarga($carga){
 		$carga = (int) $carga;
 
-		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.empresa, c.email, c.direccion, c.profesion, c.edad, c.codigo, c.tienda, c.dato1, c.dato2, c.dato3, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.criterio1, c.criterio2, c.created_at as creado, c.num_carga, c.estado_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id WHERE c.num_carga = ?");
+		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.empresa, c.email, c.direccion, c.profesion, c.edad, c.codigo, c.tienda, c.dato1, c.dato2, c.dato3, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.criterio1, c.criterio2, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id WHERE c.num_carga = ?");
 		$cont->bindParam(1, $carga);
 		$cont->execute();
 
@@ -74,16 +75,18 @@ class contactoModel extends Model
 		return $row;
 	}
 
-	public function editContactoContactado($id, $llamada){
+	public function editContactoContactado($id, $estado_contacto, $llamada, $usuario){
 		//print_r($llamada);exit;
 		$id = (int) $id;
-		$contacto = (int) $contacto;
+		$estado_contacto = (int) $estado_contacto;
 		$llamada = (int) $llamada;
+		$usuario = (int) $usuario;
 
-		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = 2, estado_llamada = ?, modified_at = now() WHERE id = ?");
-		$cont->bindParam(1, $contacto);
+		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = ?, estado_llamada = ?, modified_at = now(), encuestador_id = ? WHERE id = ?");
+		$cont->bindParam(1, $estado_contacto);
 		$cont->bindParam(2, $llamada);
-		$cont->bindParam(3, $id);
+		$cont->bindParam(3, $usuario);
+		$cont->bindParam(4, $id);
 		$cont->execute();
 	}
 

@@ -22,6 +22,7 @@
 				<th>Estado de Contacto</th>
 				<th>Estado de Llamada</th>
 				<th>Fecha de Carga</th>
+				<th>Fecha Gestión</th>
 			</tr>
 			{foreach from=$contactos item=c}
 				<tr>
@@ -32,9 +33,10 @@
 					<td>{ucwords($c.nom_encuesta)}</td>
 					<td>{$c.num_carga}</td>
 					<td>{ucwords($c.usuario)}</td>
-					<td>{if $c.estado_contacto==1}Disponible{else}No Disponible{/if}</td>
+					<td>{$c.e_contacto}</td>
 					<td>{$c.llamada}</td>
 					<td>{$c.creado|date_format:"%d-%m-%Y %H:%I"}</td>
+					<td>{$c.modificado|date_format:"%d-%m-%Y %H:%I"}</td>
 				</tr>
 
 			{/foreach}

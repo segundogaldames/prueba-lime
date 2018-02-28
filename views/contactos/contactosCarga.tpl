@@ -36,7 +36,6 @@
 						</table>
 					</div>
 					
-					
 				</div>
 					<table class="table table-hover" id="table-datos">
 						<tr style="background-color: #eeebeb">
@@ -48,6 +47,7 @@
 							<th>Fecha de Carga</th>
 							<th>Estado del Contacto</th>
 							<th>Estado de Llamada</th>
+							<th>Fecha de Gestión</th>
 						</tr>
 						{foreach from=$contactos item=c}
 							<tr>
@@ -57,8 +57,9 @@
 								<td>{$c.telefono3}</td>
 								<td>{ucwords($c.nom_encuesta)}</td>
 								<td>{$c.creado|date_format:"%d-%m-%Y %H:%M"}</td>
-								<td>{if $c.estado_contacto==1}Disponible{else}No Disponible{/if}</td>
+								<td>{$c.e_contacto}</td>
 								<td>{ucwords($c.llamada)}</td>
+								<td>{$c.modificado|date_format:"%d-%m-%Y %H:%M"}</td>
 							</tr>
 						{/foreach}
 

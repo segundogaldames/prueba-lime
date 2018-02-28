@@ -1,48 +1,211 @@
-<div class="col-md-6">
-	<h2>Contactar</h2>
-	{if isset($contacto) && count($contacto)}
-		<table class="table table-hover">
-			<tr>
-				<th>Nombre:</th>
-				<td>{$contacto.nombre}</td>
-			</tr>
-			<tr>
-				<th>Teléfono:</th>
-				<td>{$contacto.telefono}</td>
-			</tr>
-			<tr>
-				<th>Teléfono2:</th>
-				<td>{$contacto.telefono2}</td>
-			</tr>
-		</table>
-		<hr>
-		<form action="" method="post">
-			<div class=	"form-group">
-				<label>Estado de Contacto<span class="text-danger">*</span></label>
-				<select name="contacto" class="form-control">
-					<option value="">Seleccione</option>
-					<option value="1">Disponible</option>
-					<option value="2">Contactado</option>
-				</select>
-			</div>
-			<div class="form-group">
-				<label>Estado de la Llamada<span class="text-danger">*</span></label>
-				<select name="llamada" class="form-control">
-					<option value="">Seleccione</option>
-					{if isset($estado_llamada) && count($estado_llamada)}
-						{foreach from=$estado_llamada item=ell}
-							<option value="{$ell.id}">{$ell.nombre}</option>	
-						{/foreach}
-					{/if}
-				</select>
-			</div>
-			<div class="form-group">
-				<input type="hidden" name="enviar" value="1">
-				<input type="submit" value="Cambiar">
-			</div>
-		</form>
-	{else}
-		<p class="alert alert-info">No hay contactos disponibles</p>
-	{/if}
-	<a href="{$_layoutParams.root}contactos/cerrar">Cerrar</a>
+<style type="text/css">
+	th{
+		text-align: right;
+	}
+</style>
+<div class="container">
+	<!--fila para mostrar datos de contacto-->
+	<div class="row">
+		<!--columna 1 para mostrar datos telefonicos-->
+		<div class="col-md-6">
+			{if isset($contacto) && count($contacto)}
+			<table class="table table-hover" id="contacto">
+				<tr>
+					<th>Nombre</th>
+					<td>{ucwords($contacto.nombre)}</td>
+				</tr>
+				<tr>
+					<th>Teléfono 1:</th>
+					<td>{$contacto.telefono}</td>
+				</tr>
+				{if isset($contacto.telefono2)}
+				<tr>
+					<th>Teléfono 2:</th>
+					<td>{$contacto.telefono2}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono3)}
+				<tr>
+					<th>Teléfono 3:</th>
+					<td>{$contacto.telefono3}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono4)}
+				<tr>
+					<th>Teléfono 4:</th>
+					<td>{$contacto.telefono4}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono5)}
+				<tr>
+					<th>Teléfono 5:</th>
+					<td>{$contacto.telefono5}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono6)}
+				<tr>
+					<th>Teléfono 6:</th>
+					<td>{$contacto.telefono6}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono7)}
+				<tr>
+					<th>Teléfono 7:</th>
+					<td>{$contacto.telefono7}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono8)}
+				<tr>
+					<th>Teléfono 8:</th>
+					<td>{$contacto.telefono8}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono9)}
+				<tr>
+					<th>Teléfono 9:</th>
+					<td>{$contacto.telefono9}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.telefono10)}
+				<tr>
+					<th>Teléfono 10:</th>
+					<td>{$contacto.telefono10}</td>
+				</tr>
+				{/if}
+			</table>
+			{/if}
+		</div>
+		<!--columna 2 para mostrar otros datos del contacto-->
+		<div class="col-md-6">
+			{if isset($contacto) && count($contacto)}
+			<table class="table table-hover">
+				{if isset($contacto.rut)}
+				<tr>
+					<th>RUT:</th>
+					<td>{$contacto.rut}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.comuna)}
+				<tr>
+					<th>Comuna:</th>
+					<td>{$contacto.comuna}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.region)}
+				<tr>
+					<th>Región:</th>
+					<td>{$contacto.region}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.email)}
+				<tr>
+					<th>Email:</th>
+					<td>{$contacto.email}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.direcion)}
+				<tr>
+					<th>Dirección:</th>
+					<td>{$contacto.direcion}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.profesion)}
+				<tr>
+					<th>Profesión:</th>
+					<td>{$contacto.profesion}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.edad)}
+				<tr>
+					<th>Edad:</th>
+					<td>{$contacto.edad}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.codigo)}
+				<tr>
+					<th>Código:</th>
+					<td>{$contacto.codigo}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.tienda)}
+				<tr>
+					<th>Tienda:</th>
+					<td>{$contacto.tienda}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.dato1)}
+				<tr>
+					<th>Dato 1:</th>
+					<td>{$contacto.dato1}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.dato2)}
+				<tr>
+					<th>Dato 2:</th>
+					<td>{$contacto.dato2}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.dato3)}
+				<tr>
+					<th>Dato 3:</th>
+					<td>{$contacto.dato3}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.fecha1)}
+				<tr>
+					<th>Fecha 1:</th>
+					<td>{$contacto.fecha1}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.fecha2)}
+				<tr>
+					<th>Fecha 2:</th>
+					<td>{$contacto.fecha2}</td>
+				</tr>
+				{/if}
+				{if isset($contacto.fecha3)}
+				<tr>
+					<th>Fecha 3:</th>
+					<td>{$contacto.fecha3}</td>
+				</tr>
+				{/if}
+			</table>
+			{/if}
+		</div>
+	</div>
+	<!--Formulario de cambio de estado de llamada-->
+	<div class="row justify-content-md-center">
+
+		<div class="col-md-6">
+			<hr>
+			.<form action="" method="post">
+				<div class="form-group">
+					<label>Estado de Llamada</label>
+					<select name="llamada" class="form-control">
+						<option value="">Selecione</option>
+						{if isset($estado_llamadas) && count($estado_llamadas)}
+							{foreach from=$estado_llamadas item=ell}
+								<option value="{$ell.id}">{$ell.nombre}</option>
+							{/foreach}
+						{/if}
+					</select>
+				</div>
+				<div class="form-group">
+					<input type="hidden" name="contacto" value="{$contacto.id}">
+					<input type="hidden" name="enviar" value="{$enviar}">
+					<input type="submit" value="Guardar" class="btn btn-success">
+					<a href="{$_layoutParams.root}index" class="btn btn-primary">Volver</a>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<div class="row justify-content-md-center">
+		<div class="col-md-8">
+			{if isset($encuesta) && count($encuesta)}
+				<iframe src="{$encuesta.link}" marginwidth="0" marginheight="0" name="ventana_iframe" scrolling="no" border="0" 
+			frameborder="0" width="800" height="4800"></iframe>							
+			{/if}
+		</div>
+	</div>
 </div>

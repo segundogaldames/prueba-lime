@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-07 09:31:06
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-27 10:34:01
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1518010256,
+      1 => 1519742035,
       2 => 'file',
     ),
   ),
@@ -118,7 +118,7 @@ $_smarty_tpl->tpl_vars['e']->_loop = true;
 ?>
 					<li>
 						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-encuestasusuarios/encuestaUsuarioContacto/<?php echo $_smarty_tpl->tpl_vars['e']->value['encuesta_id'];?>
+contactos/contactoEncuesta/<?php echo $_smarty_tpl->tpl_vars['e']->value['encuesta_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['e']->value['nombre'];?>
 </a>
 					</li>

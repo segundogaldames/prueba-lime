@@ -55,7 +55,7 @@
 			<ul type="square">
 				{foreach from=$encuestas item=e}
 					<li>
-						<a href="{$_layoutParams.root}encuestasusuarios/encuestaUsuarioContacto/{$e.encuesta_id}">{$e.nombre}</a>
+						<a href="{$_layoutParams.root}contactos/contactoEncuesta/{$e.encuesta_id}">{$e.nombre}</a>
 					</li>
 
 				{/foreach}

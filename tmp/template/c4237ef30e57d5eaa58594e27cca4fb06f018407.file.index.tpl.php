@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-26 16:07:24
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-27 16:46:50
          compiled from "/var/www/html/prueba-lime/views/contactos/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3970229955a8de1af072328-52330010%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c4237ef30e57d5eaa58594e27cca4fb06f018407' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/index.tpl',
-      1 => 1519675630,
+      1 => 1519764408,
       2 => 'file',
     ),
   ),
@@ -51,6 +51,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<th>Estado de Contacto</th>
 				<th>Estado de Llamada</th>
 				<th>Fecha de Carga</th>
+				<th>Fecha Gestión</th>
 			</tr>
 			<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['contactos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -74,10 +75,13 @@ contactos/view/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
 </td>
 					<td><?php echo ucwords($_smarty_tpl->tpl_vars['c']->value['usuario']);?>
 </td>
-					<td><?php if ($_smarty_tpl->tpl_vars['c']->value['estado_contacto']==1) {?>Disponible<?php } else { ?>No Disponible<?php }?></td>
+					<td><?php echo $_smarty_tpl->tpl_vars['c']->value['e_contacto'];?>
+</td>
 					<td><?php echo $_smarty_tpl->tpl_vars['c']->value['llamada'];?>
 </td>
 					<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['c']->value['creado'],"%d-%m-%Y %H:%I");?>
+</td>
+					<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['c']->value['modificado'],"%d-%m-%Y %H:%I");?>
 </td>
 				</tr>
 
