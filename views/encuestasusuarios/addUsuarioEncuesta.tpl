@@ -2,17 +2,6 @@
 	<h2>Asociar Encuestas y Usuarios</h2>
 	<form action="" method="post" name="form">
 		<div class="form-group">
-			<label>Encuesta</label>
-			<select name="encuesta" class="form-control">
-				<option value="">Seleccione</option>
-				{if isset($encuestas) && count($encuestas)}
-					{foreach from=$encuestas item=e}
-						<option value="{$e.id}">{$e.nombre}</option>
-					{/foreach}
-				{/if}				
-			</select>
-		</div>
-		<div class="form-group">
 			<label>Usuario</label>
 			<select name="usuario" class="form-control">
 				<option value="">Seleccione</option>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-04 14:34:37
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 11:29:46
          compiled from "/var/www/html/prueba-lime/views/campaign/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:17738991845a21c2102c04a6-34649006%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a5cb31528a8e0d8849e52b2e86a64c05765c84d9' => 
     array (
       0 => '/var/www/html/prueba-lime/views/campaign/view.tpl',
-      1 => 1512412470,
+      1 => 1519831774,
       2 => 'file',
     ),
   ),
@@ -39,6 +39,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 campaign/edit/<?php echo $_smarty_tpl->tpl_vars['campaign']->value['id'];?>
 " class="btn btn-link btn-sm">Editar</a>
+		<?php if (Session::get('role_id')==1) {?>
+		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign/delete/<?php echo $_smarty_tpl->tpl_vars['campaign']->value['id'];?>
+" class="btn btn-link btn-sm" onclick="return eliminar('<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign/delete/<?php echo $_smarty_tpl->tpl_vars['campaign']->value['id'];?>
+', '<?php echo $_smarty_tpl->tpl_vars['campaign']->value['nombre'];?>
+')">Eliminar</a>
+		<?php }?>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 campaign" class="btn btn-link btn-sm">Campañas</a>
 	</p>

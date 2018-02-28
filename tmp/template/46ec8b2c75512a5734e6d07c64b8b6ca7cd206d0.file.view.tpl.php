@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-05 12:03:03
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 15:48:24
          compiled from "/var/www/html/prueba-lime/views/usuarios/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1598868275a269004d87667-47975696%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '46ec8b2c75512a5734e6d07c64b8b6ca7cd206d0' => 
     array (
       0 => '/var/www/html/prueba-lime/views/usuarios/view.tpl',
-      1 => 1512489201,
+      1 => 1519847299,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'usuario' => 0,
     '_layoutParams' => 0,
+    'u' => 0,
     'usuarioEncuesta' => 0,
     'ue' => 0,
   ),
@@ -43,8 +44,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/edit/<?php echo $_smarty_tpl->tpl_vars['usuario']->value['id'];?>
 " class="btn btn-link btn-sm">Editar</a>
+		<?php if (Session::get('role_id')==1) {?>
+		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/delete/<?php echo $_smarty_tpl->tpl_vars['usuario']->value['id'];?>
+" class="btn btn-link btn-sm" onclick="return eliminar('<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/delete/<?php echo $_smarty_tpl->tpl_vars['usuario']->value['id'];?>
+','<?php echo $_smarty_tpl->tpl_vars['u']->value['nombre'];?>
+')">Eliminar</a>
+
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios" class="btn btn-link btn-sm">Usuarios</a>
+		<?php }?>
+		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/ejecutivos" class="btn btn-link btn-sm">Ejecutivos</a>
 	</p>
 	<hr>
 	<?php if (isset($_smarty_tpl->tpl_vars['usuarioEncuesta']->value)&&count($_smarty_tpl->tpl_vars['usuarioEncuesta']->value)) {?>

@@ -4,6 +4,8 @@
 */
 class campaignController extends Controller
 {
+	//restringido a usuarios logueados
+	//Permisos Supervisor: ver, crear y editar 
 	private $_campaign;
 	private $_cliente;
 	private $_encuesta;
@@ -30,8 +32,9 @@ class campaignController extends Controller
 
 		$this->_view->assign('titulo', 'Nueva Campaña');
 		$this->_view->assign('clientes', $this->_cliente->getClientes());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			$this->_view->assign('datos', $_POST);
 
 			if (!$this->getSql('nombre')) {
@@ -82,8 +85,9 @@ class campaignController extends Controller
 
 		$this->_view->assign('titulo', 'Editar Campaña');
 		$this->_view->assign('dato', $this->_campaign->getCampaignId($this->filtrarInt($id)));
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			if (!$this->getSql('nombre')) {
 				$this->_view->assign('_error', 'Debe ingresar el nombre');
 				$this->_view->renderizar('add');

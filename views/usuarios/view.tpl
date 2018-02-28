@@ -7,7 +7,12 @@
 	<p><strong>Rol:</strong> {$usuario.role}</p>
 	<p>
 		<a href="{$_layoutParams.root}usuarios/edit/{$usuario.id}" class="btn btn-link btn-sm">Editar</a>
+		{if Session::get('role_id') == 1}
+		<a href="{$_layoutParams.root}usuarios/delete/{$usuario.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}usuarios/delete/{$usuario.id}','{$u.nombre}')">Eliminar</a>
+
 		<a href="{$_layoutParams.root}usuarios" class="btn btn-link btn-sm">Usuarios</a>
+		{/if}
+		<a href="{$_layoutParams.root}usuarios/ejecutivos" class="btn btn-link btn-sm">Ejecutivos</a>
 	</p>
 	<hr>
 	{if isset($usuarioEncuesta) && count($usuarioEncuesta)}

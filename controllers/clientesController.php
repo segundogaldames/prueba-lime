@@ -4,6 +4,8 @@
 */
 class clientesController extends Controller
 {
+	//Acceso restringido a login
+	//Permisos Supervisor: crear y ver 
 	private $_cliente;
 	private $_campaign;
 	
@@ -28,8 +30,9 @@ class clientesController extends Controller
 		$this->verificarRolAdminSuper();
 
 		$this->_view->assign('titulo', 'Nuevo Cliente');
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			$this->_view->assign('datos', $_POST);
 
 			if (!$this->getSql('nombre')) {
@@ -57,8 +60,9 @@ class clientesController extends Controller
 
 		$this->_view->assign('titulo', 'Editar Cliente');
 		$this->_view->assign('dato', $this->_cliente->getClienteId($this->filtrarInt($id)));
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			if (!$this->getSql('nombre')) {
 				$this->_view->assign('_error', 'Debe ingresar el nombre');
 				$this->_view->renderizar('add');

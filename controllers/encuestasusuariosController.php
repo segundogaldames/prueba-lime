@@ -4,6 +4,9 @@
 */
 class encuestasusuariosController extends Controller
 {
+	//Restringido a login
+	//Permisos supervisor: todos
+	//Permisos ejecutivo: ver enceustas asociadas a su login, editar estado de contacto luego de una encuesta
 	private $_encuesta;
 	private $_usuario;
 	private $_encuestaUsuario;
@@ -29,6 +32,7 @@ class encuestasusuariosController extends Controller
 	}
 
 	public function encuestaUsuarioContacto($encuesta = null){
+		$this->verificarSession();
 
 		if (!$this->filtrarInt($encuesta)) {
 			$this->redireccionar();
@@ -82,8 +86,9 @@ class encuestasusuariosController extends Controller
 		$this->_view->assign('titulo', 'Nueva Encuesta Usuario');
 		$this->_view->assign('encuestas', $this->_encuesta->getEncuestas());
 		$this->_view->assign('ejecutivos', $this->_usuario->getUsuariosEjecutivos());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			if (!$this->getInt('encuesta')) {
 				$this->_view->assign('_error', 'Debe seleccionar una encuesta');
 				$this->_view->renderizar('add');
@@ -111,5 +116,46 @@ class encuestasusuariosController extends Controller
 		}
 
 		$this->_view->renderizar('add');
+	}
+
+	public function addUsuarioEncuesta($encuesta = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		if (!$this->filtrarInt($encuesta)) {
+			$this->redireccionar('encuestas');
+		}
+
+		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
+			$this->redireccionar('encuestas');
+		}
+
+		$this->_view->assign('titulo', 'Nueva Encuesta Usuario');
+		$this->_view->assign('ejecutivos', $this->_usuario->getUsuariosEjecutivos());
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+
+			if (!$this->getInt('usuario')) {
+				$this->_view->assign('_error', 'Debe seleccionar un usuario');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			if ($this->_encuestaUsuario->getEncuestaUsuarioDuplicate($this->filtrarInt($encuesta), $this->getInt('usuario'))) {
+				$this->_view->assign('_error', 'La asociación encuesta y usuario ya existen...');
+				$this->_view->renderizar('addUsuarioEncuesta');
+				exit;
+			}
+
+			$this->_encuestaUsuario->addEncuestaUsuario(
+				$this->filtrarInt($encuesta), 
+				$this->getInt('usuario')
+			);
+
+			$this->redireccionar('encuestasusuarios');
+		}
+
+		$this->_view->renderizar('addUsuarioEncuesta');
 	}
 }

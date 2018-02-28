@@ -21,7 +21,7 @@
 			<input type="text" name="vici" class="form-control" value="{$dato.vici|default:""}" placeholder="Código de la camapaña en ViciDial">
 		</div>
 		<div class="form-group">
-			<input type="hidden" name="enviar" value="1">
+			<input type="hidden" name="enviar" value="{$enviar}">
 			<input type="submit" value="Guardar" class="btn btn-success">
 			<a href="{$_layoutParams.root}campaign" class="btn btn-link">Volver</a>
 		</div>

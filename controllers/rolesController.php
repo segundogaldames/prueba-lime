@@ -4,6 +4,7 @@
 */
 class rolesController extends Controller
 {
+	//Restringido a login
 	private $_role;
 	
 	public function __construct(){
@@ -26,8 +27,9 @@ class rolesController extends Controller
 		$this->verificarRolAdmin();
 
 		$this->_view->assign('titulo', 'Nuevo Rol');
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			$this->_view->assign('datos', $_POST);
 
 			if (!$this->getSql('nombre')) {

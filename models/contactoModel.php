@@ -20,7 +20,7 @@ class contactoModel extends Model
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
 
-		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE estado_contacto = 1 AND estado_llamada = 7");
+		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND estado_contacto = 1 AND estado_llamada = 7");
 		$filas = $cant_filas->fetch();
 		$aleatorio = rand(0, $filas['filas']-1);
 		//print_r($aleatorio);exit;
@@ -110,7 +110,7 @@ class contactoModel extends Model
 	public function addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga){
 		//$carga = (int) $carga;
 		//print_r($carga);exit;
-		$cont = $this->_db->prepare("INSERT INTO contactos VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, 1, 7, now())");
+		$cont = $this->_db->prepare("INSERT INTO contactos VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, 1, 7, now(), NULL)");
 		$cont->bindParam(1, $nombre);
 		$cont->bindParam(2, $telefono);
 		$cont->bindParam(3, $encuesta);

@@ -4,13 +4,19 @@
 */
 class encuestasController extends Controller
 {
+	//Restringido a login
+	//Permisos supervisor: ver, editar y crear
 	private $_encuesta;
 	private $_campaign;	
+	private $_encuestaUsuario;
+	private $_carga;
 	
 	public function __construct(){
 		parent::__construct();
 		$this->_encuesta = $this->loadModel('encuesta');
 		$this->_campaign = $this->loadModel('campaign');
+		$this->_encuestaUsuario = $this->loadModel('encuestausuario');
+		$this->_carga = $this->loadModel('carga');
 	}
 
 	public function index(){
@@ -35,8 +41,9 @@ class encuestasController extends Controller
 
 		$this->_view->assign('titulo', 'Encuestas');
 		$this->_view->assign('campaign', $this->_campaign->getCampaign());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			$this->_view->assign('datos', $_POST);
 
 			if (!$this->getSql('nombre')) {
@@ -94,6 +101,8 @@ class encuestasController extends Controller
 
 		$this->_view->assign('titulo', 'Ver Encuesta');
 		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($id)));
+		$this->_view->assign('usuarios', $this->_encuestaUsuario->getUsuariosEncuesta($this->filtrarInt($id)));
+		$this->_view->assign('cargas', $this->_carga->getCargasEncuesta($this->filtrarInt($id)));
 		$this->_view->renderizar('view');
 	}
 
@@ -104,8 +113,10 @@ class encuestasController extends Controller
 
 		$this->_view->assign('titulo', 'Editar Encuesta');
 		$this->_view->assign('dato', $this->_encuesta->getEncuestaId($this->filtrarInt($id)));
+		$this->_view->assign('campaign', $this->_campaign->getCampaign());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			if (!$this->getSql('nombre')) {
 				$this->_view->assign('_error', 'Debe ingresar el nombre');
 				$this->_view->renderizar('edit');

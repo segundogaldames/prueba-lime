@@ -9,14 +9,29 @@ class cargaModel extends Model
 		parent::__construct();
 	}
 
+	public function getCargas(){
+		$car = $this->_db->query("SELECT c.id, c.usuario_id, c.created_at as fecha, c.estado, c.modified_at as modificado, c.encuesta, e.nombre, u.nombre as usuario FROM cargas c INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN usuarios u ON c.usuario_id = u.id ORDER BY fecha");
+		return $car->fetchall();
+	}
+
 	public function getCargaId($id){
 		$id = (int) $id;
 
-		$car = $this->_db->prepare("SELECT id, usuario_id, created_at as fecha, estado FROM cargas WHERE id = ?");
+		$car = $this->_db->prepare("SELECT c.id, c.usuario_id, c.created_at as fecha, c.estado, c.encuesta, e.nombre, u.nombre as usuario FROM cargas c INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN usuarios u ON c.usuario_id = u.id WHERE c.id = ?");
 		$car->bindParam(1, $id);
 		$car->execute();
 
 		return $car->fetch();
+	}
+
+	public function getCargasEncuesta($encuesta){
+		$encuesta = (int) $encuesta;
+
+		$car = $this->_db->prepare("SELECT id FROM cargas WHERE encuesta = ?");
+		$car->bindParam(1, $encuesta);
+		$car->execute();
+
+		return $car->fetchall();
 	}
 
 	public function getUltimaCarga(){
@@ -28,7 +43,7 @@ class cargaModel extends Model
 	}
 
 	public function getCargasUsuario($usuario){
-		$car = $this->_db->prepare("SELECT distinct id, usuario_id, created_at as fecha, estado, modified_at as modificado FROM cargas WHERE usuario_id = ? ORDER BY fecha");
+		$car = $this->_db->prepare("SELECT distinct c.id, c.usuario_id, c.created_at as fecha, c.estado, c.modified_at as modificado, e.nombre FROM cargas c INNER JOIN encuestas e ON c.encuesta = e.id WHERE usuario_id = ? ORDER BY fecha");
 		$car->bindParam(1, $usuario);
 		$car->execute();
 
@@ -45,10 +60,14 @@ class cargaModel extends Model
 		$car->execute();
 	}
 
-	public function addCarga($usuario){
-		//print_r($usuario);exit;
-		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, now(), 1, now())");
+	public function addCarga($usuario, $encuesta){
+		//print_r($encuesta);exit;
+		$usuario = (int) $usuario;
+		$encuesta = (int) $encuesta;
+
+		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, now(), 1, now(), ?)");
 		$car->bindParam(1, $usuario);
+		$car->bindParam(2, $encuesta);
 		$car->execute();
 	}
 

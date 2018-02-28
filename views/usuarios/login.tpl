@@ -11,7 +11,7 @@
 			<input type="password" name="clave" class="form-control">
 		</div>
 		<div class="form-group">
-			<input type="hidden" name="enviar" value="1">
+			<input type="hidden" name="enviar" value="{$enviar}">
 			<input type="submit" value="Ingresar" class="btn btn-success">
 		</div>
 	</form>

@@ -8,7 +8,6 @@
 				<th>Campaña</th>
 				<th>Creado</th>
 				<th>Actualizado</th>
-				<th>Acciones</th>
 			</tr>
 			{foreach from=$encuestas item=e}
 				<tr>
@@ -19,16 +18,14 @@
 					</td>
 					<td>{$e.creado|date_format:"%d-%m-%Y %H:%M"}</td>
 					<td>{$e.actualizado|date_format:"%d-%m-%Y %H:%M"}</td>
-					<td>
-						<a href="{$_layoutParams.root}encuestas/edit/{$e.id}" class="btn btn-link btn-sm">Editar</a>
-					
-						<a href="{$_layoutParams.root}encuestas/delete/{$e.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestas/delete/{$e.id}', '{$e.nombre}');">Eliminar</a>
-					</td>
 				</tr>
 			{/foreach}
 		</table>
 	{else}
 		<strong>No hay encuestas registradas</strong>
 	{/if}
-	<p><a href="{$_layoutParams.root}encuestas/add">Nueva Encuesta</a></p>
+	<p>
+		<a href="{$_layoutParams.root}encuestas/add" class="btn btn-link">Nueva Encuesta</a>
+		<a href="{$_layoutParams.root}index" class="btn btn-link">Volver</a>
+	</p>
 </div>

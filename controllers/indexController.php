@@ -2,6 +2,7 @@
 
 class indexController extends Controller
 {
+	//Restringido a login
 	private $_enlace;
 	private $_usuario;
 	private $_cliente;

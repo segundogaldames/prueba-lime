@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-27 14:39:47
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 15:46:50
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1519756775,
+      1 => 1519847190,
       2 => 'file',
     ),
   ),
@@ -34,28 +34,18 @@ index">Meta Solutions</a>
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
 	      
-	      <?php if (!Session::get('autenticado')) {?>
-	      <li class="nav-item">
-	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-usuarios/login">Iniciar Sesión</a>
-	      </li>
-	      <?php } else { ?>
 	      <li class="nav-item">
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 index">Inicio <span class="sr-only">(current)</span></a>
 	      </li>
+	     <?php if (Session::get('autenticado')&&Session::get('role_id')!=2) {?>
 	      <li class="nav-item">
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-usuarios/cerrar">Cerrar Sesión</a>
+limesurvey/index.php/admin/authentication/sa/login" target="_blank">Lime Survey</a>
 	      </li>
 	      <li class="nav-item">
-	      	<?php if (Session::get('role_id')!=2) {?>
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/add">Crear Usuario</a>
-	      </li>
-	       <li class="nav-item">
-	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-limesurvey/index.php/admin/authentication/sa/login" target="_blank">Encuestas</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
@@ -91,11 +81,18 @@ estadollamadas">Estado Llamadas</a>
 estadocontactos">Estado Contactos</a>
 	        </div>
 	      </li>
-	      	<?php }?>
 	       <?php }?>
+	       <?php if (Session::get('autenticado')) {?>
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">Contacto</a>
+	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/cerrar">Cerrar Sesión</a>
 	      </li>
+	      <?php } else { ?>
+	       <li class="nav-item">
+	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/login">Iniciar Sesión</a>
+	      </li>
+	      <?php }?>
 	    </ul>
 	  </div>
 	</nav>

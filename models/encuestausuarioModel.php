@@ -38,6 +38,17 @@ class encuestausuarioModel extends model
 		return $ues->fetchall();
 	}
 
+	public function getUsuariosEncuesta($encuesta){
+		//print_r($usuario);exit;
+		$encuesta = (int) $encuesta;
+
+		$ues = $this->_db->prepare("SELECT distinct eu.id, eu.encuesta_id, eu.usuario_id, u.nombre as usuario FROM encuestas_usuarios eu INNER JOIN usuarios u ON eu.usuario_id = u.id WHERE eu.encuesta_id = ?");
+		$ues->bindParam(1, $encuesta);
+		$ues->execute();
+
+		return $ues->fetchall();
+	}
+
 	public function addEncuestaUsuario($encuesta, $usuario){
 		$encuesta = (int) $encuesta;
 		$usuario = (int) $usuario;

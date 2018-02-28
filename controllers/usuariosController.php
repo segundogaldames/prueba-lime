@@ -5,6 +5,9 @@
 */
 class usuariosController extends Controller
 {
+	//Restringido a login
+	//Permisos supervisor: ver, editar y crear
+	//Todos pueden usar login y cerrar
 	private $_usuario;
 	private $_role;
 	private $_encuestaUsuario;
@@ -18,7 +21,7 @@ class usuariosController extends Controller
 
 	public function index(){
 		$this->verificarSession();
-		$this->verificarRolAdminSuper();
+		$this->verificarRolAdmin();
 
 		$this->_view->assign('titulo', 'Usuarios');
 		$this->_view->assign('usuarios', $this->_usuario->getUsuarios());
@@ -31,8 +34,9 @@ class usuariosController extends Controller
 		}
 
 		$this->_view->assign('titulo', 'Login');
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			if (!$this->getPostParam('email')) {
 				$this->_view->assign('_error', 'Debe ingresar correo electrónico');
 				$this->_view->renderizar('login');
@@ -81,8 +85,9 @@ class usuariosController extends Controller
 
 		$this->_view->assign('titulo', 'Nuevo Usuario');
 		$this->_view->assign('roles', $this->_role->getRoles());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			$this->_view->assign('datos', $_POST);
 
 			if (!$this->getSql('nombre')) {
@@ -163,16 +168,26 @@ class usuariosController extends Controller
 		$this->_view->renderizar('view');
 	}
 
+	public function ejecutivos(){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		$this->_view->assign('titulo', 'APP::Ejecutivos');
+		$this->_view->assign('ejecutivos', $this->_usuario->getUsuariosEjecutivos());
+		$this->_view->renderizar('ejecutivos');
+	}
+
 	public function edit($id = null){
 		$this->verificarSession();
-		$this->verificarRolAdmin();
+		$this->verificarRolAdminSuper();
 		$this->verificarParams($id);
 
 		$this->_view->assign('titulo', 'Editar Usuario');
 		$this->_view->assign('dato', $this->_usuario->getUsuarioId($this->filtrarInt($id)));
 		$this->_view->assign('roles', $this->_role->getRoles());
+		$this->_view->assign('enviar', CTRL);
 
-		if ($this->getInt('enviar') == 1) {
+		if ($this->getAlphaNum('enviar') == CTRL) {
 			if (!$this->getSql('nombre')) {
 				$this->_view->assign('_error', 'Debe ingresar el nombre');
 				$this->_view->renderizar('add');

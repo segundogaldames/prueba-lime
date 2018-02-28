@@ -1,20 +1,18 @@
 <div class="col-md-12">
-	{if isset($usuarios) && count($usuarios)}
+	{if isset($ejecutivos) && count($ejecutivos)}
 		<h2>Lista de Usuarios</h2>
 		<table class="table table-hover">
 			<tr>
 				<th>Nombre</th>
 				<th>Email</th>
-				<th>Rol</th>
 				<th>Creado</th>
 				<th>Actualizado</th>
 			</tr>
-			{foreach from=$usuarios item=u}
+			{foreach from=$ejecutivos item=u}
 				<tr>
 					<td><a href="{$_layoutParams.root}usuarios/view/{$u.id}">{$u.nombre}</a></td>
 					<td>{$u.email}</td>
-					<td>{$u.role}</td>
-					<td>{$u.creado|date_format:"%d-%m-%Y %H:%M"}</td>
+					<td>{$u.fecha|date_format:"%d-%m-%Y %H:%M"}</td>
 					<td>{$u.actualizado|date_format:"%d-%m-%Y %H:%M"}</td>
 				</tr>
 			{/foreach}

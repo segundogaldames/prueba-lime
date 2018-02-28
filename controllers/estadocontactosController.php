@@ -4,6 +4,7 @@
 */
 class estadocontactosController extends Controller
 {
+	//Restringido a login
 	private $_estadoContacto;
 
 	public function __construct(){
@@ -12,7 +13,8 @@ class estadocontactosController extends Controller
 	}
 
 	public function index(){
-
+		$this->verificarSession();
+		$this->verificarRolAdmin();
 	}
 
 	public function add(){

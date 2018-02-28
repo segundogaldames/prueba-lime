@@ -43,7 +43,7 @@ class usuarioModel extends Model
 	}
 
 	public function getUsuariosEjecutivos(){
-		$usu = $this->_db->query("SELECT id, nombre, email FROM usuarios WHERE role_id = 2");
+		$usu = $this->_db->query("SELECT id, nombre, email, created_at as fecha, updated_at as actualizado FROM usuarios WHERE role_id = 2");
 		return $usu->fetchall();
 	}
 

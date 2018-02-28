@@ -6,6 +6,9 @@
 
 	<p>
 		<a href="{$_layoutParams.root}campaign/edit/{$campaign.id}" class="btn btn-link btn-sm">Editar</a>
+		{if Session::get('role_id')==1}
+		<a href="{$_layoutParams.root}campaign/delete/{$campaign.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}campaign/delete/{$campaign.id}', '{$campaign.nombre}')">Eliminar</a>
+		{/if}
 		<a href="{$_layoutParams.root}campaign" class="btn btn-link btn-sm">Campañas</a>
 	</p>
 	<hr>

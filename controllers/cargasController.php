@@ -4,6 +4,8 @@
 */
 class cargasController extends Controller
 {
+	//Restringido a login
+	//Permisos supervisor: todos
 	private $_carga;
 	private $_contacto;
 
@@ -19,6 +21,7 @@ class cargasController extends Controller
 
 		$this->_view->assign('titulo', 'APP::Cargas Realizadas');
 		$this->_view->assign('cargas', $this->_carga->getCargasUsuario(Session::get('id_usuario')));
+		$this->_view->assign('cargasAll', $this->_carga->getCargas());
 		$this->_view->renderizar('index');
 	}
 
@@ -46,6 +49,16 @@ class cargasController extends Controller
 		}
 		
 		$this->_view->renderizar('edit');
+	}
+
+	public function view($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		$this->_view->assign('titulo', 'Ver Lista');
+		$this->_view->assign('carga', $this->_carga->getCargaId($this->filtrarInt($id)));
+		$this->_view->renderizar('view');
 	}
 
 	public function delete($id = null){

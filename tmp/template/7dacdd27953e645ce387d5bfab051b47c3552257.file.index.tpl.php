@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-01 16:47:35
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 11:16:52
          compiled from "/var/www/html/prueba-lime/views/campaign/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3750908645a21ba087ea250-47286482%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '7dacdd27953e645ce387d5bfab051b47c3552257' => 
     array (
       0 => '/var/www/html/prueba-lime/views/campaign/index.tpl',
-      1 => 1512161251,
+      1 => 1519831003,
       2 => 'file',
     ),
   ),
@@ -33,7 +33,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<th>Nombre</th>
 			<th>Cliente</th>
 			<th>Campaña ViciDial</th>
-			<th>Acciones</th>
 		</tr>
 		<?php  $_smarty_tpl->tpl_vars['c'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['c']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['campaign']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
@@ -51,23 +50,16 @@ clientes/view/<?php echo $_smarty_tpl->tpl_vars['c']->value['cliente_id'];?>
 </a></td>
 				<td><?php echo $_smarty_tpl->tpl_vars['c']->value['vici'];?>
 </td>
-				<td>
-					<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-campaign/edit/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
-" class="btn btn-link btn-sm">Editar</a>
-					<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-campaign/delete/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
-" class="btn btn-link btn-sm" onclick="return eliminar('<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-campaign/delete/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
-', '<?php echo $_smarty_tpl->tpl_vars['c']->value['nombre'];?>
-')">Eliminar</a>
-				</td>
 			</tr>
 		<?php } ?>
 	</table>
 	<?php } else { ?>
 		<strong>No hay campañas registradas</strong>
 	<?php }?>
-	<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-campaign/add" class="btn btn-link">Nueva Campaña</a></p>
+	<p>
+		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign/add" class="btn btn-link">Nueva Campaña</a>
+		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+index" class="btn btn-link">Volver</a>
+	</p>
 </div><?php }} ?>

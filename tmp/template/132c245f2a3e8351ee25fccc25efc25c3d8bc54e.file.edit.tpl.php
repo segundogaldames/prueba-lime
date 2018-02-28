@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-30 16:25:40
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 15:44:45
          compiled from "/var/www/html/prueba-lime/views/usuarios/edit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:10966702705a206944c3ddb8-93995790%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '132c245f2a3e8351ee25fccc25efc25c3d8bc54e' => 
     array (
       0 => '/var/www/html/prueba-lime/views/usuarios/edit.tpl',
-      1 => 1512073071,
+      1 => 1519847083,
       2 => 'file',
     ),
   ),
@@ -15,15 +15,16 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.21-dev',
+  'unifunc' => 'content_5a206944c747c3_27074417',
   'variables' => 
   array (
     'dato' => 0,
     'roles' => 0,
     'r' => 0,
+    '_layoutParams' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.21-dev',
-  'unifunc' => 'content_5a206944c747c3_27074417',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a206944c747c3_27074417')) {function content_5a206944c747c3_27074417($_smarty_tpl) {?><div class="col-md-6">
 	<h2>Editar Usuario</h2>
@@ -35,11 +36,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		</div>
 		<div class="form-group">
 			<label>Email:</label>
-			<label><?php echo $_smarty_tpl->tpl_vars['dato']->value['email'];?>
-</label>
+			<input type="email" name="email" class="form-control" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['dato']->value['email'])===null||$tmp==='' ? '' : $tmp);?>
+"">
 		</div>
 		<div class="form-group">
-			<label>Rol:</label>
+			<label>Rol: <?php if (Session::get('role_id')==3) {
+echo $_smarty_tpl->tpl_vars['dato']->value['role'];
+}?></label>
+			<?php if (Session::get('role_id')==1) {?>
 			<select name="role" class="form-control">
 				<option value="<?php echo $_smarty_tpl->tpl_vars['dato']->value['role_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['dato']->value['role'];?>
@@ -56,10 +60,13 @@ $_smarty_tpl->tpl_vars['r']->_loop = true;
 					<?php } ?>
 				<?php }?>
 			</select>
+			<?php }?>
 		</div>
 		<div class="form-group">
 			<input type="hidden" name="enviar" value="1">
 			<input type="submit" value="Guardar" class="btn btn-success">
+			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+index" class="btn btn-link">Volver</a>
 		</div>	
 	</form>
 </div><?php }} ?>

@@ -11,14 +11,14 @@ class clienteModel extends Model
 	}
 
 	public function  getClientes(){
-		$cli = $this->_db->query("SELECT id, nombre FROM clientes ORDER BY nombre");
+		$cli = $this->_db->query("SELECT id, nombre, created_at as creado, updated_at as modificado FROM clientes ORDER BY nombre");
 		return $cli->fetchall();
 	}
 
 	public function getClienteId($id){
 		$id = (int) $id;
 
-		$cli =$this->_db->prepare("SELECT id, nombre FROM clientes WHERE id = ?");
+		$cli =$this->_db->prepare("SELECT id, nombre, created_at as creado, updated_at as modificado FROM clientes WHERE id = ?");
 		$cli->bindParam(1, $id);
 		$cli->execute();
 

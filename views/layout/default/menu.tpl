@@ -8,23 +8,15 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav ml-auto">
 	      
-	      {if !Session::get('autenticado')}
-	      <li class="nav-item">
-	        <a class="nav-link" href="{$_layoutParams.root}usuarios/login">Iniciar Sesión</a>
-	      </li>
-	      {else}
 	      <li class="nav-item">
 	        <a class="nav-link" href="{$_layoutParams.root}index">Inicio <span class="sr-only">(current)</span></a>
 	      </li>
+	     {if Session::get('autenticado') && Session::get('role_id') != 2}
 	      <li class="nav-item">
-	        <a class="nav-link" href="{$_layoutParams.root}usuarios/cerrar">Cerrar Sesión</a>
+	        <a class="nav-link" href="{$_layoutParams.root}limesurvey/index.php/admin/authentication/sa/login" target="_blank">Lime Survey</a>
 	      </li>
 	      <li class="nav-item">
-	      	{if Session::get('role_id') != 2}
 	        <a class="nav-link" href="{$_layoutParams.root}usuarios/add">Crear Usuario</a>
-	      </li>
-	       <li class="nav-item">
-	        <a class="nav-link" href="{$_layoutParams.root}limesurvey/index.php/admin/authentication/sa/login" target="_blank">Encuestas</a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="{$_layoutParams.root}contactos/add" >Cargar Contactos</a>
@@ -49,11 +41,16 @@
 	            <a class="dropdown-item" href="{$_layoutParams.root}estadocontactos">Estado Contactos</a>
 	        </div>
 	      </li>
-	      	{/if}
 	       {/if}
+	       {if Session::get('autenticado')}
 	      <li class="nav-item">
-	        <a class="nav-link" href="#">Contacto</a>
+	        <a class="nav-link" href="{$_layoutParams.root}usuarios/cerrar">Cerrar Sesión</a>
 	      </li>
+	      {else}
+	       <li class="nav-item">
+	        <a class="nav-link" href="{$_layoutParams.root}usuarios/login">Iniciar Sesión</a>
+	      </li>
+	      {/if}
 	    </ul>
 	  </div>
 	</nav>

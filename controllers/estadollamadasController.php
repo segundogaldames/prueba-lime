@@ -4,6 +4,7 @@
 */
 class estadollamadasController extends Controller
 {
+	//Restringido a login
 	private $_estadollamadas;
 	private $_estadoContacto;
 	

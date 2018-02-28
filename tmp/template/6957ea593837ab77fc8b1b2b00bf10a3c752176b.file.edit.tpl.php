@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-04 14:18:42
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 11:44:22
          compiled from "/var/www/html/prueba-lime/views/encuestas/edit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9821687925a259142f1c506-83911253%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6957ea593837ab77fc8b1b2b00bf10a3c752176b' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/edit.tpl',
-      1 => 1512411520,
+      1 => 1519832659,
       2 => 'file',
     ),
   ),
@@ -30,14 +30,18 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<h2>Editar Encuesta</h2>
 	<form action="" method="post" name="form">
 		<div class="form-group">
-			<label>Nombre</label>
+			<label>Nombre:</label>			
 			<input type="text" name="nombre" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['dato']->value['nombre'])===null||$tmp==='' ? '' : $tmp);?>
 " class="form-control" placeholder="Nombre de la encuesta">
 		</div>
 		<div class="form-group">
-			<label>Link</label>
+			<label>Link: <?php if (Session::get('role_id')==3) {
+echo $_smarty_tpl->tpl_vars['dato']->value['link'];
+}?></label>
+			<?php if (Session::get('role_id')==1) {?>
 			<input type="url" name="link" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['dato']->value['link'])===null||$tmp==='' ? '' : $tmp);?>
 " class="form-control" placeholder="Link de la encuesta">
+			<?php }?>
 		</div>
 		<div class="form-group">
 			<label>Status</label>
