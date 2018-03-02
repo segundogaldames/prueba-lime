@@ -10,17 +10,6 @@
 			<input type="url" name="link" value="{$datos.link|default:""}" class="form-control" placeholder="Link de la encuesta">
 		</div>
 		<div class="form-group">
-			<label>Campaña</label>
-			<select name="campaign" class="form-control">
-				<option value="">Seleccione</option>
-				{if isset($campaign) &&count($campaign)}
-					{foreach from=$campaign item=c}
-						<option value="{$c.id}">{$c.nombre}</option>
-					{/foreach}
-				{/if}
-			</select>
-		</div>
-		<div class="form-group">
 			<label>Tipo</label>
 			<select name="tipo" class="form-control">
 				<option value="">Seleccione</option>

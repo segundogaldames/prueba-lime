@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 11:30:20
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-02 10:41:14
          compiled from "/var/www/html/prueba-lime/views/encuestas/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:16109983185a25755e271589-33898220%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '96d2ea103592b1378bd72fca4cb1497acb3fdfa3' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/index.tpl',
-      1 => 1519831814,
+      1 => 1520001532,
       2 => 'file',
     ),
   ),
@@ -34,6 +34,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<th>Nombre</th>
 				<th>Status</th>
 				<th>Campaña</th>
+				<th>Tipo</th>
 				<th>Creado</th>
 				<th>Actualizado</th>
 			</tr>
@@ -54,6 +55,7 @@ campaign/view/<?php echo $_smarty_tpl->tpl_vars['e']->value['campaign_id'];?>
 " class="btn btn-link btn-sm"><?php echo $_smarty_tpl->tpl_vars['e']->value['campaign'];?>
 </a>
 					</td>
+					<td><?php if ($_smarty_tpl->tpl_vars['e']->value['tipo']==1) {?>Encuesta<?php } else { ?>Auditoria<?php }?></td>
 					<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['e']->value['creado'],"%d-%m-%Y %H:%M");?>
 </td>
 					<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['e']->value['actualizado'],"%d-%m-%Y %H:%M");?>

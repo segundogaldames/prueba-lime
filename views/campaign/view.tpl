@@ -22,6 +22,6 @@
 	{else}
 		<strong>No hay encuestas asociadas o activas</strong>
 	{/if}
-		<p><a href="{$_layoutParams.root}encuestas/add" class="btn btn-link btn-sm">Nueva Encuesta</a></p>
+		<p><a href="{$_layoutParams.root}encuestas/addEncuestaCampaign/{$campaign.id}" class="btn btn-link btn-sm">Nueva Encuesta</a></p>
 
 </div>

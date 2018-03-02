@@ -81,6 +81,24 @@ class contactosController extends Controller
 		$this->_view->renderizar('contactoEncuesta');
 	}
 
+	//metodo para renderizar auditorias
+	public function auditorias($encuesta = null){
+		$this->verificarSession();
+
+		if (!$this->filtrarInt($encuesta)) {
+			$this->redireccionar();
+		}
+
+		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
+			$this->redireccionar();
+		}
+
+		$this->_view->assign('titulo', 'Auditar');
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
+		$this->_view->assign('enviar', CTRL);
+		$this->_view->renderizar('auditorias');
+	}
+
 	public function contactosCarga($id = null, $pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();

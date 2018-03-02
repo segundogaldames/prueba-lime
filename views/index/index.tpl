@@ -1,4 +1,5 @@
 <div class="row">
+	<!--columna de la izquierda para mostrar menu #####################################################################################-->
 	<div class="col-md-3" style="padding-top: 10px">
 		<h6>Bienvenido(a) {$saludo.nombre}</h6>
 		<hr>
@@ -13,20 +14,39 @@
 
 		<!--Lista los resultados-->
 		{/if}
-		<!--Mostrar encuestas para ejecutivos-->
+		<!--Mostrar encuestas para ejecutivos -->
 		{if Session::get('role_id')==2}
-			<ul type="square">
+
+		<!--Lista de encuestas disponibles-->
+			<h4>Encuestas Disponibles</h4>
+			<ul class="nav flex-column">
 				{if isset($encuestas) && count($encuestas)}
 					{foreach from=$encuestas item=e}
-						<li><a href="{$_layoutParams.root}contactos/contactoEncuesta/{$e.encuesta_id}">{$e.nombre}</a></li>
+						<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}contactos/contactoEncuesta/{$e.encuesta_id}">{$e.nombre}</a></li>
 					{/foreach}
+				{else}
+					<strong>No tienes encuestas disponibles... </strong>
+				{/if}
+			</ul>
+			
+			<!--Lista de auditorias disponibles-->
+			<div class="col-md-12" style="height: 20px"></div>
+			<h4>Auditorías Disponibles</h4>
+			<ul class="nav flex-column">
+				{if isset($auditorias) && count($auditorias)}
+					{foreach from=$auditorias item=a}
+						<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}contactos/auditorias/{$a.encuesta_id}">{$a.nombre}</a></li>
+					{/foreach}
+				{else}
+					<strong>No tienes auditorías disponibles... </strong>
 				{/if}
 			</ul>
 		{/if}
 	
 	</div>
-		<!--Mostrar opcion de estadisticas-->
+	<!--columna del medio para mostrar estadistica ##############################################################-->
 	<div class="col-md-4" style="padding-top: 60px; margin-right: 30px">
+		<!--Estadistica para administradores y supervisores-->
 		{if Session::get('role_id')!=2}
 		<h4>Estadísticas</h4>
 		<form action="" method="post">
@@ -57,15 +77,14 @@
 		{/if}
 	</div>
 		
-	<!--Lista los resultados-->
+	<!--columna derecha para Lista los resultados #################################################################################-->
 	
 	<div class="col-md-4" style="padding-top: 60px">
 		{if Session::get('role_id')!=2}
 			<h4>Recorrido {if isset($enc_nombre)}{$enc_nombre.nombre}{/if}</h4>
 			{if isset($recorridos) && count($recorridos)}
 				<table class="table table-hover table-bordered">
-					
-					<tr>
+					<tr style="background-color: #eeebeb">
 						<th>Estado</th>
 						<th>Valor</th>
 					</tr>
@@ -77,7 +96,27 @@
 					{/foreach}
 				</table>
 			{else}
-				<strong>No hay datos</strong>
+				<strong>0</strong>
+			{/if}
+			<div class="col-md-12" style="height: 20px"></div>
+
+			<!--lista de encuestados por ejecutivos-->
+			<h4>Encuestados</h4>
+			{if isset($encuestados) && count($encuestados)}
+				<table class="table table-hover table-bordered">
+					<tr style="background-color: #eeebeb">
+						<th>Ejecutivo</th>
+						<th>Valor</th>
+					</tr>
+					{foreach from=$encuestados item=en}
+					<tr>
+						<td>{$en.ejecutivo}:</td>
+						<td>{$en.filas}</td>
+						</tr>
+					{/foreach}
+				</table>
+			{else}
+				<strong>0</strong>
 			{/if}
 		{/if}
 	</div>	

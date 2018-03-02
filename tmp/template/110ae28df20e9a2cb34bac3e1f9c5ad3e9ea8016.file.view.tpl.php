@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 16:50:39
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-02 10:41:48
          compiled from "/var/www/html/prueba-lime/views/encuestas/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9185742495a257f02d3df57-44357234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '110ae28df20e9a2cb34bac3e1f9c5ad3e9ea8016' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/view.tpl',
-      1 => 1519851037,
+      1 => 1520001707,
       2 => 'file',
     ),
   ),
@@ -35,6 +35,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<p><strong>Link:</strong> <?php echo $_smarty_tpl->tpl_vars['encuesta']->value['link'];?>
 </p>
 	<p><strong>Status:</strong> <?php if ($_smarty_tpl->tpl_vars['encuesta']->value['status']==1) {?>Activa<?php } else { ?>No activa<?php }?></p>
+	<p><strong>Campaña:</strong> <?php echo $_smarty_tpl->tpl_vars['encuesta']->value['campaign'];?>
+</p>
+	<p><strong>Tipo:</strong> <?php if ($_smarty_tpl->tpl_vars['encuesta']->value['tipo']==1) {?>Encuesta<?php } else { ?>Auditoría<?php }?></p>
 	<p><strong>Creado:</strong> <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['encuesta']->value['creado'],"%d-%m-%Y %H:%M");?>
 </p>
 	<p><strong>Modificado:</strong> <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['encuesta']->value['actualizado'],"%d-%m-%Y %H:%M");?>

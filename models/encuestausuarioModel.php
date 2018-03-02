@@ -31,7 +31,18 @@ class encuestausuarioModel extends model
 		//print_r($usuario);exit;
 		$usuario = (int) $usuario;
 
-		$ues = $this->_db->prepare("SELECT eu.id, eu.encuesta_id, eu.usuario_id, e.nombre, e.link FROM encuestas_usuarios as eu INNER JOIN encuestas as e ON eu.encuesta_id = e.id WHERE eu.usuario_id = ?");
+		$ues = $this->_db->prepare("SELECT eu.id, eu.encuesta_id, eu.usuario_id, e.nombre, e.link FROM encuestas_usuarios as eu INNER JOIN encuestas as e ON eu.encuesta_id = e.id WHERE eu.usuario_id = ? AND e.tipo = 1 and e.status= 1");
+		$ues->bindParam(1, $usuario);
+		$ues->execute();
+
+		return $ues->fetchall();
+	}
+
+	public function getEncuestaUsuarioAuditoriasPorUsuario($usuario){
+		//print_r($usuario);exit;
+		$usuario = (int) $usuario;
+
+		$ues = $this->_db->prepare("SELECT eu.id, eu.encuesta_id, eu.usuario_id, e.nombre, e.link FROM encuestas_usuarios as eu INNER JOIN encuestas as e ON eu.encuesta_id = e.id WHERE eu.usuario_id = ? AND e.tipo = 2 and e.status = 1");
 		$ues->bindParam(1, $usuario);
 		$ues->execute();
 

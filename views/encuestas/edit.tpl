@@ -31,6 +31,14 @@
 			</select>
 		</div>
 		<div class="form-group">
+			<label>Tipo</label>
+			<select name="tipo" class="form-control">
+				<option value="{$dato.tipo}">{if $dato.tipo==1}Encuesta{else}Auditoria{/if}</option>
+				<option value="1">Encuesta</option>
+				<option value="2">Auditoria</option>
+			</select>
+		</div>
+		<div class="form-group">
 			<input type="hidden" name="enviar" value="{$enviar}">
 			<input type="submit" value="Guardar" class="btn btn-success">
 			<a href="{$_layoutParams.root}encuestas" class="btn btn-link">Volver</a>

@@ -28,12 +28,17 @@ class indexController extends Controller
 		}
 
 		$this->_view->assign('titulo', 'Bienvenido a Meta Solutions');
+		//Saludar a usuario logueado
 		$this->_view->assign('saludo', $this->_usuario->getUsuarioId(Session::get('id_usuario')));
-		$this->_view->assign('clientes', $this->_cliente->getClientes());
-		$this->_view->assign('campaign', $this->_campaign->getCampaign());
+		
+		//lista de encuestas segun usuario logueado, diseñado para ejecutivos
 		$this->_view->assign('encuestas', $this->_encuestaUsuario->getEncuestaUsuarioPorUsuario(Session::get('id_usuario')));
-		$this->_view->assign('ejecutivos', $this->_usuario->getUsuariosEjecutivos());
+		//lista de auditorias por usuario logueado, diseñado para ejecutivos
+		$this->_view->assign('auditorias', $this->_encuestaUsuario->getEncuestaUsuarioAuditoriasPorUsuario(Session::get('id_usuario')));
+		//lista de encuestas para estadisticas
 		$this->_view->assign('enc_estadistica', $this->_encuesta->getEncuestas());
+		
+
 		$this->_view->assign('enviar', CTRL);
 
 		if ($this->getAlphaNum('enviar') == CTRL) {
@@ -58,18 +63,30 @@ class indexController extends Controller
 				exit;
 			}
 
+			//consulta por el recorrido realizado en una encuesta, agrupados por estado de llamada
 			$row = $this->_contacto->getRecorridosRango(
 				$this->getSql('desde'), 
 				$this->getSql('hasta'), 
 				$this->getInt('encuesta')
 			);
 
+			//Recupera el nombre de la encuesta dado el id de la encuesta
 			$this->_view->assign('enc_nombre', $this->_encuesta->getEncuestaId($this->getInt('encuesta')));
 
 			if ($row) {
 				$this->_view->assign('recorridos', $row);
 			}
+
+			//consulta por los encuestados en una encuesta, agrupados por ejecutivos
+			$encuestados = $this->_contacto->getEncuestadosRango(
+				$this->getSql('desde'), 
+				$this->getSql('hasta'), 
+				$this->getInt('encuesta')
+			);
 			
+			if ($encuestados) {
+				$this->_view->assign('encuestados', $encuestados);
+			}
 		}
 		
 		$this->_view->renderizar('index');

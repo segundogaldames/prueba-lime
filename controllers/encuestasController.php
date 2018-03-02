@@ -70,6 +70,12 @@ class encuestasController extends Controller
 				exit;
 			}
 
+			if (!$this->getInt('tipo')) {
+				$this->_view->assign('_error', 'Debe seleccionar un tipo para esta encuesta');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
 			if ($this->_encuesta->getEncuestaNombre($this->getSql('nombre'))) {
 				$this->_view->assign('_error', 'La encuesta ya existe...');
 				$this->_view->renderizar('add');
@@ -85,13 +91,81 @@ class encuestasController extends Controller
 			$this->_encuesta->addEncuesta(
 				$this->getAlphaNum('nombre'), 
 				$this->getPostParam('link'), 
-				$this->getInt('campaign')
+				$this->getInt('campaign'),
+				$this->getInt('tipo')
 			);
 
 			$this->redireccionar('encuestas');
 		}
 
 		$this->_view->renderizar('add');
+	}
+
+	public function addEncuestaCampaign($campaign = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		if (!$this->filtrarInt($campaign)) {
+			$this->redireccionar('campaign');
+		}
+
+		if (!$this->_campaign->getCampaignId($this->filtrarInt($campaign))) {
+			$this->redireccionar('campaign');
+		}
+
+		$this->_view->assign('titulo', 'Encuestas');
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			$this->_view->assign('datos', $_POST);
+
+			if (!$this->getSql('nombre')) {
+				$this->_view->assign('_error', 'Debe ingresar el nombre');
+				$this->_view->renderizar('addEncuestaCampaign');
+				exit;
+			}
+
+			if (!$this->getPostParam('link')) {
+				$this->_view->assign('_error', 'Debe ingresar el link');
+				$this->_view->renderizar('addEncuestaCampaign');
+				exit;
+			}
+
+			if (!$this->validarUrl($this->getPostParam('link'))) {
+				$this->_view->assign('_error', 'El link ingresado no es válido');
+				$this->_view->renderizar('addEncuestaCampaign');
+				exit;
+			}
+
+			if (!$this->getInt('tipo')) {
+				$this->_view->assign('_error', 'Debe seleccionar un tipo para esta encuesta');
+				$this->_view->renderizar('addEncuestaCampaign');
+				exit;
+			}
+
+			if ($this->_encuesta->getEncuestaNombre($this->getSql('nombre'))) {
+				$this->_view->assign('_error', 'La encuesta ya existe...');
+				$this->_view->renderizar('addEncuestaCampaign');
+				exit;
+			}
+
+			if ($this->_encuesta->getEncuestaLink($this->getPostParam('link'))) {
+				$this->_view->assign('_error', 'La encuesta ya existe...');
+				$this->_view->renderizar('addEncuestaCampaign');
+				exit;
+			}
+
+			$this->_encuesta->addEncuesta(
+				$this->getAlphaNum('nombre'), 
+				$this->getPostParam('link'), 
+				$this->filtrarInt($campaign),
+				$this->getInt('tipo')
+			);
+
+			$this->redireccionar('encuestas');
+		}
+
+		$this->_view->renderizar('addEncuestaCampaign');
 	}
 
 	public function view($id = null){
@@ -117,6 +191,7 @@ class encuestasController extends Controller
 		$this->_view->assign('enviar', CTRL);
 
 		if ($this->getAlphaNum('enviar') == CTRL) {
+			//print_r($_POST);exit;
 			if (!$this->getSql('nombre')) {
 				$this->_view->assign('_error', 'Debe ingresar el nombre');
 				$this->_view->renderizar('edit');
@@ -147,12 +222,19 @@ class encuestasController extends Controller
 				exit;
 			}
 
+			if (!$this->getInt('tipo')) {
+				$this->_view->assign('_error', 'Debe seleccionar un tipo para esta encuesta');
+				$this->_view->renderizar('edit');
+				exit;
+			}
+
 			$this->_encuesta->editEncuesta(
 				$this->filtrarInt($id), 
 				$this->getAlphaNum('nombre'), 
 				$this->getPostParam('link'), 
 				$this->getInt('status'), 
-				$this->getInt('campaign')
+				$this->getInt('campaign'),
+				$this->getInt('tipo')
 			);
 
 			$this->redireccionar('encuestas');

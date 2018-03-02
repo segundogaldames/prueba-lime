@@ -2,6 +2,8 @@
 	<h2>Ver encuesta: {$encuesta.nombre}</h2>
 	<p><strong>Link:</strong> {$encuesta.link}</p>
 	<p><strong>Status:</strong> {if $encuesta.status==1}Activa{else}No activa{/if}</p>
+	<p><strong>Campaña:</strong> {$encuesta.campaign}</p>
+	<p><strong>Tipo:</strong> {if $encuesta.tipo==1}Encuesta{else}Auditoría{/if}</p>
 	<p><strong>Creado:</strong> {$encuesta.creado|date_format:"%d-%m-%Y %H:%M"}</p>
 	<p><strong>Modificado:</strong> {$encuesta.actualizado|date_format:"%d-%m-%Y %H:%M"}</p>
 	

@@ -6,6 +6,7 @@
 				<th>Nombre</th>
 				<th>Status</th>
 				<th>Campaña</th>
+				<th>Tipo</th>
 				<th>Creado</th>
 				<th>Actualizado</th>
 			</tr>
@@ -16,6 +17,7 @@
 					<td>{if $e.status==1}Activa{else}No activa{/if}</td>
 					<td><a href="{$_layoutParams.root}campaign/view/{$e.campaign_id}" class="btn btn-link btn-sm">{$e.campaign}</a>
 					</td>
+					<td>{if $e.tipo == 1}Encuesta{else}Auditoria{/if}</td>
 					<td>{$e.creado|date_format:"%d-%m-%Y %H:%M"}</td>
 					<td>{$e.actualizado|date_format:"%d-%m-%Y %H:%M"}</td>
 				</tr>

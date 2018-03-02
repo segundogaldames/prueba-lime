@@ -79,7 +79,7 @@ class contactoModel extends Model
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
 
-		$cont = $this->_db->prepare("SELECT count(c.id) as filas, u.nombre as ejecutivo FROM contactos c INNER JOIN usuarios u ON c.encuestador_id = u.id WHERE substring(c.created_at,1,10) BETWEEN ? AND ? AND c.estado_llamada = 1 AND c.encuesta = ? GROUP BY ejecutivo");
+		$cont = $this->_db->prepare("SELECT count(c.id) as filas, u.nombre as ejecutivo FROM contactos c INNER JOIN usuarios u ON c.encuestador_id = u.id WHERE substring(c.modified_at,1,10) BETWEEN ? AND ? AND c.estado_llamada = 1 AND c.encuesta = ? GROUP BY ejecutivo");
 		$cont->bindParam(1, $desde);
 		$cont->bindParam(2, $hasta);
 		$cont->bindParam(3, $encuesta);
@@ -92,7 +92,7 @@ class contactoModel extends Model
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
 
-		$cont = $this->_db->prepare("SELECT count(c.id) as filas, ell.nombre as llamada FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id WHERE substring(c.created_at,1,10) BETWEEN ? AND ? AND c.encuesta = ? GROUP BY llamada");
+		$cont = $this->_db->prepare("SELECT count(c.id) as filas, ell.nombre as llamada FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id WHERE substring(c.modified_at,1,10) BETWEEN ? AND ? AND c.encuesta = ? GROUP BY llamada");
 		$cont->bindParam(1, $desde);
 		$cont->bindParam(2, $hasta);
 		$cont->bindParam(3, $encuesta);

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-04 11:40:55
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-02 10:42:11
          compiled from "/var/www/html/prueba-lime/views/encuestas/add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4494719575a253df9dde5b2-81359827%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '3dceb4f9fea13ba7ec79868292e213f0966c298d' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/add.tpl',
-      1 => 1512402041,
+      1 => 1520001378,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'datos' => 0,
     'campaign' => 0,
     'c' => 0,
+    'enviar' => 0,
     '_layoutParams' => 0,
   ),
   'has_nocache_code' => false,
@@ -57,7 +58,16 @@ $_smarty_tpl->tpl_vars['c']->_loop = true;
 			</select>
 		</div>
 		<div class="form-group">
-			<input type="hidden" name="enviar" value="1">
+			<label>Tipo</label>
+			<select name="tipo" class="form-control">
+				<option value="">Seleccione</option>
+				<option value="1">Encuesta</option>
+				<option value="2">Auditoria</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<input type="hidden" name="enviar" value="<?php echo $_smarty_tpl->tpl_vars['enviar']->value;?>
+">
 			<input type="submit" value="Guardar" class="btn btn-success">
 			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestas" class="btn btn-link">Volver</a>
