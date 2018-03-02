@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 15:35:25
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-01 17:55:30
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1519846511,
+      1 => 1519941327,
       2 => 'file',
     ),
   ),
@@ -23,26 +23,35 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '_layoutParams' => 0,
     'encuestas' => 0,
     'e' => 0,
+    'datos' => 0,
+    'enc_estadistica' => 0,
+    'enc' => 0,
+    'enviar' => 0,
+    'enc_nombre' => 0,
+    'recorridos' => 0,
+    'r' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a1f0f02ce1420_54544407')) {function content_5a1f0f02ce1420_54544407($_smarty_tpl) {?><div class="row">
-	<div class="col-md-6">
-		<h2>Bienvenido(a) <?php echo $_smarty_tpl->tpl_vars['saludo']->value['nombre'];?>
-</h2>
+	<div class="col-md-3" style="padding-top: 10px">
+		<h6>Bienvenido(a) <?php echo $_smarty_tpl->tpl_vars['saludo']->value['nombre'];?>
+</h6>
 		<hr>
 		<!--Mostrar menu para administrador y supervisor-->
 		<?php if (Session::get('role_id')!=2) {?>
-		<ul type="square">
-			<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-clientes" class="btn btn-link">Clientes</a></li>
-			<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-campaign" class="btn btn-link">Campañas</a></li>
-			<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-encuestas" class="btn btn-link">Encuestas</a></li>
-			<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-usuarios/ejecutivos" class="btn btn-link">Ejecutivos</a></li>
+		<ul class="nav flex-column">
+			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+clientes" >Clientes</a></li>
+			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign" >Campañas</a></li>
+			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+encuestas" >Encuestas</a></li>
+			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+usuarios/ejecutivos" >Ejecutivos</a></li>
 		</ul>
+
+		<!--Lista los resultados-->
 		<?php }?>
 		<!--Mostrar encuestas para ejecutivos-->
 		<?php if (Session::get('role_id')==2) {?>
@@ -61,5 +70,80 @@ contactos/contactoEncuesta/<?php echo $_smarty_tpl->tpl_vars['e']->value['encues
 				<?php }?>
 			</ul>
 		<?php }?>
+	
 	</div>
+		<!--Mostrar opcion de estadisticas-->
+	<div class="col-md-4" style="padding-top: 60px; margin-right: 30px">
+		<?php if (Session::get('role_id')!=2) {?>
+		<h4>Estadísticas</h4>
+		<form action="" method="post">
+			<div class="form-group">
+				<label>Desde:</label>
+				<input type="date" name="desde" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['datos']->value['desde'])===null||$tmp==='' ? '' : $tmp);?>
+" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Hasta:</label>
+				<input type="date" name="hasta" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['datos']->value['desde'])===null||$tmp==='' ? '' : $tmp);?>
+" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Encuesta:</label>
+				<select name="encuesta" class="form-control">
+					<option value="">Seleccione...</option>
+					<?php if (isset($_smarty_tpl->tpl_vars['enc_estadistica']->value)&&count($_smarty_tpl->tpl_vars['enc_estadistica']->value)) {?>
+						<?php  $_smarty_tpl->tpl_vars['enc'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['enc']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['enc_estadistica']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['enc']->key => $_smarty_tpl->tpl_vars['enc']->value) {
+$_smarty_tpl->tpl_vars['enc']->_loop = true;
+?>
+							<option value="<?php echo $_smarty_tpl->tpl_vars['enc']->value['id'];?>
+"><?php echo $_smarty_tpl->tpl_vars['enc']->value['nombre'];?>
+</option>
+						<?php } ?>
+					<?php }?>
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="hidden" name="enviar" value="<?php echo $_smarty_tpl->tpl_vars['enviar']->value;?>
+">
+				<input type="submit" value="Consultar" class="btn btn-success">
+			</div>
+		</form>
+		<?php }?>
+	</div>
+		
+	<!--Lista los resultados-->
+	
+	<div class="col-md-4" style="padding-top: 60px">
+		<?php if (Session::get('role_id')!=2) {?>
+			<h4>Recorrido <?php if (isset($_smarty_tpl->tpl_vars['enc_nombre']->value)) {
+echo $_smarty_tpl->tpl_vars['enc_nombre']->value['nombre'];
+}?></h4>
+			<?php if (isset($_smarty_tpl->tpl_vars['recorridos']->value)&&count($_smarty_tpl->tpl_vars['recorridos']->value)) {?>
+				<table class="table table-hover table-bordered">
+					
+					<tr>
+						<th>Estado</th>
+						<th>Valor</th>
+					</tr>
+					<?php  $_smarty_tpl->tpl_vars['r'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['r']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['recorridos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['r']->key => $_smarty_tpl->tpl_vars['r']->value) {
+$_smarty_tpl->tpl_vars['r']->_loop = true;
+?>
+					<tr>
+						<td><?php echo $_smarty_tpl->tpl_vars['r']->value['llamada'];?>
+:</td>
+						<td><?php echo $_smarty_tpl->tpl_vars['r']->value['filas'];?>
+</td>
+						</tr>
+					<?php } ?>
+				</table>
+			<?php } else { ?>
+				<strong>No hay datos</strong>
+			<?php }?>
+		<?php }?>
+	</div>	
+			
 </div><?php }} ?>

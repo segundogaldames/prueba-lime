@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 15:38:32
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-01 11:13:45
          compiled from "/var/www/html/prueba-lime/views/usuarios/ejecutivos.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19138661215a970499be1b93-71809121%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f428b5fe8e4d651e58f1b3259d0c8c1c78b51246' => 
     array (
       0 => '/var/www/html/prueba-lime/views/usuarios/ejecutivos.tpl',
-      1 => 1519846708,
+      1 => 1519917111,
       2 => 'file',
     ),
   ),
@@ -60,7 +60,7 @@ usuarios/view/<?php echo $_smarty_tpl->tpl_vars['u']->value['id'];?>
 	<?php }?>
 	<p>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-usuarios/add" class="btn btn-link">Nuevo Usuario</a>
+usuarios/addEjecutivos" class="btn btn-link">Nuevo Ejecutivo</a>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 index" class="btn btn-link">Volver</a>
 	</p>

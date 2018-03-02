@@ -81,7 +81,7 @@ class usuariosController extends Controller
 
 	public function add(){
 		$this->verificarSession();
-		$this->verificarRolAdminSuper();
+		$this->verificarRolAdmin();
 
 		$this->_view->assign('titulo', 'Nuevo Usuario');
 		$this->_view->assign('roles', $this->_role->getRoles());
@@ -155,6 +155,78 @@ class usuariosController extends Controller
 		}
 
 		$this->_view->renderizar('add');
+	}
+
+	public function addEjecutivos(){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		$this->_view->assign('titulo', 'Nuevo Usuario');
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			$this->_view->assign('datos', $_POST);
+
+			if (!$this->getSql('nombre')) {
+				$this->_view->assign('_error', 'Debe ingresar el nombre');
+				$this->_view->renderizar('addEjecutivos');
+				exit;	
+			}
+
+			if (!$this->getPostParam('email')) {
+				$this->_view->assign('_error', 'Debe ingresar el correo electrónico');
+				$this->_view->renderizar('addEjecutivos');
+				exit;
+			}
+
+			if (!$this->validarEmail($this->getPostParam('email'))) {
+				$this->_view->assign('_error', 'El correo electrónico ingresado no es válido');
+				$this->_view->renderizar('addEjecutivos');
+				exit;
+			}
+
+			if ($this->_usuario->getUsuarioEmail($this->getPostParam('email'))) {
+				$this->_view->assign('_error', 'El correo electrónico ingresado ya existe');
+				$this->_view->renderizar('addEjecutivos');
+				exit;
+			}
+
+			if (!$this->getSql('clave')) {
+				$this->_view->assign('_error', 'Debe ingresar un password');
+				$this->_view->renderizar('addEjecutivos');
+				exit;
+			}
+
+			if (strlen($this->getSql('clave')) < 8) {
+				$this->_view->assign('_error', 'El password debe contener al menos 8 caracteres');
+				$this->_view->renderizar('addEjecutivos');
+				exit;
+			}
+
+			if (!$this->getSql('reclave')) {
+				$this->_view->assign('_error', 'Debe confirmar el password');
+				$this->_view->renderizar('addEjecutivos');
+				exit;
+			}
+
+			if ($this->getSql('reclave') != $this->getSql('clave')) {
+				$this->_view->assign('_error', 'El password no coincide');
+				$this->_view->renderizar('addEjecutivos');
+				exit;
+			}
+			$role = 2;
+
+			$this->_usuario->addUsuario(
+				$this->getAlphaNum('nombre'), 
+				$this->getPostParam('email'), 
+				$this->getSql('clave'), 
+				$role
+			);
+
+			$this->redireccionar('usuarios/ejecutivos');
+		}
+
+		$this->_view->renderizar('addEjecutivos');
 	}
 
 	public function view($id = null){

@@ -21,7 +21,7 @@
 		<strong>No hay usuarios registrados</strong>
 	{/if}
 	<p>
-		<a href="{$_layoutParams.root}usuarios/add" class="btn btn-link">Nuevo Usuario</a>
+		<a href="{$_layoutParams.root}usuarios/addEjecutivos" class="btn btn-link">Nuevo Ejecutivo</a>
 		<a href="{$_layoutParams.root}index" class="btn btn-link">Volver</a>
 	</p>
 </div>

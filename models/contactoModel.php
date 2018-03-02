@@ -33,7 +33,7 @@ class contactoModel extends Model
 		return $cont->fetch();
 	}
 
-
+	//metodos get
 	public function getContactosCarga($carga){
 		$carga = (int) $carga;
 
@@ -75,6 +75,33 @@ class contactoModel extends Model
 		return $row;
 	}
 
+	public function getEncuestadosRango($desde, $hasta, $encuesta){
+		//print_r($encuesta);exit;
+		$encuesta = (int) $encuesta;
+
+		$cont = $this->_db->prepare("SELECT count(c.id) as filas, u.nombre as ejecutivo FROM contactos c INNER JOIN usuarios u ON c.encuestador_id = u.id WHERE substring(c.created_at,1,10) BETWEEN ? AND ? AND c.estado_llamada = 1 AND c.encuesta = ? GROUP BY ejecutivo");
+		$cont->bindParam(1, $desde);
+		$cont->bindParam(2, $hasta);
+		$cont->bindParam(3, $encuesta);
+		$cont->execute();
+		
+		return $cont->fetchall();
+	}
+
+	public function getRecorridosRango($desde, $hasta, $encuesta){
+		//print_r($encuesta);exit;
+		$encuesta = (int) $encuesta;
+
+		$cont = $this->_db->prepare("SELECT count(c.id) as filas, ell.nombre as llamada FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id WHERE substring(c.created_at,1,10) BETWEEN ? AND ? AND c.encuesta = ? GROUP BY llamada");
+		$cont->bindParam(1, $desde);
+		$cont->bindParam(2, $hasta);
+		$cont->bindParam(3, $encuesta);
+		$cont->execute();
+		
+		return $cont->fetchall();
+	}
+
+	//metodos de edicion
 	public function editContactoContactado($id, $estado_contacto, $llamada, $usuario){
 		//print_r($llamada);exit;
 		$id = (int) $id;
@@ -107,6 +134,7 @@ class contactoModel extends Model
 		return $row;
 	}
 
+	//metodo de creacion
 	public function addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga){
 		//$carga = (int) $carga;
 		//print_r($carga);exit;
@@ -145,6 +173,7 @@ class contactoModel extends Model
 		$cont->execute();
 	}
 
+	//metodo de eliminacion
 	public function deleteContactosCarga($carga){
 		$carga = (int) $carga;
 

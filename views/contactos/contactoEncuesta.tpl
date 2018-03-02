@@ -6,8 +6,11 @@
 <div class="container">
 	<!--fila para mostrar datos de contacto-->
 	<div class="row">
+		<div class="col-md-12 justify-content-md-center">
+			<h4 style="text-align: center">Datos de contacto</h4>
+		</div>
 		<!--columna 1 para mostrar datos telefonicos-->
-		<div class="col-md-6">
+		<div class="col-md-4 offset-md-2">
 			{if isset($contacto) && count($contacto)}
 			<table class="table table-hover" id="contacto">
 				<tr>
@@ -76,7 +79,7 @@
 			{/if}
 		</div>
 		<!--columna 2 para mostrar otros datos del contacto-->
-		<div class="col-md-6">
+		<div class="col-md-4">
 			{if isset($contacto) && count($contacto)}
 			<table class="table table-hover">
 				{if isset($contacto.rut)}
@@ -204,7 +207,7 @@
 		<div class="col-md-8">
 			{if isset($encuesta) && count($encuesta)}
 				<iframe src="{$encuesta.link}" marginwidth="0" marginheight="0" name="ventana_iframe" scrolling="no" border="0" 
-			frameborder="0" width="800" height="4800"></iframe>							
+			frameborder="0" width="750" height="4800"></iframe>							
 			{/if}
 		</div>
 	</div>

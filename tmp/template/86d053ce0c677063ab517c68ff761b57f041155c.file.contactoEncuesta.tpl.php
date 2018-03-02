@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-27 16:10:11
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-01 18:05:43
          compiled from "/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1477320425a7a1397d01b50-05189215%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '86d053ce0c677063ab517c68ff761b57f041155c' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl',
-      1 => 1519761967,
+      1 => 1519941941,
       2 => 'file',
     ),
   ),
@@ -36,8 +36,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <div class="container">
 	<!--fila para mostrar datos de contacto-->
 	<div class="row">
+		<div class="col-md-12 justify-content-md-center">
+			<h4 style="text-align: center">Datos de contacto</h4>
+		</div>
 		<!--columna 1 para mostrar datos telefonicos-->
-		<div class="col-md-6">
+		<div class="col-md-4 offset-md-2">
 			<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value)&&count($_smarty_tpl->tpl_vars['contacto']->value)) {?>
 			<table class="table table-hover" id="contacto">
 				<tr>
@@ -117,7 +120,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<?php }?>
 		</div>
 		<!--columna 2 para mostrar otros datos del contacto-->
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value)&&count($_smarty_tpl->tpl_vars['contacto']->value)) {?>
 			<table class="table table-hover">
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['rut'])) {?>
@@ -270,7 +273,7 @@ index" class="btn btn-primary">Volver</a>
 			<?php if (isset($_smarty_tpl->tpl_vars['encuesta']->value)&&count($_smarty_tpl->tpl_vars['encuesta']->value)) {?>
 				<iframe src="<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['link'];?>
 " marginwidth="0" marginheight="0" name="ventana_iframe" scrolling="no" border="0" 
-			frameborder="0" width="800" height="4800"></iframe>							
+			frameborder="0" width="750" height="4800"></iframe>							
 			<?php }?>
 		</div>
 	</div>
