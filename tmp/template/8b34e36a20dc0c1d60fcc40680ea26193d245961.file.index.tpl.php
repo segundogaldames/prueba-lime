@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-02 17:25:16
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-05 15:02:24
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1520025913,
+      1 => 1520026186,
       2 => 'file',
     ),
   ),
@@ -38,11 +38,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5a1f0f02ce1420_54544407')) {function content_5a1f0f02ce1420_54544407($_smarty_tpl) {?><div class="row">
+	<!--columna de la izquierda para mostrar menu #####################################################################################-->
 	<div class="col-md-3" style="padding-top: 10px">
 		<h6>Bienvenido(a) <?php echo $_smarty_tpl->tpl_vars['saludo']->value['nombre'];?>
 </h6>
 		<hr>
-		<!--Mostrar menu para administrador y supervisor ##############################################################################-->
+		<!--Mostrar menu para administrador y supervisor-->
 		<?php if (Session::get('role_id')!=2) {?>
 		<ul class="nav flex-column">
 			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
@@ -57,7 +58,7 @@ usuarios/ejecutivos" >Ejecutivos</a></li>
 
 		<!--Lista los resultados-->
 		<?php }?>
-		<!--Mostrar encuestas para ejecutivos ###########################################################################################-->
+		<!--Mostrar encuestas para ejecutivos -->
 		<?php if (Session::get('role_id')==2) {?>
 
 		<!--Lista de encuestas disponibles-->
@@ -101,8 +102,9 @@ contactos/auditorias/<?php echo $_smarty_tpl->tpl_vars['a']->value['encuesta_id'
 		<?php }?>
 	
 	</div>
-		<!--Mostrar opcion de estadisticas solo administrador y supervisor ###############################################################-->
+	<!--columna del medio para mostrar estadistica ##############################################################-->
 	<div class="col-md-4" style="padding-top: 60px; margin-right: 30px">
+		<!--Estadistica para administradores y supervisores-->
 		<?php if (Session::get('role_id')!=2) {?>
 		<h4>Estadísticas</h4>
 		<form action="" method="post">
@@ -142,7 +144,7 @@ $_smarty_tpl->tpl_vars['enc']->_loop = true;
 		<?php }?>
 	</div>
 		
-	<!--Lista los resultados-->
+	<!--columna derecha para Lista los resultados #################################################################################-->
 	
 	<div class="col-md-4" style="padding-top: 60px">
 		<?php if (Session::get('role_id')!=2) {?>

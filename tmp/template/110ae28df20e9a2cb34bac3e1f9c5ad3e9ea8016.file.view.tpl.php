@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-02 10:41:48
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-05 16:19:24
          compiled from "/var/www/html/prueba-lime/views/encuestas/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9185742495a257f02d3df57-44357234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '110ae28df20e9a2cb34bac3e1f9c5ad3e9ea8016' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/view.tpl',
-      1 => 1520001707,
+      1 => 1520281161,
       2 => 'file',
     ),
   ),
@@ -21,6 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'encuesta' => 0,
     '_layoutParams' => 0,
+    'criterios' => 0,
+    'cr' => 0,
     'usuarios' => 0,
     'u' => 0,
     'cargas' => 0,
@@ -61,11 +63,33 @@ encuestas" class="btn btn-link btn-sm">Encuestas</a>
 contactos/contactoEncuesta/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 " class="btn btn-link btn-sm">Ejecutar</a>
 	</p>
-	
+
+	<hr>
+	<!--lista de criterios asociados-->
+	<h4>Criterios Asociados</h4>
+	<?php if (isset($_smarty_tpl->tpl_vars['criterios']->value)&&count($_smarty_tpl->tpl_vars['criterios']->value)) {?>
+		<ul type="square">
+			<?php  $_smarty_tpl->tpl_vars['cr'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['cr']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['criterios']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['cr']->key => $_smarty_tpl->tpl_vars['cr']->value) {
+$_smarty_tpl->tpl_vars['cr']->_loop = true;
+?>
+				<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+criterios/view/<?php echo $_smarty_tpl->tpl_vars['cr']->value['id'];?>
+"><?php echo ucwords($_smarty_tpl->tpl_vars['cr']->value['nombre']);?>
+</a></li>
+			<?php } ?>
+		</ul>
+	<?php } else { ?>
+		<strong>No hay criterios asociados</strong>
+	<?php }?>
+	<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+criterios/addCriterioEncuesta/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
+" class="btn btn-link">Crear Criterio</a></p>
 	<hr>
 	
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->
-	<h4>Ejecutivos asociados</h4>
+	<!--<h4>Ejecutivos asociados</h4>
 	<?php if (isset($_smarty_tpl->tpl_vars['usuarios']->value)&&count($_smarty_tpl->tpl_vars['usuarios']->value)) {?>
 		<ul type="square"></ul>
 			<?php  $_smarty_tpl->tpl_vars['u'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['u']->_loop = false;
@@ -85,10 +109,10 @@ usuarios/view/<?php echo $_smarty_tpl->tpl_vars['u']->value['id'];?>
 encuestasusuarios/addUsuarioEncuesta/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 " class="btn btn-link">Asociar Usuarios</a></p>
 	
-	<hr>
+	<hr>-->
 
 	<!--Lista de cargas realizadas asociadas a un usuario-->
-	<h4>Listas de Contactos Asociados</h4>
+	<!--<h4>Listas de Contactos Asociados</h4>
 	<?php if (isset($_smarty_tpl->tpl_vars['cargas']->value)&&count($_smarty_tpl->tpl_vars['cargas']->value)) {?>
 		<ul type="square">
 			<?php  $_smarty_tpl->tpl_vars['car'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['car']->_loop = false;
@@ -109,4 +133,4 @@ cargas/view/<?php echo $_smarty_tpl->tpl_vars['car']->value['id'];?>
 contactos/addContactosEncuesta/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 " class="btn btn-link">Cargar Contactos</a></p>
 
-</div><?php }} ?>
+</div>--><?php }} ?>

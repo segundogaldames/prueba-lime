@@ -15,11 +15,24 @@
 		<a href="{$_layoutParams.root}encuestas" class="btn btn-link btn-sm">Encuestas</a>
 		<a href="{$_layoutParams.root}contactos/contactoEncuesta/{$encuesta.id}" class="btn btn-link btn-sm">Ejecutar</a>
 	</p>
-	
+
+	<hr>
+	<!--lista de criterios asociados-->
+	<h4>Criterios Asociados</h4>
+	{if isset($criterios) && count($criterios)}
+		<ul type="square">
+			{foreach from=$criterios item=cr}
+				<li><a href="{$_layoutParams.root}criterios/view/{$cr.id}">{ucwords($cr.nombre)}</a></li>
+			{/foreach}
+		</ul>
+	{else}
+		<strong>No hay criterios asociados</strong>
+	{/if}
+	<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
 	<hr>
 	
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->
-	<h4>Ejecutivos asociados</h4>
+	<!--<h4>Ejecutivos asociados</h4>
 	{if isset($usuarios) && count($usuarios)}
 		<ul type="square"></ul>
 			{foreach from=$usuarios item=u}
@@ -30,10 +43,10 @@
 	{/if}
 	<p><a href="{$_layoutParams.root}encuestasusuarios/addUsuarioEncuesta/{$encuesta.id}" class="btn btn-link">Asociar Usuarios</a></p>
 	
-	<hr>
+	<hr>-->
 
 	<!--Lista de cargas realizadas asociadas a un usuario-->
-	<h4>Listas de Contactos Asociados</h4>
+	<!--<h4>Listas de Contactos Asociados</h4>
 	{if isset($cargas) && count($cargas)}
 		<ul type="square">
 			{foreach from=$cargas item=car}
@@ -45,4 +58,4 @@
 	{/if}
 	<p><a href="{$_layoutParams.root}contactos/addContactosEncuesta/{$encuesta.id}" class="btn btn-link">Cargar Contactos</a></p>
 
-</div>
+</div>-->

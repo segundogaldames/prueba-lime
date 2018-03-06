@@ -10,6 +10,7 @@ class encuestasController extends Controller
 	private $_campaign;	
 	private $_encuestaUsuario;
 	private $_carga;
+	private $_criterio;
 	
 	public function __construct(){
 		parent::__construct();
@@ -17,6 +18,7 @@ class encuestasController extends Controller
 		$this->_campaign = $this->loadModel('campaign');
 		$this->_encuestaUsuario = $this->loadModel('encuestausuario');
 		$this->_carga = $this->loadModel('carga');
+		$this->_criterio = $this->loadModel('criterio');
 	}
 
 	public function index(){
@@ -177,6 +179,7 @@ class encuestasController extends Controller
 		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($id)));
 		$this->_view->assign('usuarios', $this->_encuestaUsuario->getUsuariosEncuesta($this->filtrarInt($id)));
 		$this->_view->assign('cargas', $this->_carga->getCargasEncuesta($this->filtrarInt($id)));
+		$this->_view->assign('criterios', $this->_criterio->getCriterioEncuesta($this->filtrarInt($id)));
 		$this->_view->renderizar('view');
 	}
 
