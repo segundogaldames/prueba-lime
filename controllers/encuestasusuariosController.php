@@ -12,6 +12,7 @@ class encuestasusuariosController extends Controller
 	private $_encuestaUsuario;
 	private $_contacto;
 	private $_estadollamadas;
+	private $_criterio;
 	
 	public function __construct(){
 		parent::__construct();
@@ -20,6 +21,7 @@ class encuestasusuariosController extends Controller
 		$this->_encuestaUsuario = $this->loadModel('encuestausuario');
 		$this->_contacto = $this->loadModel('contacto');
 		$this->_estadollamadas = $this->loadModel('estadollamada');
+		$this->_criterio = $this->loadModel('criterio');
 	}
 
 	public function index(){
@@ -81,7 +83,7 @@ class encuestasusuariosController extends Controller
 
 	public function add(){
 		$this->verificarSession();
-		$this->verificarRolAdminSuper();
+		$this->verificarRolAdmin();
 
 		$this->_view->assign('titulo', 'Nueva Encuesta Usuario');
 		$this->_view->assign('encuestas', $this->_encuesta->getEncuestas());
@@ -132,6 +134,8 @@ class encuestasusuariosController extends Controller
 
 		$this->_view->assign('titulo', 'Nueva Encuesta Usuario');
 		$this->_view->assign('ejecutivos', $this->_usuario->getUsuariosEjecutivos());
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
+		$this->_view->assign('criterios', $this->_criterio->getCriteriosEncuesta($this->filtrarInt($encuesta)));
 		$this->_view->assign('enviar', CTRL);
 
 		if ($this->getAlphaNum('enviar') == CTRL) {
@@ -148,14 +152,48 @@ class encuestasusuariosController extends Controller
 				exit;
 			}
 
+			$row = $this->_criterio->getCriteriosEncuesta($this->filtrarInt($encuesta));
+			if ($row) {
+				if (!$this->getInt('criterio')) {
+					$this->_view->assign('_error', 'Debe seleccionar un criterio');
+					$this->_view->renderizar('addUsuarioEncuesta');
+					exit;
+				}
+
+				$criterio = $this->getInt('criterio');
+			}else{
+				$criterio = NULL;
+			}
+
 			$this->_encuestaUsuario->addEncuestaUsuario(
 				$this->filtrarInt($encuesta), 
-				$this->getInt('usuario')
+				$this->getInt('usuario'),
+				$criterio
 			);
 
 			$this->redireccionar('encuestasusuarios');
 		}
 
 		$this->_view->renderizar('addUsuarioEncuesta');
+	}
+
+	public function delete($id = null){
+		//print_r($id);exit;
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		$this->_encuestaUsuario->deleteEncuestaUsuario($this->filtrarInt($id));
+		$this->redireccionar('encuestasusuarios');
+	}
+
+	private function verificarParams($id){
+		if (!$this->filtrarInt($id)) {
+			$this->redireccionar('encuestasusuarios');
+		}
+
+		if (!$this->_encuestaUsuario->getEncuestaUsuarioId($this->filtrarInt($id))) {
+			$this->redireccionar('encuestasusuarios');
+		}
 	}
 }

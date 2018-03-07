@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 15:46:50
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 10:38:29
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1519847190,
+      1 => 1520433500,
       2 => 'file',
     ),
   ),
@@ -47,10 +47,7 @@ limesurvey/index.php/admin/authentication/sa/login" target="_blank">Lime Survey<
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/add">Crear Usuario</a>
 	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos/add" >Cargar Contactos</a>
-	      </li>
+	      <?php if (Session::get('role_id')==1) {?>
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Administración
@@ -69,6 +66,8 @@ campaign">Campañas</a>
 encuestas">Encuestas</a>
 	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestasusuarios">Encuestas y Usuarios</a>
+	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+encuestassupervisores">Encuestas y Supervisores</a>
 	           <div class="dropdown-divider"></div>
 	           <a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 cargas">Cargas</a>
@@ -81,6 +80,7 @@ estadollamadas">Estado Llamadas</a>
 estadocontactos">Estado Contactos</a>
 	        </div>
 	      </li>
+	      <?php }?>
 	       <?php }?>
 	       <?php if (Session::get('autenticado')) {?>
 	      <li class="nav-item">

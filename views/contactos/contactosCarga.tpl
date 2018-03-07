@@ -44,6 +44,7 @@
 							<th>Teléfono 2</th>
 							<th>Teléfono 3</th>
 							<th>Encuesta</th>
+							<<th>Criterio</th>
 							<th>Fecha de Carga</th>
 							<th>Estado del Contacto</th>
 							<th>Estado de Llamada</th>
@@ -56,6 +57,7 @@
 								<td>{$c.telefono2}</td>
 								<td>{$c.telefono3}</td>
 								<td>{ucwords($c.nom_encuesta)}</td>
+								<td>{ucwords($c.criterio)}</td>
 								<td>{$c.creado|date_format:"%d-%m-%Y %H:%M"}</td>
 								<td>{$c.e_contacto}</td>
 								<td>{ucwords($c.llamada)}</td>

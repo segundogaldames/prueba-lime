@@ -11,22 +11,40 @@
 	</p>
 
 	<hr>
-	<!--lista de ejecutivos asociados-->
-	<h4>Ejecutivos Asociados</h4>
-	{if isset($ejecutivos) && count($ejecutivos)}
-
-	{else}
-		<strong>No hay ejecutivos asociados</strong>
-	{/if}
-	<p><a href="{$_layoutParams.root}criteriosusuarios/addEjecutivoCriterio/{$criterio.id}" class="btn btn-link">Asociar Ejecutivos</a></p>
-
-	<hr>
 	<!--lista de cargas asociadas-->
 	<h4>Listas de Contacto Asociadas</h4>
 	{if isset($listas) && count($listas)}
-
+		<ul type="square">
+			{foreach from=$listas item=l}
+				<li><a href="{$_layoutParams.root}cargas/view/{$l.id}">Lista {$l.id}</a></li>
+			{/foreach}
+		</ul>
+		
 	{else}
 		<strong>No hay listas asociadas</strong>
 	{/if}
-	<p><a href="{$_layoutParams.root}contactos/addCargaCriterio/{$criterio.id}" class="btn btn-link">Cargar Contactos</a></p>
+	<p><a href="{$_layoutParams.root}contactos/addContactosEncuestaCriterio/{$criterio.encuesta_id}/{$criterio.id}" class="btn btn-link">Cargar Contactos</a></p>
+
+	<!--Cuota Asociada-->
+	{if isset($cuota) && count($cuota)}
+		<h4>Cuota Asociada</h4>
+		<div class="col-md-4">
+			<table class="table table-hover table-bordered">
+				<tr>
+					<th>Desde</th>
+					<th>Hasta</th>
+					<th>Valor</th>
+				</tr>
+				<tr>
+					<td>{$cuota.desde|date_format:"%d-%m-%Y"}</td>
+					<td>{$cuota.hasta|date_format:"%d-%m-%Y"}</td>
+					<td>{$cuota.valor}</td>
+				</tr>
+			</table>
+		</div>
+		<p><a href="{$_layoutParams.root}cuotas/edit/{$criterio.encuesta_id}/{$criterio.id}" class="btn btn-link">Modificar</a></p>
+	{else}
+		<p><a href="{$_layoutParams.root}cuotas/add/{$criterio.encuesta_id}/{$criterio.id}" class="btn btn-link">Agregar Cuota</a></p>
+	{/if}
+	
 </div>

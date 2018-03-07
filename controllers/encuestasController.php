@@ -11,6 +11,8 @@ class encuestasController extends Controller
 	private $_encuestaUsuario;
 	private $_carga;
 	private $_criterio;
+	private $_encuestaSupervisor;
+	private $_cuota;
 	
 	public function __construct(){
 		parent::__construct();
@@ -19,20 +21,30 @@ class encuestasController extends Controller
 		$this->_encuestaUsuario = $this->loadModel('encuestausuario');
 		$this->_carga = $this->loadModel('carga');
 		$this->_criterio = $this->loadModel('criterio');
+		$this->_encuestaSupervisor = $this->loadModel('encuestasupervisor');
+		$this->_cuota = $this->loadModel('cuota');
 	}
 
 	public function index(){
 		$this->verificarSession();
-		$this->verificarRolAdminSuper();
+		$this->verificarRolAdmin();
 
 		$this->_view->assign('titulo', 'Encuestas');
 		$this->_view->assign('encuestas', $this->_encuesta->getEncuestas());
 		$this->_view->renderizar('index');
 	}
 
+	public function encuestasSupervisores(){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		$this->_view->assign('titulo', 'Encuestas');
+		$this->_view->assign('encuestas', $this->_encuestaSupervisor->getEncuestasSupervisorUsuario(Session::get('id_usuario')));
+		$this->_view->renderizar('encuestasSupervisores');
+	}
+
 	public function fin(){
 		$this->verificarSession();
-
 		$this->_view->assign('titulo', 'Volver a Encuestar');
 		$this->_view->renderizar('fin');
 	}
@@ -179,7 +191,9 @@ class encuestasController extends Controller
 		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($id)));
 		$this->_view->assign('usuarios', $this->_encuestaUsuario->getUsuariosEncuesta($this->filtrarInt($id)));
 		$this->_view->assign('cargas', $this->_carga->getCargasEncuesta($this->filtrarInt($id)));
-		$this->_view->assign('criterios', $this->_criterio->getCriterioEncuesta($this->filtrarInt($id)));
+		$this->_view->assign('criterios', $this->_criterio->getCriteriosEncuesta($this->filtrarInt($id)));
+		$this->_view->assign('supervisores', $this->_encuestaSupervisor->getEncuestaSupervisorEncuesta($this->filtrarInt($id)));
+		$this->_view->assign('cuota', $this->_cuota->getCuotasEncuesta($this->filtrarInt($id)));
 		$this->_view->renderizar('view');
 	}
 

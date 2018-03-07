@@ -18,9 +18,7 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="{$_layoutParams.root}usuarios/add">Crear Usuario</a>
 	      </li>
-	      <li class="nav-item">
-	        <a class="nav-link" href="{$_layoutParams.root}contactos/add" >Cargar Contactos</a>
-	      </li>
+	      {if Session::get('role_id') == 1}
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Administración
@@ -33,6 +31,7 @@
 	           <a class="dropdown-item" href="{$_layoutParams.root}campaign">Campañas</a>
 	           <a class="dropdown-item" href="{$_layoutParams.root}encuestas">Encuestas</a>
 	           <a class="dropdown-item" href="{$_layoutParams.root}encuestasusuarios">Encuestas y Usuarios</a>
+	           <a class="dropdown-item" href="{$_layoutParams.root}encuestassupervisores">Encuestas y Supervisores</a>
 	           <div class="dropdown-divider"></div>
 	           <a class="dropdown-item" href="{$_layoutParams.root}cargas">Cargas</a>
 	           <a class="dropdown-item" href="{$_layoutParams.root}contactos">Contactos</a>
@@ -41,6 +40,7 @@
 	            <a class="dropdown-item" href="{$_layoutParams.root}estadocontactos">Estado Contactos</a>
 	        </div>
 	      </li>
+	      {/if}
 	       {/if}
 	       {if Session::get('autenticado')}
 	      <li class="nav-item">

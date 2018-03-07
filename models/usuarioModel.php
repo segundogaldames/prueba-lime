@@ -47,6 +47,11 @@ class usuarioModel extends Model
 		return $usu->fetchall();
 	}
 
+	public function getUsuariosSupervisores(){
+		$usu = $this->_db->query("SELECT id, nombre, email, created_at as fecha, updated_at as actualizado FROM usuarios WHERE role_id = 3");
+		return $usu->fetchall();
+	}
+
 	public function addUsuario($nombre, $email, $clave, $role){
 		$usu = $this->_db->prepare("INSERT INTO usuarios VALUES(null, ?, ?, ?, now(), now(), ?)");
 		$usu->bindParam(1, $nombre);

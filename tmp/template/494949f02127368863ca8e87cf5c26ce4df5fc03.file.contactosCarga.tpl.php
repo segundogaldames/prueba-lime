@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-27 17:03:42
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-06 15:34:09
          compiled from "/var/www/html/prueba-lime/views/contactos/contactosCarga.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20651652335a8d82a9ee8961-77050485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '494949f02127368863ca8e87cf5c26ce4df5fc03' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/contactosCarga.tpl',
-      1 => 1519765413,
+      1 => 1520364846,
       2 => 'file',
     ),
   ),
@@ -82,6 +82,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 							<th>Teléfono 2</th>
 							<th>Teléfono 3</th>
 							<th>Encuesta</th>
+							<<th>Criterio</th>
 							<th>Fecha de Carga</th>
 							<th>Estado del Contacto</th>
 							<th>Estado de Llamada</th>
@@ -104,6 +105,8 @@ contactos/view/<?php echo $_smarty_tpl->tpl_vars['c']->value['id'];?>
 								<td><?php echo $_smarty_tpl->tpl_vars['c']->value['telefono3'];?>
 </td>
 								<td><?php echo ucwords($_smarty_tpl->tpl_vars['c']->value['nom_encuesta']);?>
+</td>
+								<td><?php echo ucwords($_smarty_tpl->tpl_vars['c']->value['criterio']);?>
 </td>
 								<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['c']->value['creado'],"%d-%m-%Y %H:%M");?>
 </td>

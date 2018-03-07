@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-12-01 11:34:06
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 16:49:08
          compiled from "/var/www/html/prueba-lime/views/clientes/add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:211187215a20710c4c97f0-51236505%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5d1b25afab8c861dfcd89368d6289283e67d3650' => 
     array (
       0 => '/var/www/html/prueba-lime/views/clientes/add.tpl',
-      1 => 1512142444,
+      1 => 1519851496,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'datos' => 0,
+    'enviar' => 0,
     '_layoutParams' => 0,
   ),
   'has_nocache_code' => false,
@@ -33,7 +34,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 ">
 		</div>
 		<div class="form-group">
-			<input type="hidden" name="enviar" value="1">
+			<input type="hidden" name="enviar" value="<?php echo $_smarty_tpl->tpl_vars['enviar']->value;?>
+">
 			<input type="submit" value="Guardar" class="btn btn-success">
 			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 clientes" class="btn btn-link">Volver</a>

@@ -36,7 +36,7 @@ class indexController extends Controller
 		//lista de auditorias por usuario logueado, diseñado para ejecutivos
 		$this->_view->assign('auditorias', $this->_encuestaUsuario->getEncuestaUsuarioAuditoriasPorUsuario(Session::get('id_usuario')));
 		//lista de encuestas para estadisticas
-		$this->_view->assign('enc_estadistica', $this->_encuesta->getEncuestas());
+		$this->_view->assign('enc_estadistica', $this->_encuesta->getEncuestasEncuestas());
 		
 
 		$this->_view->assign('enviar', CTRL);
@@ -86,6 +86,17 @@ class indexController extends Controller
 			
 			if ($encuestados) {
 				$this->_view->assign('encuestados', $encuestados);
+			}
+
+			//consulta encuestados en una encuesta, agrupados por criterios
+			$criterios_enc = $this->_contacto->getEncuestadosRangoCriterio(
+				$this->getSql('desde'), 
+				$this->getSql('hasta'), 
+				$this->getInt('encuesta')
+			);
+
+			if ($criterios_enc) {
+				$this->_view->assign('criterios_enc', $criterios_enc);
 			}
 		}
 		

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-05 15:02:24
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 14:44:29
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1520026186,
+      1 => 1520448265,
       2 => 'file',
     ),
   ),
@@ -34,6 +34,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'r' => 0,
     'encuestados' => 0,
     'en' => 0,
+    'criterios_enc' => 0,
+    'cen' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -51,7 +53,9 @@ clientes" >Clientes</a></li>
 			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 campaign" >Campañas</a></li>
 			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-encuestas" >Encuestas</a></li>
+encuestas/encuestasSupervisores">Encuestas</a></li>
+			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+cargas">Listas</a></li>
 			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/ejecutivos" >Ejecutivos</a></li>
 		</ul>
@@ -72,6 +76,7 @@ $_smarty_tpl->tpl_vars['e']->_loop = true;
 ?>
 						<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 contactos/contactoEncuesta/<?php echo $_smarty_tpl->tpl_vars['e']->value['encuesta_id'];?>
+/<?php echo $_smarty_tpl->tpl_vars['e']->value['criterio_id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['e']->value['nombre'];?>
 </a></li>
 					<?php } ?>
@@ -192,6 +197,31 @@ $_smarty_tpl->tpl_vars['en']->_loop = true;
 						<td><?php echo $_smarty_tpl->tpl_vars['en']->value['ejecutivo'];?>
 :</td>
 						<td><?php echo $_smarty_tpl->tpl_vars['en']->value['filas'];?>
+</td>
+						</tr>
+					<?php } ?>
+				</table>
+			<?php } else { ?>
+				<strong>0</strong>
+			<?php }?>
+
+			<!--lista de encuestados por criterios-->
+			<h4>Encuestados Por Criterio</h4>
+			<?php if (isset($_smarty_tpl->tpl_vars['criterios_enc']->value)&&count($_smarty_tpl->tpl_vars['criterios_enc']->value)) {?>
+				<table class="table table-hover table-bordered">
+					<tr style="background-color: #eeebeb">
+						<th>Criterio</th>
+						<th>Valor</th>
+					</tr>
+					<?php  $_smarty_tpl->tpl_vars['cen'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['cen']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['criterios_enc']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['cen']->key => $_smarty_tpl->tpl_vars['cen']->value) {
+$_smarty_tpl->tpl_vars['cen']->_loop = true;
+?>
+					<tr>
+						<td><?php echo $_smarty_tpl->tpl_vars['cen']->value['criterio'];?>
+:</td>
+						<td><?php echo $_smarty_tpl->tpl_vars['cen']->value['filas'];?>
 </td>
 						</tr>
 					<?php } ?>

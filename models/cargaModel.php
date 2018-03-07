@@ -34,6 +34,16 @@ class cargaModel extends Model
 		return $car->fetchall();
 	}
 
+	public function getCargasCriterio($criterio){
+		$criterio = (int) $criterio;
+
+		$car = $this->_db->prepare("SELECT id FROM cargas WHERE criterio_id = ?");
+		$car->bindParam(1, $criterio);
+		$car->execute();
+
+		return $car->fetchall();
+	}
+
 	public function getUltimaCarga(){
 		$car = $this->_db->query("SELECT max(id) as filas FROM cargas");
 		$filas = $car->fetch();
@@ -60,14 +70,15 @@ class cargaModel extends Model
 		$car->execute();
 	}
 
-	public function addCarga($usuario, $encuesta){
+	public function addCarga($usuario, $encuesta, $criterio){
 		//print_r($encuesta);exit;
 		$usuario = (int) $usuario;
 		$encuesta = (int) $encuesta;
 
-		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, now(), 1, now(), ?)");
+		$car = $this->_db->prepare("INSERT INTO cargas VALUES(null, ?, now(), 1, now(), ?, ?)");
 		$car->bindParam(1, $usuario);
 		$car->bindParam(2, $encuesta);
+		$car->bindParam(3, $criterio);
 		$car->execute();
 	}
 

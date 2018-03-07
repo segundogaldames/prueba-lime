@@ -8,7 +8,8 @@
 		<ul class="nav flex-column">
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}clientes" >Clientes</a></li>
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}campaign" >Campañas</a></li>
-			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}encuestas" >Encuestas</a></li>
+			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}encuestas/encuestasSupervisores">Encuestas</a></li>
+			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}cargas">Listas</a></li>
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}usuarios/ejecutivos" >Ejecutivos</a></li>
 		</ul>
 
@@ -22,7 +23,7 @@
 			<ul class="nav flex-column">
 				{if isset($encuestas) && count($encuestas)}
 					{foreach from=$encuestas item=e}
-						<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}contactos/contactoEncuesta/{$e.encuesta_id}">{$e.nombre}</a></li>
+						<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}contactos/contactoEncuesta/{$e.encuesta_id}/{$e.criterio_id}">{$e.nombre}</a></li>
 					{/foreach}
 				{else}
 					<strong>No tienes encuestas disponibles... </strong>
@@ -112,6 +113,25 @@
 					<tr>
 						<td>{$en.ejecutivo}:</td>
 						<td>{$en.filas}</td>
+						</tr>
+					{/foreach}
+				</table>
+			{else}
+				<strong>0</strong>
+			{/if}
+
+			<!--lista de encuestados por criterios-->
+			<h4>Encuestados Por Criterio</h4>
+			{if isset($criterios_enc) && count($criterios_enc)}
+				<table class="table table-hover table-bordered">
+					<tr style="background-color: #eeebeb">
+						<th>Criterio</th>
+						<th>Valor</th>
+					</tr>
+					{foreach from=$criterios_enc item=cen}
+					<tr>
+						<td>{$cen.criterio}:</td>
+						<td>{$cen.filas}</td>
 						</tr>
 					{/foreach}
 				</table>

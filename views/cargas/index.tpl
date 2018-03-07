@@ -23,8 +23,9 @@
 						<a href="{$_layoutParams.root}contactos/contactosCarga/{$c.id}" class="btn btn-link btn-sm">Ver Contactos</a>
 
 						<a href="{$_layoutParams.root}cargas/edit/{$c.id}" class="btn btn-link btn-sm">Editar Lista</a>
-
+						{if Session::get('role_id') == 1}
 						<a href="{$_layoutParams.root}cargas/delete/{$c.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}cargas/delete/{$c.id}', 'la lista {$c.id} y eliminar sus contactos?')">Eliminar Lista</a>
+						{/if}
 					</td>
 				</tr>
 			{/foreach}

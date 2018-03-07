@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2017-11-29 17:52:57
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 10:34:50
          compiled from "/var/www/html/prueba-lime/views/usuarios/add.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5183342085a1f2033a1c738-87069241%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'ee436a1b9120548d32130e8a6b38c42c9fd15055' => 
     array (
       0 => '/var/www/html/prueba-lime/views/usuarios/add.tpl',
-      1 => 1511991814,
+      1 => 1519851594,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'datos' => 0,
     'roles' => 0,
     'r' => 0,
+    'enviar' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -64,7 +65,8 @@ $_smarty_tpl->tpl_vars['r']->_loop = true;
 			<input type="password" name="reclave" placeholder="Repetir password" class="form-control">
 		</div>
 		<div class="form-group">
-			<input type="hidden" name="enviar" value="1">
+			<input type="hidden" name="enviar" value="<?php echo $_smarty_tpl->tpl_vars['enviar']->value;?>
+">
 			<input type="submit" value="Guardar" class="btn btn-success">
 		</div>	
 	</form>

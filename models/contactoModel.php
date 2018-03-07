@@ -33,11 +33,29 @@ class contactoModel extends Model
 		return $cont->fetch();
 	}
 
+	public function getContactoEncuestaAndCriterio($encuesta, $criterio){
+		$encuesta = (int) $encuesta;
+		$criterio = (int) $criterio;
+
+		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND criterio = {$criterio} AND estado_contacto = 1 AND estado_llamada = 7");
+		$filas = $cant_filas->fetch();
+		$aleatorio = rand(0, $filas['filas']-1);
+		//print_r($aleatorio);exit;
+
+		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? AND criterio = ? and estado_contacto = 1 AND estado_llamada = 7 limit $aleatorio, 1");
+		$cont->bindParam(1, $encuesta);
+		$cont->bindParam(2, $criterio);
+		//$cont->bindParam(2, $aleatorio);
+		$cont->execute();
+
+		return $cont->fetch();
+	}
+
 	//metodos get
 	public function getContactosCarga($carga){
 		$carga = (int) $carga;
 
-		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.empresa, c.email, c.direccion, c.profesion, c.edad, c.codigo, c.tienda, c.dato1, c.dato2, c.dato3, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.criterio1, c.criterio2, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id WHERE c.num_carga = ?");
+		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.empresa, c.email, c.direccion, c.profesion, c.edad, c.codigo, c.tienda, c.dato1, c.dato2, c.dato3, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.criterio1, c.criterio2, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, cr.nombre as criterio FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id LEFT JOIN criterios cr ON c.criterio = cr.id WHERE c.num_carga = ?");
 		$cont->bindParam(1, $carga);
 		$cont->execute();
 
@@ -88,6 +106,18 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
+	public function getEncuestadosRangoCriterio($desde, $hasta, $encuesta){
+		$encuesta = (int) $encuesta;
+
+		$cont = $this->_db->prepare("SELECT count(c.id) as filas, cr.nombre as criterio FROM contactos c INNER JOIN criterios cr ON c.criterio = cr.id WHERE substring(c.modified_at,1,10) BETWEEN ? AND ? AND c.estado_llamada = 1 AND c.encuesta = ? GROUP BY criterio");
+		$cont->bindParam(1, $desde);
+		$cont->bindParam(2, $hasta);
+		$cont->bindParam(3, $encuesta);
+		$cont->execute();
+
+		return $cont->fetchall();
+	}
+
 	public function getRecorridosRango($desde, $hasta, $encuesta){
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
@@ -135,10 +165,10 @@ class contactoModel extends Model
 	}
 
 	//metodo de creacion
-	public function addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga){
+	public function addContactos($nombre, $telefono, $encuesta, $rut, $comuna, $region, $empresa, $email, $direccion, $profesion, $edad, $codigo, $tienda, $dato1, $dato2, $dato3, $fecha1, $fecha2, $fecha3, $telefono2, $telefono3, $telefono4, $telefono5, $telefono6, $telefono7, $telefono8, $telefono9, $telefono10, $criterio1, $criterio2, $carga, $criterio){
 		//$carga = (int) $carga;
 		//print_r($carga);exit;
-		$cont = $this->_db->prepare("INSERT INTO contactos VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, 1, 7, now(), NULL)");
+		$cont = $this->_db->prepare("INSERT INTO contactos VALUES(null, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now(), ?, 1, 7, now(), NULL, ?)");
 		$cont->bindParam(1, $nombre);
 		$cont->bindParam(2, $telefono);
 		$cont->bindParam(3, $encuesta);
@@ -170,6 +200,7 @@ class contactoModel extends Model
 		$cont->bindParam(29, $dato4);
 		$cont->bindParam(30, $dato5);
 		$cont->bindParam(31, $carga);
+		$cont->bindParam(32, $criterio);
 		$cont->execute();
 	}
 
