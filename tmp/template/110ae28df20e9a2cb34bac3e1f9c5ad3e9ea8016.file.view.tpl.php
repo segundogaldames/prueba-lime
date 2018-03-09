@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 15:24:23
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 17:04:30
          compiled from "/var/www/html/prueba-lime/views/encuestas/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9185742495a257f02d3df57-44357234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '110ae28df20e9a2cb34bac3e1f9c5ad3e9ea8016' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/view.tpl',
-      1 => 1520450661,
+      1 => 1520541766,
       2 => 'file',
     ),
   ),
@@ -61,7 +61,7 @@ encuestas/delete/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 ')">Eliminar</a>
 		<?php }?>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-encuestas" class="btn btn-link btn-sm">Encuestas</a>
+encuestas/encuestasSupervisores" class="btn btn-link btn-sm">Encuestas</a>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 contactos/contactoEncuesta/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 " class="btn btn-link btn-sm">Probar</a>

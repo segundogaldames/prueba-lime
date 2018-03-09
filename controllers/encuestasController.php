@@ -193,7 +193,12 @@ class encuestasController extends Controller
 		$this->_view->assign('cargas', $this->_carga->getCargasEncuesta($this->filtrarInt($id)));
 		$this->_view->assign('criterios', $this->_criterio->getCriteriosEncuesta($this->filtrarInt($id)));
 		$this->_view->assign('supervisores', $this->_encuestaSupervisor->getEncuestaSupervisorEncuesta($this->filtrarInt($id)));
-		$this->_view->assign('cuota', $this->_cuota->getCuotasEncuesta($this->filtrarInt($id)));
+
+		$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($id));
+		if ($cuota) {
+			$this->_view->assign('cuota', $cuota);
+		}
+		
 		$this->_view->renderizar('view');
 	}
 

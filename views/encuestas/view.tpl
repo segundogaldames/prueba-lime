@@ -12,7 +12,7 @@
 		{if Session::get('role_id')==1}
 		<a href="{$_layoutParams.root}encuestas/delete/{$encuesta.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestas/delete/{$encuesta.id}','{$encuesta.nombre}')">Eliminar</a>
 		{/if}
-		<a href="{$_layoutParams.root}encuestas" class="btn btn-link btn-sm">Encuestas</a>
+		<a href="{$_layoutParams.root}encuestas/encuestasSupervisores" class="btn btn-link btn-sm">Encuestas</a>
 		<a href="{$_layoutParams.root}contactos/contactoEncuesta/{$encuesta.id}" class="btn btn-link btn-sm">Probar</a>
 	</p>
 

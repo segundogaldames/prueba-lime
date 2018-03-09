@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-27 16:46:50
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 14:46:53
          compiled from "/var/www/html/prueba-lime/views/contactos/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3970229955a8de1af072328-52330010%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c4237ef30e57d5eaa58594e27cca4fb06f018407' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/index.tpl',
-      1 => 1519764408,
+      1 => 1520534811,
       2 => 'file',
     ),
   ),
@@ -39,7 +39,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	
 		<?php if (isset($_smarty_tpl->tpl_vars['contactos']->value)&&count($_smarty_tpl->tpl_vars['contactos']->value)) {?>
 	
-		<table class="table table-hover table-condensed">
+		<table class="table table-hover table-condensed table-responsive">
 			<tr style="background-color: #eeebeb">
 				<th>Nombre</th>
 				<th>Teléfono</th>

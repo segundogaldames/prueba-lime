@@ -12,7 +12,7 @@
 				<div class="jumbotron">
 					<h2>Lista de Contactos</h3>
 					<div class="col-md-4">
-						<table class="table table-hover">
+						<table class="table table-hover table-responsive">
 							<tr>
 								<th>N° Carga:</th>
 								<td>{$carga.id}</td>

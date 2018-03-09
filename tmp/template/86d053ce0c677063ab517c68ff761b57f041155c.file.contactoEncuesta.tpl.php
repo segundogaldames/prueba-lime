@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-01 18:05:43
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 11:24:29
          compiled from "/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1477320425a7a1397d01b50-05189215%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '86d053ce0c677063ab517c68ff761b57f041155c' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl',
-      1 => 1519941941,
+      1 => 1520522665,
       2 => 'file',
     ),
   ),
@@ -20,6 +20,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'contacto' => 0,
+    'campos' => 0,
     'estado_llamadas' => 0,
     'ell' => 0,
     'enviar' => 0,
@@ -32,10 +33,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	th{
 		text-align: right;
 	}
+	#contactos{
+		background-color: #c6ebed;
+		padding: 10px;
+		border-radius: 10px 10px 10px 10px;
+		-moz-border-radius: 10px 10px 10px 10px;
+		-webkit-border-radius: 10px 10px 10px 10px;
+		border: 0px solid #000000;
+		font-size: 14px;
+	}
 </style>
 <div class="container">
 	<!--fila para mostrar datos de contacto-->
-	<div class="row">
+	<div class="row" id="contactos">
 		<div class="col-md-12 justify-content-md-center">
 			<h4 style="text-align: center">Datos de contacto</h4>
 		</div>
@@ -44,7 +54,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value)&&count($_smarty_tpl->tpl_vars['contacto']->value)) {?>
 			<table class="table table-hover" id="contacto">
 				<tr>
-					<th>Nombre</th>
+					<th>Nombre:</th>
 					<td><?php echo ucwords($_smarty_tpl->tpl_vars['contacto']->value['nombre']);?>
 </td>
 				</tr>
@@ -123,6 +133,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<div class="col-md-4">
 			<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value)&&count($_smarty_tpl->tpl_vars['contacto']->value)) {?>
 			<table class="table table-hover">
+				<!--mostrar rut-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['rut'])) {?>
 				<tr>
 					<th>RUT:</th>
@@ -130,100 +141,155 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 </td>
 				</tr>
 				<?php }?>
+				<!--mostrar comuna-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['comuna'])) {?>
 				<tr>
-					<th>Comuna:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['comuna']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['comuna'];?>
 </td>
 				</tr>
 				<?php }?>
+				<!--mostrar region-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['region'])) {?>
 				<tr>
-					<th>Región:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['region']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['region'];?>
 </td>
 				</tr>
 				<?php }?>
-				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['email'])) {?>
-				<tr>
-					<th>Email:</th>
-					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['email'];?>
-</td>
-				</tr>
-				<?php }?>
-				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['direcion'])) {?>
-				<tr>
-					<th>Dirección:</th>
-					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['direcion'];?>
-</td>
-				</tr>
-				<?php }?>
-				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['profesion'])) {?>
-				<tr>
-					<th>Profesión:</th>
-					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['profesion'];?>
-</td>
-				</tr>
-				<?php }?>
-				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['edad'])) {?>
-				<tr>
-					<th>Edad:</th>
-					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['edad'];?>
-</td>
-				</tr>
-				<?php }?>
+				<!--mostrar codigo-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['codigo'])) {?>
 				<tr>
-					<th>Código:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['codigo']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['codigo'];?>
 </td>
 				</tr>
 				<?php }?>
-				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['tienda'])) {?>
-				<tr>
-					<th>Tienda:</th>
-					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['tienda'];?>
-</td>
-				</tr>
-				<?php }?>
+				<!--mostrar dato1-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato1'])) {?>
 				<tr>
-					<th>Dato 1:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato1']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato1'];?>
 </td>
 				</tr>
 				<?php }?>
+				<!--mostrar dato2-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato2'])) {?>
 				<tr>
-					<th>Dato 2:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato2']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato2'];?>
 </td>
 				</tr>
 				<?php }?>
+				<!--mostrar dato3-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato3'])) {?>
 				<tr>
-					<th>Dato 3:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato3']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato3'];?>
 </td>
 				</tr>
 				<?php }?>
+				<!--mostrar dato4-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato4'])) {?>
+				<tr>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato4']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato4'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar dato5-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato5'])) {?>
+				<tr>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato5']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato5'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar dato6-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato6'])) {?>
+				<tr>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato6']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato6'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar dato7-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato7'])) {?>
+				<tr>
+					<th>D<?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato7']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato7'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar dato8-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato8'])) {?>
+				<tr>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato8']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato8'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar dato9-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato9'])) {?>
+				<tr>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato9']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato9'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar dato10-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato10'])) {?>
+				<tr>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato10']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato10'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar dato11-->
+				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['dato11'])) {?>
+				<tr>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['dato11']);?>
+:</th>
+					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['dato11'];?>
+</td>
+				</tr>
+				<?php }?>
+				<!--mostrar fecha1-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['fecha1'])) {?>
 				<tr>
-					<th>Fecha 1:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['fecha1']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['fecha1'];?>
 </td>
 				</tr>
 				<?php }?>
+				<!--mostrar fecha2-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['fecha2'])) {?>
 				<tr>
-					<th>Fecha 2:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['fecha2']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['fecha2'];?>
 </td>
 				</tr>
 				<?php }?>
+				<!--mostrar fecha3-->
 				<?php if (isset($_smarty_tpl->tpl_vars['contacto']->value['fecha3'])) {?>
 				<tr>
-					<th>Fecha 3:</th>
+					<th><?php echo ucwords($_smarty_tpl->tpl_vars['campos']->value['fecha3']);?>
+:</th>
 					<td><?php echo $_smarty_tpl->tpl_vars['contacto']->value['fecha3'];?>
 </td>
 				</tr>

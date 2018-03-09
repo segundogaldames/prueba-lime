@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 16:07:49
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 17:15:34
          compiled from "/var/www/html/prueba-lime/views/criterios/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14924258545a9dab9d71f245-71068288%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '384a8428f67b5006b4c1c6ef9e32d708ac1a2b1f' => 
     array (
       0 => '/var/www/html/prueba-lime/views/criterios/view.tpl',
-      1 => 1520453267,
+      1 => 1520543730,
       2 => 'file',
     ),
   ),
@@ -49,7 +49,7 @@ criterios/delete/<?php echo $_smarty_tpl->tpl_vars['criterio']->value['id'];?>
 ', '<?php echo $_smarty_tpl->tpl_vars['criterio']->value['nombre'];?>
 ')">Eliminar</a>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-encuestas" class="btn btn-link">Encuestas</a>
+encuestas/encuestasSupervisores" class="btn btn-link">Encuestas</a>
 	</p>
 
 	<hr>

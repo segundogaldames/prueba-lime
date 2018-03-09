@@ -7,7 +7,7 @@
 	<p>
 		<a href="{$_layoutParams.root}criterios/edit/{$criterio.id}" class="btn btn-link">Editar</a>
 		<a href="{$_layoutParams.root}criterios/delete/{$criterio.id}" class="btn btn-link" onclick="return eliminar('{$_layoutParams.root}criterios/delete/{$criterio.id}', '{$criterio.nombre}')">Eliminar</a>
-		<a href="{$_layoutParams.root}encuestas" class="btn btn-link">Encuestas</a>
+		<a href="{$_layoutParams.root}encuestas/encuestasSupervisores" class="btn btn-link">Encuestas</a>
 	</p>
 
 	<hr>

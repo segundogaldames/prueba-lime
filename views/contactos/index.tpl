@@ -10,7 +10,7 @@
 	
 		{if isset($contactos) && count($contactos)}
 	
-		<table class="table table-hover table-condensed">
+		<table class="table table-hover table-condensed table-responsive">
 			<tr style="background-color: #eeebeb">
 				<th>Nombre</th>
 				<th>Teléfono</th>

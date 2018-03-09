@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-06 15:34:09
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 16:36:25
          compiled from "/var/www/html/prueba-lime/views/contactos/contactosCarga.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20651652335a8d82a9ee8961-77050485%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '494949f02127368863ca8e87cf5c26ce4df5fc03' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/contactosCarga.tpl',
-      1 => 1520364846,
+      1 => 1520541360,
       2 => 'file',
     ),
   ),
@@ -45,7 +45,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 				<div class="jumbotron">
 					<h2>Lista de Contactos</h3>
 					<div class="col-md-4">
-						<table class="table table-hover">
+						<table class="table table-hover table-responsive">
 							<tr>
 								<th>N° Carga:</th>
 								<td><?php echo $_smarty_tpl->tpl_vars['carga']->value['id'];?>

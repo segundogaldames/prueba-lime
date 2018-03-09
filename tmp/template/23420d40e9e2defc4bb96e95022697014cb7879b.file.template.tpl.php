@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-26 15:43:40
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 09:53:03
          compiled from "/var/www/html/prueba-lime/views/layout/default/template.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:6417541945a1f0f02c1b067-05851076%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '23420d40e9e2defc4bb96e95022697014cb7879b' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/template.tpl',
-      1 => 1519674218,
+      1 => 1520517181,
       2 => 'file',
     ),
   ),
@@ -117,6 +117,7 @@ $_smarty_tpl->tpl_vars['js']->_loop = true;
 
           </div>
         </div>
-           
+      <?php echo $_smarty_tpl->getSubTemplate ("footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>
+     
   </body>
 </html><?php }} ?>
