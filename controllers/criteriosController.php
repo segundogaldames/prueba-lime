@@ -59,12 +59,21 @@ class criteriosController extends Controller
 			$this->redireccionar('encuestas');
 		}
 
+		$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($encuesta));
+			//print_r($encuesta);exit;
+			if ($cuota) {
+				throw new Exception("No se puede agregar un criterio a esta encuesta... tiene cuotas asociadas", 1);
+				
+			}
+
 		$this->_view->assign('titulo', 'Nuevo Criterio Encuesta');
 		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
 		$this->_view->assign('enviar', CTRL);
 
 		if ($this->getAlphaNum('enviar') == CTRL) {
 			//print_r($_POST);exit;
+
+
 			if (!$this->getSql('nombre')) {
 				$this->_view->assign('_error', 'Debe ingresar un nombre para el criterio');
 				$this->_view->renderizar('addCriterioEncuesta');
@@ -104,6 +113,22 @@ class criteriosController extends Controller
 			$this->redireccionar('encuestas');
 		}
 		$this->_view->renderizar('edit');
+	}
+
+	public function delete($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		$cuota = $this->_cuota->getCuotaEncuestaCriterio($this->filtrarInt($id));
+
+		if ($cuota) {
+			throw new Exception("Este criterio no puede ser eliminado... Tiene cuota asociada", 1);
+			
+		}
+
+		$this->_criterio->deleteCriterio($this->filtrarInt($id));
+		$this->redireccionar('encuestas');
 	}
 
 	private function verificarParams($id){

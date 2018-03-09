@@ -44,6 +44,7 @@ class contactosController extends Controller
 		$this->_view->assign('titulo', 'APP::Contactos');
 		$this->_view->assign('contactos', $paginador->paginar($this->_contacto->getContactos(), $pagina));
 		$this->_view->assign('paginacion', $paginador->getView('prueba', 'contactos/index'));
+		$this->_view->assign('enviar', CTRL);
 		$this->_view->renderizar('index');
 	}
 
@@ -183,6 +184,40 @@ class contactosController extends Controller
 		$this->_view->assign('contacto', $this->_contacto->getContactoId($this->filtrarInt($id)));
 
 		$this->_view->renderizar('view');
+	}
+
+	//metodo de busqueda por telefono
+	public function resultados(){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		$this->_view->assign('titulo', 'Resultados');
+	
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			//print_r($_POST);exit;
+			if (!$this->getInt('telefono')) {
+				$this->_view->assign('_error', 'Falta ingresar el número de teléfono');
+				$this->_view->renderizar('resultados');
+				exit;
+			}
+
+			$contacto = $this->_contacto->getContactosTelefono($this->getInt('telefono'));
+			//print_r($contacto);exit;
+
+			if ($contacto) {
+				$this->_view->assign('contacto', $contacto);
+			}else{
+				$contacto = $this->_contacto->getContactosTelefonoDos($this->getInt('telefono'));
+
+				if ($contacto) {
+					$this->_view->assign('contacto', $contacto);
+				}
+				
+			}
+		}
+
+		$this->_view->renderizar('resultados');
 	}
 
 	//metodo que carga contactos desde una encuesta sin criterios

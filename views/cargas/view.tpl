@@ -9,7 +9,9 @@
 	<p>
 		<a href="{$_layoutParams.root}contactos/contactosCarga/{$carga.id}" class="btn btn-link btn-sm">Ver Contactos</a>
 		<a href="{$_layoutParams.root}cargas/edit/{$carga.id}" class="btn btn-link">Editar</a>
+		{if Session::get('role_id') ==1}
 		<a href="{$_layoutParams.root}cargas/delete/{$carga.id}" class="btn btn-link" onclick="return eliminar('{$_layoutParams.root}cargas/delete/{$carga.id}','la lista {$carga.id} y eliminar sus contactos')">Eliminar</a>
-		<a href="{$_layoutParams.root}cargas" class="btn btn-link">Cargas</a>
+		{/if}
+		<a href="{$_layoutParams.root}cargas" class="btn btn-link">Listas</a>
 	</p>
 </div>

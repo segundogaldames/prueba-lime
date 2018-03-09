@@ -24,6 +24,7 @@ class cuotaModel extends Model
 	}
 
 	public function getCuotasEncuesta($encuesta){
+		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
 
 		$cuota = $this->_db->prepare("SELECT c.id, c.encuesta_id, c.criterio_id, c.desde, c.hasta, e.nombre as encuesta, cr.nombre as criterio, c.valor FROM cuotas c INNER JOIN encuestas e ON c.encuesta_id = e.id LEFT JOIN criterios cr ON c.criterio_id = cr.id WHERE c.encuesta_id = ?");
@@ -65,6 +66,14 @@ class cuotaModel extends Model
 		$cuota->bindParam(2, $hasta);
 		$cuota->bindParam(3, $valor);
 		$cuota->bindParam(4, $id);
+		$cuota->execute();
+	}
+
+	public function deleteCuota($id){
+		$id = (int) $id;
+
+		$cuota = $this->_db->prepare("DELETE FROM cuotas WHERE id = ?");
+		$cuota->bindParam(1, $id);
 		$cuota->execute();
 	}
 }

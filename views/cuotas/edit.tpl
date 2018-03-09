@@ -16,6 +16,7 @@
 		<div class="form-group">
 			<input type="hidden" name="enviar" value="{$enviar}">
 			<input type="submit" value="Guardar" class="btn btn-success">
+			<a href="{$_layoutParams.root}cuotas/delete/{$dato.id}" class="btn btn-link" onclick="return eliminar('{$_layoutParams.root}cuotas/delete/{$dato.id}','Cuota N° {$dato.id}')">Eliminar</a>
 			<a href="{$_layoutParams.root}encuestas/view/{$dato.encuesta_id}" class="btn btn-link">Volver</a>
 		</div>
 	</form>

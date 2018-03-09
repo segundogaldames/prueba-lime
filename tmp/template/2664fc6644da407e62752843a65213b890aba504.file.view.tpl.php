@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 13:27:25
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 16:31:34
          compiled from "/var/www/html/prueba-lime/views/cargas/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:4763856785a96df090bbeb2-70144998%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2664fc6644da407e62752843a65213b890aba504' => 
     array (
       0 => '/var/www/html/prueba-lime/views/cargas/view.tpl',
-      1 => 1519838842,
+      1 => 1520627491,
       2 => 'file',
     ),
   ),
@@ -43,13 +43,15 @@ contactos/contactosCarga/<?php echo $_smarty_tpl->tpl_vars['carga']->value['id']
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 cargas/edit/<?php echo $_smarty_tpl->tpl_vars['carga']->value['id'];?>
 " class="btn btn-link">Editar</a>
+		<?php if (Session::get('role_id')==1) {?>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 cargas/delete/<?php echo $_smarty_tpl->tpl_vars['carga']->value['id'];?>
 " class="btn btn-link" onclick="return eliminar('<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 cargas/delete/<?php echo $_smarty_tpl->tpl_vars['carga']->value['id'];?>
 ','la lista <?php echo $_smarty_tpl->tpl_vars['carga']->value['id'];?>
  y eliminar sus contactos')">Eliminar</a>
+		<?php }?>
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-cargas" class="btn btn-link">Cargas</a>
+cargas" class="btn btn-link">Listas</a>
 	</p>
 </div><?php }} ?>

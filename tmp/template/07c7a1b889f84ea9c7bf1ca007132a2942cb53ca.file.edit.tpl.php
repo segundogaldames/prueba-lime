@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 09:49:36
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 16:53:10
          compiled from "/var/www/html/prueba-lime/views/cuotas/edit.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8437625655aa28dd72c7a49-28043333%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '07c7a1b889f84ea9c7bf1ca007132a2942cb53ca' => 
     array (
       0 => '/var/www/html/prueba-lime/views/cuotas/edit.tpl',
-      1 => 1520603374,
+      1 => 1520628775,
       2 => 'file',
     ),
   ),
@@ -47,6 +47,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			<input type="hidden" name="enviar" value="<?php echo $_smarty_tpl->tpl_vars['enviar']->value;?>
 ">
 			<input type="submit" value="Guardar" class="btn btn-success">
+			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+cuotas/delete/<?php echo $_smarty_tpl->tpl_vars['dato']->value['id'];?>
+" class="btn btn-link" onclick="return eliminar('<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+cuotas/delete/<?php echo $_smarty_tpl->tpl_vars['dato']->value['id'];?>
+','Cuota N° <?php echo $_smarty_tpl->tpl_vars['dato']->value['id'];?>
+')">Eliminar</a>
 			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestas/view/<?php echo $_smarty_tpl->tpl_vars['dato']->value['encuesta_id'];?>
 " class="btn btn-link">Volver</a>

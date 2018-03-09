@@ -6,18 +6,9 @@
 		text-align: center;
 	}
 </style>
-<div class="col-md-12">
-		<div style="padding: 20px">
-			<form action="{$_layoutParams.root}contactos/resultados" method="post" class="form-inline">
-				<label>Número de Teléfono:&nbsp;</label>
-				<input type="text" name="telefono" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder="Buscar por teléfono">
-				<input type="hidden" name="enviar" value="{$enviar}">
-				<input type="submit" value="Buscar" class="btn btn-primary">
-			</form>
-		</div>
-		
+<div class="col-md-12">		
 	
-		{if isset($contactos) && count($contactos)}
+		{if isset($contacto) && count($contacto)}
 	
 		<table class="table table-hover table-condensed table-responsive">
 			<tr style="background-color: #eeebeb">
@@ -33,7 +24,7 @@
 				<th>Fecha de Carga</th>
 				<th>Fecha Gestión</th>
 			</tr>
-			{foreach from=$contactos item=c}
+			{foreach from=$contacto item=c}
 				<tr>
 					<td><a href="{$_layoutParams.root}contactos/view/{$c.id}">{ucwords($c.nombre)}</a></td>
 					<td>{$c.telefono}</td>
@@ -52,7 +43,8 @@
 		</table>
 			{if isset($paginacion)}{$paginacion}{/if}
 		{else}
-			<p class="text-alert">No hay contactos registrados</p>
+			<p class="text-alert">No hay contactos registrados con este número</p>
 		{/if}
+		<p><a href="{$_layoutParams.root}contactos" class="btn btn-link">Volver</a></p>
 	
 </div>

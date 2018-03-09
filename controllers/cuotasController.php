@@ -114,6 +114,14 @@ class cuotasController extends Controller
 		$this->_view->renderizar('edit');
 	}
 
+	public function delete($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		$this->_cuota->deleteCuota($this->filtrarInt($id));
+	}
+
 	private function verificarParams($id){
 		if (!$this->filtrarInt($id)) {
 			$this->redireccionar('encuestas');

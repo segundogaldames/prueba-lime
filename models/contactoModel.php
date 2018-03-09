@@ -10,7 +10,7 @@ class contactoModel extends Model
 	}
 
 	public function getContactos(){
-		$cont = $this->_db->query("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.codigo, c.dato1, c.dato2, c.dato3, c.dato4, c.dato5, c.dato6, c.dato7, c.dato8, c.dato9, c.dato10, c.dato11, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id");
+		$cont = $this->_db->query("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.codigo, c.dato1, c.dato2, c.dato3, c.dato4, c.dato5, c.dato6, c.dato7, c.dato8, c.dato9, c.dato10, c.dato11, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id LEFT JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id");
 
 		return $cont->fetchall();
 	}
@@ -165,6 +165,28 @@ class contactoModel extends Model
 		//print_r($row);exit;
 
 		return $row;
+	}
+
+	//busqueda de contactos por telefono1
+	public function getContactosTelefono($telefono){
+		$telefono = (int) $telefono;
+
+		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.codigo, c.dato1, c.dato2, c.dato3, c.dato4, c.dato5, c.dato6, c.dato7, c.dato8, c.dato9, c.dato10, c.dato11, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id WHERE c.telefono = ?");
+		$cont->bindParam(1, $telefono);
+		$cont->execute();
+
+		return $cont->fetchall();
+	}
+
+	//busqueda de contactos por telefono2
+	public function getContactosTelefonoDos($telefono){
+		$telefono = (int) $telefono;
+
+		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.codigo, c.dato1, c.dato2, c.dato3, c.dato4, c.dato5, c.dato6, c.dato7, c.dato8, c.dato9, c.dato10, c.dato11, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id WHERE c.telefono2 = ?");
+		$cont->bindParam(1, $telefono);
+		$cont->execute();
+
+		return $cont->fetchall();
 	}
 
 	//metodos de edicion

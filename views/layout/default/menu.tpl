@@ -36,6 +36,7 @@
 	           <div class="dropdown-divider"></div>
 	           <a class="dropdown-item" href="{$_layoutParams.root}cargas">Cargas</a>
 	           <a class="dropdown-item" href="{$_layoutParams.root}contactos">Contactos</a>
+	           <a class="dropdown-item" href="{$_layoutParams.root}camposcontactos">campos Contacto Encuesta</a>
 	            <div class="dropdown-divider"></div>
 	            <a class="dropdown-item" href="{$_layoutParams.root}estadollamadas">Estado Llamadas</a>
 	            <a class="dropdown-item" href="{$_layoutParams.root}estadocontactos">Estado Contactos</a>
