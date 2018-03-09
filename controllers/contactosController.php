@@ -181,6 +181,7 @@ class contactosController extends Controller
 
 		$this->_view->assign('titulo', 'Ver Contacto');
 		$this->_view->assign('contacto', $this->_contacto->getContactoId($this->filtrarInt($id)));
+
 		$this->_view->renderizar('view');
 	}
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 17:15:34
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 09:49:11
          compiled from "/var/www/html/prueba-lime/views/criterios/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14924258545a9dab9d71f245-71068288%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '384a8428f67b5006b4c1c6ef9e32d708ac1a2b1f' => 
     array (
       0 => '/var/www/html/prueba-lime/views/criterios/view.tpl',
-      1 => 1520543730,
+      1 => 1520603299,
       2 => 'file',
     ),
   ),
@@ -24,6 +24,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'listas' => 0,
     'l' => 0,
     'cuota' => 0,
+    'encuestados' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -86,6 +87,7 @@ contactos/addContactosEncuestaCriterio/<?php echo $_smarty_tpl->tpl_vars['criter
 					<th>Desde</th>
 					<th>Hasta</th>
 					<th>Valor</th>
+					<th>Encuestados</th>
 				</tr>
 				<tr>
 					<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['cuota']->value['desde'],"%d-%m-%Y");?>
@@ -93,6 +95,8 @@ contactos/addContactosEncuestaCriterio/<?php echo $_smarty_tpl->tpl_vars['criter
 					<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['cuota']->value['hasta'],"%d-%m-%Y");?>
 </td>
 					<td><?php echo $_smarty_tpl->tpl_vars['cuota']->value['valor'];?>
+</td>
+					<td><?php echo $_smarty_tpl->tpl_vars['encuestados']->value;?>
 </td>
 				</tr>
 			</table>

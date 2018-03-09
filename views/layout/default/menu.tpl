@@ -15,10 +15,11 @@
 	      <li class="nav-item">
 	        <a class="nav-link" href="{$_layoutParams.root}limesurvey/index.php/admin/authentication/sa/login" target="_blank">Lime Survey</a>
 	      </li>
+	    {if Session::get('role_id') == 1}
 	      <li class="nav-item">
 	        <a class="nav-link" href="{$_layoutParams.root}usuarios/add">Crear Usuario</a>
 	      </li>
-	      {if Session::get('role_id') == 1}
+	      
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Administración

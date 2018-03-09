@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 10:38:29
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 09:54:09
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1520433500,
+      1 => 1520603645,
       2 => 'file',
     ),
   ),
@@ -43,11 +43,12 @@ index">Inicio <span class="sr-only">(current)</span></a>
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 limesurvey/index.php/admin/authentication/sa/login" target="_blank">Lime Survey</a>
 	      </li>
+	    <?php if (Session::get('role_id')==1) {?>
 	      <li class="nav-item">
 	        <a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/add">Crear Usuario</a>
 	      </li>
-	      <?php if (Session::get('role_id')==1) {?>
+	      
 	      <li class="nav-item dropdown">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 	          Administración

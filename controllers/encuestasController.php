@@ -13,6 +13,7 @@ class encuestasController extends Controller
 	private $_criterio;
 	private $_encuestaSupervisor;
 	private $_cuota;
+	private $_contacto;
 	
 	public function __construct(){
 		parent::__construct();
@@ -23,6 +24,7 @@ class encuestasController extends Controller
 		$this->_criterio = $this->loadModel('criterio');
 		$this->_encuestaSupervisor = $this->loadModel('encuestasupervisor');
 		$this->_cuota = $this->loadModel('cuota');
+		$this->_contacto = $this->loadModel('contacto');
 	}
 
 	public function index(){
@@ -197,7 +199,13 @@ class encuestasController extends Controller
 		$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($id));
 		if ($cuota) {
 			$this->_view->assign('cuota', $cuota);
+
+			$encuestados = $this->_contacto->getContactosEncuestadosEncuesta($cuota['desde'], $cuota['hasta'], $cuota['encuesta_id']);
+			if ($encuestados) {
+				$this->_view->assign('encuestados', $encuestados);
+			}
 		}
+
 		
 		$this->_view->renderizar('view');
 	}

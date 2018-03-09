@@ -8,6 +8,7 @@ class criteriosController extends Controller
 	private $_encuesta;
 	private $_carga;
 	private $_cuota;
+	private $_contacto;
 	
 	public function __construct(){
 		parent::__construct();
@@ -15,6 +16,7 @@ class criteriosController extends Controller
 		$this->_criterio = $this->loadModel('criterio');
 		$this->_carga = $this->loadModel('carga');
 		$this->_cuota = $this->loadModel('cuota');
+		$this->_contacto = $this->loadModel('contacto');
 	}
 
 	public function index(){
@@ -35,6 +37,11 @@ class criteriosController extends Controller
 		//print_r($cuota['valor']);
 		if ($cuota) {
 			$this->_view->assign('cuota', $cuota);
+
+			$encuestados = $this->_contacto->getContactosEncuestadosCriterio($cuota['desde'], $cuota['hasta'], $cuota['criterio_id']);
+			if ($encuestados) {
+				$this->_view->assign('encuestados', $encuestados);
+			}
 		}
 		
 		$this->_view->renderizar('view');

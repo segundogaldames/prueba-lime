@@ -53,11 +53,13 @@
 						<th>Desde</th>
 						<th>Hasta</th>
 						<th>Valor</th>
+						<th>Encuestados</th>
 					</tr>
 					<tr>
 						<td>{$cuota.desde|date_format:"%d-%m-%Y"}</td>
 						<td>{$cuota.hasta|date_format:"%d-%m-%Y"}</td>
 						<td>{$cuota.valor}</td>
+						<td>{$encuestados}</td>
 					</tr>
 				</table>
 			</div>

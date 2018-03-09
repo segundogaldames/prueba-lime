@@ -71,4 +71,56 @@ class cuotasController extends Controller
 		}
 		$this->_view->renderizar('add');
 	}
+
+	public function edit($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		$this->_view->assign('titulo', 'Editar Cuotas');
+		$this->_view->assign('dato', $this->_cuota->getCuotaId($this->filtrarInt($id)));
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			
+			if (!$this->getSql('desde')) {
+				$this->_view->assign('_error', 'Debes ingresar una fecha de inicio');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			if (!$this->getSql('hasta')) {
+				$this->_view->assign('_error', 'Debes ingresar una fecha de fin');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			if (!$this->getInt('valor') || $this->getInt('valor') < 1) {
+				$this->_view->assign('_error', 'Debes ingresar un valor numérico');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			$this->_cuota->editCuota(
+				$this->filtrarInt($id), 
+				$this->getSql('desde'), 
+				$this->getSql('hasta'), 
+				$this->getInt('valor')
+			);
+
+			$this->redireccionar('encuestas/encuestasSupervisores');
+		}
+		
+		$this->_view->renderizar('edit');
+	}
+
+	private function verificarParams($id){
+		if (!$this->filtrarInt($id)) {
+			$this->redireccionar('encuestas');
+		}
+
+		if (!$this->_cuota->getCuotaId($this->filtrarInt($id))) {
+			$this->redireccionar('encuestas');
+		}
+	}
 }

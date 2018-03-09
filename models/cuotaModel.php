@@ -13,6 +13,16 @@ class cuotaModel extends Model
 		$cuota = $this->_db->query("SELECT c.id, c.encuesta_id, c.criterio_id, c.desde, c.hasta, e.nombre as encuesta, cr.nombre as criterio, c.valor FROM cuotas c INNER JOIN encuestas e ON c.encuesta_id = e.id LEFT JOIN criterios cr ON c.criterio_id = cr.id");
 	}
 
+	public function getCuotaId($id){
+		$id = (int) $id;
+
+		$cuota = $this->_db->prepare("SELECT c.id, c.encuesta_id, c.criterio_id, c.desde, c.hasta, e.nombre as encuesta, cr.nombre as criterio, c.valor FROM cuotas c INNER JOIN encuestas e ON c.encuesta_id = e.id LEFT JOIN criterios cr ON c.criterio_id = cr.id WHERE c.id = ?");
+		$cuota->bindParam(1, $id);
+		$cuota->execute();
+
+		return $cuota->fetch();
+	}
+
 	public function getCuotasEncuesta($encuesta){
 		$encuesta = (int) $encuesta;
 
@@ -44,6 +54,17 @@ class cuotaModel extends Model
 		$cuota->bindParam(3, $desde);
 		$cuota->bindParam(4, $hasta);
 		$cuota->bindParam(5, $valor);
+		$cuota->execute();
+	}
+
+	public function editCuota($id, $desde, $hasta, $valor){
+		$id = (int) $id;
+
+		$cuota = $this->_db->prepare("UPDATE cuotas SET desde = ?, hasta = ?, valor = ? WHERE id = ?");
+		$cuota->bindParam(1, $desde);
+		$cuota->bindParam(2, $hasta);
+		$cuota->bindParam(3, $valor);
+		$cuota->bindParam(4, $id);
 		$cuota->execute();
 	}
 }
