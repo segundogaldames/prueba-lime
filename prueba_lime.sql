@@ -260,7 +260,7 @@ CREATE TABLE `cuotas` (
 
 LOCK TABLES `cuotas` WRITE;
 /*!40000 ALTER TABLE `cuotas` DISABLE KEYS */;
-INSERT INTO `cuotas` VALUES (1,1,1,'2018-03-07','2018-03-08',2),(2,4,0,'2018-03-01','2018-03-09',2);
+INSERT INTO `cuotas` VALUES (1,1,1,'2018-03-07','2018-03-08',2),(2,4,0,'2018-03-01','2018-03-09',20);
 /*!40000 ALTER TABLE `cuotas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,7 +443,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Segundo Galdames H.','segundogaldames@gmail.com','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 10:46:08','2017-11-30 17:27:21',1),(3,'Stephanie Henriquez','shenriquez@metasolutions.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 12:37:24','2017-11-30 12:37:24',3),(4,'Kathy Kuhn','kkuhn@metaservicios.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 13:11:03','2018-02-22 17:17:10',1),(5,'Javier Martinez Ayala','jmartineza@gmail.com','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 13:14:38','2018-02-23 13:21:27',2),(6,'Segundo Galdames H.','sgaldames@metasolutions.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-12-05 12:55:36','2017-12-05 12:55:36',2),(7,'Pedro Morales','pmorales@gmail.com','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2018-02-28 17:55:14','2018-02-28 17:55:14',2),(8,'Maria Jose Maldonado','mmaldonado@metasolutions.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2018-03-01 12:15:04','2018-03-01 12:15:04',2);
+INSERT INTO `usuarios` VALUES (1,'Segundo Galdames H.','segundogaldames@gmail.com','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 10:46:08','2017-11-30 17:27:21',1),(3,'Stephany Henriquez','shenriquez@metasolutions.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 12:37:24','2018-03-09 10:50:04',3),(4,'Kathy Kuhn','kkuhn@metaservicios.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 13:11:03','2018-02-22 17:17:10',1),(5,'Javier Martinez Ayala','jmartineza@gmail.com','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-11-30 13:14:38','2018-02-23 13:21:27',2),(6,'Segundo Galdames H.','sgaldames@metasolutions.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2017-12-05 12:55:36','2017-12-05 12:55:36',2),(7,'Pedro Morales','pmorales@gmail.com','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2018-02-28 17:55:14','2018-02-28 17:55:14',2),(8,'Maria Jose Maldonado','mmaldonado@metasolutions.cl','930fa2faf4ebaf4f5d4b6650d0f8dc8b725a8206','2018-03-01 12:15:04','2018-03-01 12:15:04',2);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -456,4 +456,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-09 10:04:57
+-- Dump completed on 2018-03-09 10:55:23
