@@ -46,7 +46,7 @@
 
 		<!--cuota asociada-->
 		{if isset($cuota) && count($cuota)}
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<h4>Cuota Asociada</h4>
 				<table class="table table-hover table-bordered">
 					<tr style="background-color: #eeebeb">
