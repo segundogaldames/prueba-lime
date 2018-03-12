@@ -13,7 +13,7 @@
 	      </li>
 	     {if Session::get('autenticado') && Session::get('role_id') != 2}
 	      <li class="nav-item">
-	        <a class="nav-link" href="{$_layoutParams.root}limesurvey/index.php/admin/authentication/sa/login" target="_blank">Lime Survey</a>
+	        <a class="nav-link" href="https://survey.metaservicios.cl/index.php/admin/authentication/sa/login" target="_blank">Lime Survey</a>
 	      </li>
 	    {if Session::get('role_id') == 1}
 	      <li class="nav-item">
