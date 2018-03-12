@@ -16,8 +16,8 @@
 						<a href="{$_layoutParams.root}usuarios/view/{$eu.usuario_id}" class="btn btn-link btn-sm">{$eu.usuario}</a>
 					</td>
 					<td>
-						<a href="{$_layoutParams.root}encuestasusuarios/edit/{$eu.id}" class="btn btn-link btn-sm">Editar</a>
-						<a href="{$_layoutParams.root}encuestasusuarios/delete/{$eu.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestasusuarios/delete/{$eu.id}', 'la asociación {$eu.encuesta} - {$eu.usuario}')">Eliminar</a>
+						<a href="{$_layoutParams.root}encuestasusuarios/edit/{$eu.usuario_id}" class="btn btn-link btn-sm">Editar</a>
+						<a href="{$_layoutParams.root}encuestasusuarios/delete/{$eu.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestasusuarios/delete/{$eu.usuario_id', 'la asociación {$eu.encuesta} - {$eu.usuario}')">Eliminar</a>
 					</td>
 				</tr>
 			{/foreach}		
