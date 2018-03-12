@@ -76,7 +76,7 @@
 	{if isset($usuarios) && count($usuarios)}
 		<ul type="square"></ul>
 		{foreach from=$usuarios item=u}
-			<li><a href="{$_layoutParams.root}usuarios/view/{$u.id}" class="btn btn-link btn-sm">{$u.usuario}</a></li>
+			<li><a href="{$_layoutParams.root}usuarios/view/{$u.usuario_id}" class="btn btn-link btn-sm">{$u.usuario}</a></li>
 		{/foreach}
 	{else}
 		<strong>No hay ejecutivos asociados</strong>
