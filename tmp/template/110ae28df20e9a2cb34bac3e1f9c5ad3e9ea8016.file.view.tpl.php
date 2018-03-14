@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-13 09:06:36
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-14 13:26:26
          compiled from "/var/www/html/prueba-lime/views/encuestas/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9185742495a257f02d3df57-44357234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '110ae28df20e9a2cb34bac3e1f9c5ad3e9ea8016' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/view.tpl',
-      1 => 1520942792,
+      1 => 1521044782,
       2 => 'file',
     ),
   ),
@@ -195,10 +195,11 @@ usuarios/view/<?php echo $_smarty_tpl->tpl_vars['s']->value['supervisor_id'];?>
 			</ul>
 		<?php } else { ?>
 			<p class="text-info">No hay supervisores asignados</p>
-			<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+			
+		<?php }?>
+		<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestassupervisores/add/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 ">Agregar Supervisor</a></p>
-		<?php }?>
 	<?php }?>
 	
 

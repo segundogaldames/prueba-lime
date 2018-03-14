@@ -99,8 +99,9 @@
 			</ul>
 		{else}
 			<p class="text-info">No hay supervisores asignados</p>
-			<p><a href="{$_layoutParams.root}encuestassupervisores/add/{$encuesta.id}">Agregar Supervisor</a></p>
+			
 		{/if}
+		<p><a href="{$_layoutParams.root}encuestassupervisores/add/{$encuesta.id}">Agregar Supervisor</a></p>
 	{/if}
 	
 
