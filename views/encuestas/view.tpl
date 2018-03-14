@@ -13,62 +13,67 @@
 		<a href="{$_layoutParams.root}encuestas/delete/{$encuesta.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestas/delete/{$encuesta.id}','{$encuesta.nombre}')">Eliminar</a>
 		{/if}
 		<a href="{$_layoutParams.root}encuestas/encuestasSupervisores" class="btn btn-link btn-sm">Encuestas</a>
-		<a href="{$_layoutParams.root}contactos/contactoEncuesta/{$encuesta.id}" class="btn btn-link btn-sm">Probar</a>
+		{if $encuesta.tipo == 1}
+			<a href="{$_layoutParams.root}contactos/contactoEncuesta/{$encuesta.id}" class="btn btn-link btn-sm">Probar</a>
+		{else}
+			<a href="{$_layoutParams.root}contactos/auditorias/{$encuesta.id}" class="btn btn-link btn-sm">Probar</a>
+		{/if}
 	</p>
 
 	<hr>
-
+	{if $encuesta.tipo == 1}
 	<!--lista de criterios asociados-->
-	{if isset($criterios) && count($criterios)}
-		<h4>Criterios Asociados</h4>
-		<ul type="square">
-			{foreach from=$criterios item=cr}
-				<li><a href="{$_layoutParams.root}criterios/view/{$cr.id}">{ucwords($cr.nombre)}</a></li>
-			{/foreach}
-		</ul>
-	{else}
-		<p class="text-info">No hay criterios asociados</p>
-		<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
-
-		<!--Lista de cargas realizadas asociadas a un usuario-->
-		{if isset($cargas) && count($cargas)}
-			<h4>Listas de Contactos Asociados</h4>
+		{if isset($criterios) && count($criterios)}
+			<h4>Criterios Asociados</h4>
 			<ul type="square">
-				{foreach from=$cargas item=car}
-					<li><a href="{$_layoutParams.root}cargas/view/{$car.id}" class="btn btn-link">Carga {$car.id}</a></li>
+				{foreach from=$criterios item=cr}
+					<li><a href="{$_layoutParams.root}criterios/view/{$cr.id}">{ucwords($cr.nombre)}</a></li>
 				{/foreach}
 			</ul>
 		{else}
-			<strong>No hay listas de contactos cargadas</strong>
-			
-		{/if}
-		<p><a href="{$_layoutParams.root}contactos/addContactosEncuesta/{$encuesta.id}" class="btn btn-link">Cargar Contactos</a></p>
+			<p class="text-info">No hay criterios asociados</p>
+			<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
 
-		<!--cuota asociada-->
-		{if isset($cuota) && count($cuota)}
-			<div class="col-md-6">
-				<h4>Cuota Asociada</h4>
-				<table class="table table-hover table-bordered">
-					<tr style="background-color: #eeebeb">
-						<th>Desde</th>
-						<th>Hasta</th>
-						<th>Valor</th>
-						<th>Encuestados</th>
-					</tr>
-					<tr>
-						<td>{$cuota.desde|date_format:"%d-%m-%Y"}</td>
-						<td>{$cuota.hasta|date_format:"%d-%m-%Y"}</td>
-						<td>{$cuota.valor}</td>
-						<td>{$encuestados}</td>
-					</tr>
-				</table>
-			</div>
+			<!--Lista de cargas realizadas asociadas a un usuario-->
+			{if isset($cargas) && count($cargas)}
+				<h4>Listas de Contactos Asociados</h4>
+				<ul type="square">
+					{foreach from=$cargas item=car}
+						<li><a href="{$_layoutParams.root}cargas/view/{$car.id}" class="btn btn-link">Carga {$car.id}</a></li>
+					{/foreach}
+				</ul>
+			{else}
+				<strong>No hay listas de contactos cargadas</strong>
+				
+			{/if}
+			<p><a href="{$_layoutParams.root}contactos/addContactosEncuesta/{$encuesta.id}" class="btn btn-link">Cargar Contactos</a></p>
+
+			<!--cuota asociada-->
+			{if isset($cuota) && count($cuota)}
+				<div class="col-md-6">
+					<h4>Cuota Asociada</h4>
+					<table class="table table-hover table-bordered">
+						<tr style="background-color: #eeebeb">
+							<th>Desde</th>
+							<th>Hasta</th>
+							<th>Valor</th>
+							<th>Encuestados</th>
+						</tr>
+						<tr>
+							<td>{$cuota.desde|date_format:"%d-%m-%Y"}</td>
+							<td>{$cuota.hasta|date_format:"%d-%m-%Y"}</td>
+							<td>{$cuota.valor}</td>
+							<td>{$encuestados}</td>
+						</tr>
+					</table>
+				</div>
+				
+				<p><a href="{$_layoutParams.root}cuotas/edit/{$cuota.id}">Modificar</a></p>
+			{else}
+				<p><a href="{$_layoutParams.root}cuotas/add/{$encuesta.id}/" class="btn btn-link">Agregar Cuota</a></p>
+			{/if}
 			
-			<p><a href="{$_layoutParams.root}cuotas/edit/{$cuota.id}">Modificar</a></p>
-		{else}
-			<p><a href="{$_layoutParams.root}cuotas/add/{$encuesta.id}/" class="btn btn-link">Agregar Cuota</a></p>
 		{/if}
-		
 	{/if}
 	<hr>
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->

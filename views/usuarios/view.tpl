@@ -20,11 +20,26 @@
 		<ul type="square">
 			{foreach from=$usuarioEncuesta item=ue}
 				<li>
-					<a href="{$_layoutParams.root}encuestasusuarios/view/{$ue.id}">{$ue.nombre}</a>
+					<a href="{$_layoutParams.root}encuestas/view/{$ue.encuesta_id}">{$ue.nombre}</a>
 				</li>
 			{/foreach}
 		</ul>
 	{else}
 		<strong>No hay encuestas asociadas</strong>
+	{/if}
+	<hr>
+	{if isset($usuarioAuditoria) && count($usuarioAuditoria)}
+		<h4>Auditorias Asociadas</h4>
+		<ul type="square">
+			{foreach from=$usuarioAuditoria item=ua}
+				<li>
+					<a href="{$_layoutParams.root}encuestas/view/{$ua.encuesta_id}">{$ua.nombre}</a>
+				</li>
+			{/foreach}
+		</ul>
+
+		<p><a href="{$_layoutParams.root}audios/add/{$usuario.id}/{$ua.encuesta_id}" class="btn btn-link">Cargar Audios</a></p>
+	{else}
+		<strong>No hay auditorias asociadas</strong>
 	{/if}
 </div>

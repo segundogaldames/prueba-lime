@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-06 14:11:49
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-13 18:15:57
          compiled from "/var/www/html/prueba-lime/views/encuestasusuarios/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:8069861855a2687b6034c96-34231746%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '2b3f70f16d43e2de0c3cdcab7c69f8d4470135d9' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestasusuarios/index.tpl',
-      1 => 1520359907,
+      1 => 1520862010,
       2 => 'file',
     ),
   ),
@@ -54,13 +54,13 @@ usuarios/view/<?php echo $_smarty_tpl->tpl_vars['eu']->value['usuario_id'];?>
 					</td>
 					<td>
 						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-encuestasusuarios/edit/<?php echo $_smarty_tpl->tpl_vars['eu']->value['id'];?>
+encuestasusuarios/edit/<?php echo $_smarty_tpl->tpl_vars['eu']->value['usuario_id'];?>
 " class="btn btn-link btn-sm">Editar</a>
 						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestasusuarios/delete/<?php echo $_smarty_tpl->tpl_vars['eu']->value['id'];?>
 " class="btn btn-link btn-sm" onclick="return eliminar('<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestasusuarios/delete/<?php echo $_smarty_tpl->tpl_vars['eu']->value['id'];?>
-', 'la asociación <?php echo $_smarty_tpl->tpl_vars['eu']->value['encuesta'];?>
+','la asociación <?php echo $_smarty_tpl->tpl_vars['eu']->value['encuesta'];?>
  - <?php echo $_smarty_tpl->tpl_vars['eu']->value['usuario'];?>
 ')">Eliminar</a>
 					</td>
