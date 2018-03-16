@@ -30,12 +30,12 @@ class contactoModel extends Model
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
 
-		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND estado_contacto = 1 AND estado_llamada = 7");
+		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND estado_contacto = 1");
 		$filas = $cant_filas->fetch();
 		$aleatorio = rand(0, $filas['filas']-1);
 		//print_r($aleatorio);exit;
 
-		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? and estado_contacto = 1 AND estado_llamada = 7 limit $aleatorio, 1");
+		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? and estado_contacto = 1 limit $aleatorio, 1");
 		$cont->bindParam(1, $encuesta);
 		//$cont->bindParam(2, $aleatorio);
 		$cont->execute();
@@ -47,12 +47,12 @@ class contactoModel extends Model
 		$encuesta = (int) $encuesta;
 		$criterio = (int) $criterio;
 
-		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND criterio = {$criterio} AND estado_contacto = 1 AND estado_llamada = 7");
+		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND criterio = {$criterio} AND estado_contacto = 1");
 		$filas = $cant_filas->fetch();
 		$aleatorio = rand(0, $filas['filas']-1);
 		//print_r($aleatorio);exit;
 
-		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? AND criterio = ? and estado_contacto = 1 AND estado_llamada = 7 limit $aleatorio, 1");
+		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? AND criterio = ? and estado_contacto = 1 limit $aleatorio, 1");
 		$cont->bindParam(1, $encuesta);
 		$cont->bindParam(2, $criterio);
 		//$cont->bindParam(2, $aleatorio);
