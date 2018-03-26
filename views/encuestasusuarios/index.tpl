@@ -25,5 +25,5 @@
 	{else}
 		<strong>No hay asociaciones generadas</strong>
 	{/if}
-	<p><a href="{$_layoutParams.root}encuestasusuarios/add" class="btn btn-link">Nueva Asociación</a></p>
+	<p class="text-info">Seleccione una encuesta para asociar ejecutivos</p>
 </div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-08 11:24:29
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-26 18:18:29
          compiled from "/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1477320425a7a1397d01b50-05189215%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '86d053ce0c677063ab517c68ff761b57f041155c' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl',
-      1 => 1520522665,
+      1 => 1522099069,
       2 => 'file',
     ),
   ),
@@ -303,9 +303,21 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 
 		<div class="col-md-6">
 			<hr>
-			.<form action="" method="post">
+			<p class="text-info">En caso de ser necesario, agende la llamada para volver a contactar</p>
+			<p class="text-info">Luego cambie el estado de la llamada para continuar...</p>
+			
+			<hr>
+			<form action="" method="post">
 				<div class="form-group">
-					<label>Estado de Llamada</label>
+					<label>Volver a llamar</label>
+					<input type="date" name="fecha" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Hora (aproximada)</label>
+					<input type="time" name="hora" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Estado de Llamada<span class="text-danger">*</span></label>
 					<select name="llamada" class="form-control">
 						<option value="">Selecione</option>
 						<?php if (isset($_smarty_tpl->tpl_vars['estado_llamadas']->value)&&count($_smarty_tpl->tpl_vars['estado_llamadas']->value)) {?>

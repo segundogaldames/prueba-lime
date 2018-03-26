@@ -11,40 +11,6 @@
 				{if isset($contactos) && count($contactos)}
 				<div class="jumbotron">
 					<h2>Lista de Contactos</h3>
-					<div class="col-md-4">
-						<table class="table table-hover table-responsive">
-							<tr>
-								<th>N° Carga:</th>
-								<td>{$carga.id}</td>
-							</tr>
-							<tr>
-								<th>Fecha de carga:</th>
-								<td>{$carga.fecha|date_format:"%d-%m-%Y %H:%M"}</td>
-							</tr>
-							<tr>
-								<th>Cargados:</th>
-								<td>{$num_contactos}</td>
-							</tr>
-							<tr>
-								<th>Encuestados:</th>
-								<td>{$num_encuestados}</td>
-							</tr>
-						</table>
-						<table class="table table-hover">
-							<tr style="background-color:  #d9d9da">
-								<th>Estado</th>
-								<th>Valor</th>
-							</tr>
-							{if isset($num_estados) && count($num_estados)}
-								{foreach from=$num_estados item=ne}
-									<tr>
-										<td><a href="{$_layoutParams.root}contactos/contactosCargaEstado/{$carga.id}/{$ne.estado_contacto}" class="btn btn-link btn-sm">{ucwords($ne.estado)}(s)</a></td>
-										<td>{$ne.filas}</td>
-									</tr>
-								{/foreach}
-							{/if}
-						</table>
-					</div>
 					<div>
 						<form action="{$_layoutParams.root}contactos/resultados" method="post" class="form-inline">
 							<label>Número de Teléfono:&nbsp;</label>
@@ -69,11 +35,12 @@
 							<th>Teléfono 2</th>
 							<th>Teléfono 3</th>
 							<th>Encuesta</th>
-							<<th>Criterio</th>
-							<th>Fecha de Carga</th>
-							<th>Estado del Contacto</th>
+							<th>Lista</th>
+							<th>Usuario</th>
+							<th>Estado de Contacto</th>
 							<th>Estado de Llamada</th>
-							<th>Fecha de Gestión</th>
+							<th>Fecha de Carga</th>
+							<th>Fecha Gestión</th>
 						</tr>
 						{foreach from=$contactos item=c}
 							<tr>
@@ -82,19 +49,24 @@
 								<td>{$c.telefono2}</td>
 								<td>{$c.telefono3}</td>
 								<td>{ucwords($c.nom_encuesta)}</td>
-								<td>{ucwords($c.criterio)}</td>
-								<td>{$c.creado|date_format:"%d-%m-%Y %H:%M"}</td>
+								<td>{$c.num_carga}</td>
+								<td>{ucwords($c.usuario)}</td>
 								<td>{$c.e_contacto}</td>
-								<td>{if $c.estado_llamada!=1}<a href="{$_layoutParams.root}contactos/contactosCargaLlamada/{$carga.id}/{$c.estado_llamada}">{ucwords($c.llamada)}</a>{else}{ucwords($c.llamada)}{/if}</td>
-								<td>{$c.modificado|date_format:"%d-%m-%Y %H:%M"}</td>
+								<td>{if $c.estado_llamada!=1}<a href="{$_layoutParams.root}contactos/contactosCargaLlamada/{$c.num_carga}/{$c.estado_llamada}">{ucwords($c.llamada)}</a>{else}{ucwords($c.llamada)}{/if}</td>
+								<td>{$c.creado|date_format:"%d-%m-%Y %H:%I"}</td>
+								<td>{$c.modificado|date_format:"%d-%m-%Y %H:%I"}</td>
 							</tr>
 						{/foreach}
 
 					</table>
 					{if isset($paginacion)}{$paginacion}{/if}
 				{else}
-					<p class="text-alert">No hay contactos asociados a esta carga</p>
+					<p class="text-alert">No hay contactos asociados a estado de llamada</p>
 				{/if}
+				<p>
+					<a href="{$_layoutParams.root}cargas" class="btn btn-link">Listas</a>
+					<a href="{$_layoutParams.root}contactos" class="btn btn-link">Contactos</a>
+				</p>
 			</div>
 			
 		</div>

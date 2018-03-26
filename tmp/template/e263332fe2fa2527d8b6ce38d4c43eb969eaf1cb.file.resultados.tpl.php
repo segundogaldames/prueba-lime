@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 16:20:17
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-26 12:27:03
          compiled from "/var/www/html/prueba-lime/views/contactos/resultados.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:15023481305aa2bd52d834c1-40993375%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e263332fe2fa2527d8b6ce38d4c43eb969eaf1cb' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/resultados.tpl',
-      1 => 1520626813,
+      1 => 1522078019,
       2 => 'file',
     ),
   ),
@@ -93,7 +93,11 @@ echo $_smarty_tpl->tpl_vars['paginacion']->value;
 		<?php } else { ?>
 			<p class="text-alert">No hay contactos registrados con este número</p>
 		<?php }?>
-		<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos" class="btn btn-link">Volver</a></p>
+		<p>
+			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+cargas" class="btn btn-link">Listas</a>
+			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+contactos" class="btn btn-link">Contactos</a>
+		</p>
 	
 </div><?php }} ?>

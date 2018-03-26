@@ -15,6 +15,7 @@ class contactosController extends Controller
 	private $_campoContacto;
 	private $_estadoContacto;
 	private $_cuota;
+	private $_agendamiento;
 	
 	public function __construct(){
 		parent::__construct();
@@ -26,6 +27,7 @@ class contactosController extends Controller
 		$this->_campoContacto = $this->loadModel('campocontacto');
 		$this->_estadoContacto = $this->loadModel('estadocontacto');
 		$this->_cuota = $this->loadModel('cuota');
+		$this->_agendamiento = $this->loadModel('agendamientoContacto');
 	}
 
 	public function index($pagina = false){
@@ -67,13 +69,16 @@ class contactosController extends Controller
 			if ($cuota) {
 				$encuestados = $this->_contacto->getContactosEncuestadosCriterio($cuota['desde'], $cuota['hasta'], $cuota['criterio_id']);
 				//print_r($encuestados);exit;
-				//se comprueba que la cantidad de encucestados sea menor que la cuota
+				//se comprueba que la cantidad de encuestados sea menor que la cuota
 				if ($encuestados < $cuota['valor']) {
 					$this->_view->assign('contacto', $this->_contacto->getContactoEncuestaAndCriterio($this->filtrarInt($encuesta), $this->filtrarInt($criterio)));
 				}else{
 					throw new Exception("No hay contactos disponibles... Se ha cumplido la cuota", 1);
 					
 				}
+			}else{
+				throw new Exception("No hay contactos disponibles... no hay cuota establecida", 1);
+				
 			}
 
 		}else{
@@ -90,6 +95,9 @@ class contactosController extends Controller
 					throw new Exception("No hay contactos disponibles... Se ha cumplido la cuota", 1);
 					
 				}
+			}else{
+				throw new Exception("No hay contactos disponibles... no hay cuota establecida", 1);
+
 			}
 			
 		}
@@ -104,10 +112,20 @@ class contactosController extends Controller
 
 		if ($this->getAlphaNum('enviar') == CTRL) {
 			//print_r($_POST);exit;
+
 			if (!$this->getInt('llamada')) {
 				$this->_view->assign('_error', 'Debe seleccionar una opción de llamada');
 				$this->_view->renderizar('contactoEncuesta');
 				exit;
+			}
+
+			if ($this->getSql('fecha') || $this->getSql('hora')) {
+				$this->_agendamiento->addAgendamiento(
+					Session::get('id_usuario'), 
+					$this->getInt('contacto'), 
+					$this->getSql('fecha'), 
+					$this->getSql('hora')
+				);
 			}
 
 			$row = $this->_estadoLlamada->getEstadoLlamadaId($this->getInt('llamada'));
@@ -162,10 +180,43 @@ class contactosController extends Controller
 		$this->_view->assign('contactos', $paginador->paginar($this->_contacto->getContactosCarga($this->filtrarInt($id)), $pagina));
 		$this->_view->assign('paginacion',$paginador->getView('prueba', 'contactos/contactosCarga/' . $id));
 		$this->_view->assign('num_contactos', $this->_contacto->getCountContactosCountCarga($this->filtrarInt($id)));
-		$this->_view->assign('num_disponibles', $this->_contacto->getCountContactosDisponiblesCarga($this->filtrarInt($id)));
+		$this->_view->assign('num_estados', $this->_contacto->getCountContactosDisponiblesCarga($this->filtrarInt($id)));
 		$this->_view->assign('num_encuestados', $this->_contacto->getCountContactosEncuestadosCarga($this->filtrarInt($id)));
 		$this->_view->assign('carga', $this->_carga->getCargaId($this->filtrarInt($id)));
+		$this->_view->assign('enviar', CTRL);
 		$this->_view->renderizar('contactosCarga');
+	}
+
+	public function contactosCargaEstado($carga = null, $estado_contacto = null, $pagina = false){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		if (!$this->filtrarInt($carga)) {
+			$this->redireccionar('cargas');
+		}
+
+		if (!$this->filtrarInt($estado_contacto)) {
+			$this->redireccionar('cargas');
+		}
+
+		if (!$this->filtrarInt($pagina)) {
+			$pagina = false;
+		}else{
+			$pagina = $this->filtrarInt($pagina);
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
+		$this->_view->assign('titulo', 'Contactos Por Estado de Contactos');
+		$this->_view->assign('contactos', $paginador->paginar($this->_contacto->getContactosCargaEstadoContacto($this->filtrarInt($carga), $this->filtrarInt($estado_contacto)), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'contactos/contactosCargaEstado/' . $carga . '/' . $estado_contacto));
+		$this->_view->assign('num_contactos', $this->_contacto->getCountContactosCountCarga($this->filtrarInt($carga)));
+		$this->_view->assign('num_estados', $this->_contacto->getCountContactosDisponiblesCarga($this->filtrarInt($carga)));
+		$this->_view->assign('num_encuestados', $this->_contacto->getCountContactosEncuestadosCarga($this->filtrarInt($carga)));
+		$this->_view->assign('carga', $this->_carga->getCargaId($this->filtrarInt($carga)));
+		$this->_view->assign('enviar', CTRL);
+		$this->_view->renderizar('contactosCargaEstado');
 	}
 
 	public function view($id = null){
@@ -218,6 +269,41 @@ class contactosController extends Controller
 		}
 
 		$this->_view->renderizar('resultados');
+	}
+
+	#metodo que muestra contactos por estado de llamada
+	public function estadoLlamada($pagina = false){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+
+		if (!$this->filtrarInt($pagina)) {
+			$pagina = false;
+		}else{
+			$pagina = $this->filtrarInt($pagina);
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
+
+		$this->_view->assign('titulo', 'Contactos Por Estado de Llamada');
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			
+			if (!$this->getSql('llamada')) {
+				$this->_view->assign('_error', 'Debe ingresar el estado de llamada');
+				$this->_view->renderizar('estadoLlamada');
+				exit;
+			}
+
+			$this->_view->assign('contactos', $paginador->paginar($this->_contacto->getContactosEstadoLlamada($this->getSql('llamada')), $pagina));
+			$this->_view->assign('paginacion', $paginador->getView('prueba', 'contactos/estadollamada'));
+
+		}
+
+		$this->_view->renderizar('estadoLlamada');
 	}
 
 	//metodo que carga contactos desde una encuesta sin criterios
@@ -452,6 +538,48 @@ class contactosController extends Controller
 		}
 
 		$this->_view->renderizar('edit');
+	}
+
+	#metodo para editar estados de llamada de manera masiva
+	public function contactosCargaLlamada($carga = null, $e_llamada = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		if (!$this->filtrarInt($carga)) {
+			$this->redireccionar('cargas');
+		}
+
+		if (!$this->filtrarInt($e_llamada)) {
+			$this->redireccionar('cargas');
+		}
+
+		$this->_view->assign('titulo', 'Editar Estado de Llamadas');
+		$this->_view->assign('e_llamadas', $this->_estadoLlamada->getEstadoLlamadas());
+		$this->_view->assign('estado', $this->_estadoLlamada->getEstadoLlamadaId($this->filtrarInt($e_llamada)));
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			//print_r($_POST);exit;
+			if (!$this->getInt('llamada')) {
+				$this->_view->assign('_error', 'Debe seleccionar el estado de llamada');
+				$this->_view->renderizar('contactosLlamada');
+				exit;
+			}
+
+			$row = $this->_estadoLlamada->getEstadoLlamadaId($this->getInt('llamada'));
+			$est_contacto = $row['estado_contacto'];
+
+			$this->_contacto->editContactosEstadoLlamada(
+				$this->filtrarInt($carga), 
+				$this->filtrarInt($est_contacto), 
+				$this->getInt('llamada'),
+				$this->filtrarInt($e_llamada)
+			);
+
+			$this->redireccionar('cargas/contactosCarga');
+		}
+
+		$this->_view->renderizar('contactosCargaLlamada');
 	}
 
 	public function addContactosEncuestaCriterio($encuesta = null, $criterio = null){

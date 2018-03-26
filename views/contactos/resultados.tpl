@@ -45,6 +45,9 @@
 		{else}
 			<p class="text-alert">No hay contactos registrados con este número</p>
 		{/if}
-		<p><a href="{$_layoutParams.root}contactos" class="btn btn-link">Volver</a></p>
+		<p>
+			<a href="{$_layoutParams.root}cargas" class="btn btn-link">Listas</a>
+			<a href="{$_layoutParams.root}contactos" class="btn btn-link">Contactos</a>
+		</p>
 	
 </div>

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 13:14:04
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-26 17:35:19
          compiled from "/var/www/html/prueba-lime/views/contactos/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:3970229955a8de1af072328-52330010%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'c4237ef30e57d5eaa58594e27cca4fb06f018407' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/index.tpl',
-      1 => 1520615639,
+      1 => 1522096516,
       2 => 'file',
     ),
   ),
@@ -48,7 +48,16 @@ contactos/resultados" method="post" class="form-inline">
 			</form>
 		</div>
 		
-	
+		<div style="margin-top: 20px; padding: 0 0 20px 20px">
+			<form action="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+contactos/estadoLlamada" method="post" class="form-inline">
+				<label>Estado de Llamada:&nbsp;</label>
+				<input type="text" name="llamada" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder=Buscar por estado de llamada">
+				<input type="hidden" name="enviar" value="<?php echo $_smarty_tpl->tpl_vars['enviar']->value;?>
+">
+				<input type="submit" value="Buscar" class="btn btn-primary">
+			</form>
+		</div>
 		<?php if (isset($_smarty_tpl->tpl_vars['contactos']->value)&&count($_smarty_tpl->tpl_vars['contactos']->value)) {?>
 	
 		<table class="table table-hover table-condensed table-responsive">

@@ -9,12 +9,15 @@ class contactoModel extends Model
 		parent::__construct();
 	}
 
+	//metodos get
+	#lista de todos los contactos
 	public function getContactos(){
 		$cont = $this->_db->query("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.codigo, c.dato1, c.dato2, c.dato3, c.dato4, c.dato5, c.dato6, c.dato7, c.dato8, c.dato9, c.dato10, c.dato11, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id LEFT JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id");
 
 		return $cont->fetchall();
 	}
 
+	#muestra contactos por id
 	public function getContactoId($id){
 		$id = (int) $id;
 
@@ -30,12 +33,12 @@ class contactoModel extends Model
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
 
-		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND estado_contacto = 1");
+		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND estado_contacto = 1 AND estado_llamada = 7");
 		$filas = $cant_filas->fetch();
 		$aleatorio = rand(0, $filas['filas']-1);
 		//print_r($aleatorio);exit;
 
-		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? and estado_contacto = 1 limit $aleatorio, 1");
+		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? and estado_contacto = 1 AND estado_llamada = 7 limit $aleatorio, 1");
 		$cont->bindParam(1, $encuesta);
 		//$cont->bindParam(2, $aleatorio);
 		$cont->execute();
@@ -43,16 +46,17 @@ class contactoModel extends Model
 		return $cont->fetch();
 	}
 
+	#metodo que genera contactos por encuesta y criterios
 	public function getContactoEncuestaAndCriterio($encuesta, $criterio){
 		$encuesta = (int) $encuesta;
 		$criterio = (int) $criterio;
 
-		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND criterio = {$criterio} AND estado_contacto = 1");
+		$cant_filas = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE encuesta = {$encuesta} AND criterio = {$criterio} AND estado_contacto = 1 AND estado_llamada = 7");
 		$filas = $cant_filas->fetch();
 		$aleatorio = rand(0, $filas['filas']-1);
 		//print_r($aleatorio);exit;
 
-		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? AND criterio = ? and estado_contacto = 1 limit $aleatorio, 1");
+		$cont = $this->_db->prepare("SELECT * FROM contactos WHERE encuesta = ? AND criterio = ? and estado_contacto = 1 AND estado_llamada = 7 limit $aleatorio, 1");
 		$cont->bindParam(1, $encuesta);
 		$cont->bindParam(2, $criterio);
 		//$cont->bindParam(2, $aleatorio);
@@ -61,7 +65,7 @@ class contactoModel extends Model
 		return $cont->fetch();
 	}
 
-	//metodos get
+	#muestra contactos por carga
 	public function getContactosCarga($carga){
 		$carga = (int) $carga;
 
@@ -72,6 +76,20 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
+	#muestra contactos por carga y estado de contacto
+	public function getContactosCargaEstadoContacto($carga, $e_contacto){
+		$carga = (int) $carga;
+		$e_contacto = (int) $e_contacto;
+
+		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.codigo, c.dato1, c.dato2, c.dato3, c.dato4, c.dato5, c.dato6, c.dato7, c.dato8, c.dato9, c.dato10, c.dato11, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, cr.nombre as criterio FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id LEFT JOIN criterios cr ON c.criterio = cr.id WHERE c.num_carga = ? AND c.estado_contacto = ?");
+		$cont->bindParam(1, $carga);
+		$cont->bindParam(2, $e_contacto);
+		$cont->execute();
+
+		return $cont->fetchall();
+	}
+
+	#cuenta contactos por carga
 	public function getCountContactosCountCarga($carga){
 		$carga = (int) $carga;
 
@@ -82,16 +100,16 @@ class contactoModel extends Model
 		return $row;
 	}
 
+	#cuenta contactos disponibles por carga agrupados por estado de contacto
 	public function getCountContactosDisponiblesCarga($carga){
 		$carga = (int) $carga;
 
-		$cont = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE num_carga = {$carga} AND estado_contacto = 1");
-		$filas = $cont->fetch();
-		$row = $filas['filas'];
-
-		return $row;
+		$cont = $this->_db->query("SELECT count(c.id) as filas, c.estado_contacto, ec.nombre as estado FROM contactos c INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id WHERE num_carga = {$carga} GROUP BY estado, c.estado_contacto");
+		
+		return $cont->fetchall();
 	}
 
+	#cuenta contactos encuestados por carga
 	public function getCountContactosEncuestadosCarga($carga){
 		$carga = (int) $carga;
 
@@ -103,6 +121,7 @@ class contactoModel extends Model
 		return $row;
 	}
 
+	#cuenta contactos por rango de fecha y encuesta agrupados por ejecutivos
 	public function getEncuestadosRango($desde, $hasta, $encuesta){
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
@@ -116,6 +135,8 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
+
+	#cuenta contactos por rango de fecha y encuesta agrupados por criterio
 	public function getEncuestadosRangoCriterio($desde, $hasta, $encuesta){
 		$encuesta = (int) $encuesta;
 
@@ -128,6 +149,7 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
+	#cuenta contactos por rango de fecha y encuesta agrupados por estado de llamadas
 	public function getRecorridosRango($desde, $hasta, $encuesta){
 		//print_r($encuesta);exit;
 		$encuesta = (int) $encuesta;
@@ -141,7 +163,7 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
-	//consulta numero de encuestados por criterio
+	//consulta numero de encuestados por criterio y rango de fechas
 	public function getContactosEncuestadosCriterio($desde, $hasta, $criterio){
 		//print_r($criterio);exit;
 		$criterio = (int) $criterio;
@@ -189,6 +211,16 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
+	#muestra contactos por nombre de estado de llamada
+	public function getContactosEstadoLlamada($e_llamada){
+		//print_r($e_llamada);exit;
+		$cont = $this->_db->prepare("SELECT distinct c.id, c.nombre, c.telefono, c.encuesta, c.rut, c.comuna, c.region, c.codigo, c.dato1, c.dato2, c.dato3, c.dato4, c.dato5, c.dato6, c.dato7, c.dato8, c.dato9, c.dato10, c.dato11, c.fecha1, c.fecha2, c.fecha3, c.telefono2, c.telefono3, c.telefono4, c.telefono5, c.telefono6, c.telefono7, c.telefono8, c.telefono9, c.telefono10, c.created_at as creado, c.num_carga, c.estado_contacto, ec.nombre as e_contacto, c.estado_llamada, c.modified_at as modificado, ell.nombre as llamada, e.nombre as nom_encuesta, car.usuario_id, u.nombre as usuario FROM contactos c INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN cargas car ON c.num_carga = car.id INNER JOIN usuarios u ON car.usuario_id = u.id INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id WHERE ell.nombre = ?");
+		$cont->bindParam(1, $e_llamada);
+		$cont->execute();
+
+		return $cont->fetchall();
+	}
+
 	//metodos de edicion
 	//metodo que modifica el estado de contacto y de llamada desde una encuesta
 	public function editContactoContactado($id, $estado_contacto, $llamada, $usuario){
@@ -206,7 +238,7 @@ class contactoModel extends Model
 		$cont->execute();
 	}
 
-	//modifica estado de contacto de contactos de una carga, activando y desactivando contactos y cargas
+	//modifica estado de contacto por carga, activando y desactivando contactos y cargas
 	public function editContactoEstado($carga, $estado){
 		$carga = (int) $carga;
 		$estado = (int) $estado;
@@ -222,6 +254,22 @@ class contactoModel extends Model
 		$row = $filas['filas'];
 
 		return $row;
+	}
+
+	#modifica el estado de contacto y de llamadas a partir de la seleccion de un estado de llamadas, por estado de llamadas y carga
+	public function editContactosEstadoLlamada($carga, $e_contacto, $llamada, $e_llamada){
+		#print_r($e_contacto);exit;
+		$carga = (int) $carga;
+		$e_contacto = (int) $e_contacto;
+		$llamada = (int) $llamada;
+		$e_llamada = (int) $e_llamada;
+
+		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = ?, estado_llamada = ?, modified_at = now() WHERE num_carga = ? AND estado_llamada = ?");		
+		$cont->bindParam(1, $e_contacto);
+		$cont->bindParam(2, $llamada);
+		$cont->bindParam(3, $carga);
+		$cont->bindParam(4, $e_llamada);
+		$cont->execute();
 	}
 
 	//metodo de creacion
@@ -264,7 +312,7 @@ class contactoModel extends Model
 		$cont->execute();
 	}
 
-	//metodo de eliminacion de contactos por carga
+	//metodo de eliminacion de contactos por carga, cuyos contactos no hayan sido contactados
 	public function deleteContactosCarga($carga){
 		$carga = (int) $carga;
 

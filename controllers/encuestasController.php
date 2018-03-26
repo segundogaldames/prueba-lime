@@ -202,8 +202,11 @@ class encuestasController extends Controller
 
 			$encuestados = $this->_contacto->getContactosEncuestadosEncuesta($cuota['desde'], $cuota['hasta'], $cuota['encuesta_id']);
 			if ($encuestados) {
-				$this->_view->assign('encuestados', $encuestados);
+				$encuestados = $encuestados;
+			}else{
+				$encuestados = 0;
 			}
+			$this->_view->assign('encuestados', $encuestados);
 		}
 
 		

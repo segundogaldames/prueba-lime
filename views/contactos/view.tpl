@@ -199,7 +199,8 @@
 		</table>
 		<p>
 			<a href="{$_layoutParams.root}contactos/edit/{$contacto.id}" class="btn btn-link">Editar</a>
-			<a href="{$_layoutParams.root}contactos" class="btn btn-link">Volver</a>
+			<a href="{$_layoutParams.root}cargas" class="btn btn-link">Listas</a>
+			<a href="{$_layoutParams.root}contactos" class="btn btn-link">Contactos</a>
 		</p>
 	</div>
 </div>

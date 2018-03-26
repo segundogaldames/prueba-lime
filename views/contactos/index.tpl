@@ -16,7 +16,14 @@
 			</form>
 		</div>
 		
-	
+		<div style="margin-top: 20px; padding: 0 0 20px 20px">
+			<form action="{$_layoutParams.root}contactos/estadoLlamada" method="post" class="form-inline">
+				<label>Estado de Llamada:&nbsp;</label>
+				<input type="text" name="llamada" class="form-control mb-2 mr-sm-2 mb-sm-0" placeholder=Buscar por estado de llamada">
+				<input type="hidden" name="enviar" value="{$enviar}">
+				<input type="submit" value="Buscar" class="btn btn-primary">
+			</form>
+		</div>
 		{if isset($contactos) && count($contactos)}
 	
 		<table class="table table-hover table-condensed table-responsive">

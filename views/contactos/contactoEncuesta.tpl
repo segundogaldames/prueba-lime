@@ -226,9 +226,21 @@
 
 		<div class="col-md-6">
 			<hr>
-			.<form action="" method="post">
+			<p class="text-info">En caso de ser necesario, agende la llamada para volver a contactar</p>
+			<p class="text-info">Luego cambie el estado de la llamada para continuar...</p>
+			
+			<hr>
+			<form action="" method="post">
 				<div class="form-group">
-					<label>Estado de Llamada</label>
+					<label>Volver a llamar</label>
+					<input type="date" name="fecha" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Hora (aproximada)</label>
+					<input type="time" name="hora" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Estado de Llamada<span class="text-danger">*</span></label>
 					<select name="llamada" class="form-control">
 						<option value="">Selecione</option>
 						{if isset($estado_llamadas) && count($estado_llamadas)}
