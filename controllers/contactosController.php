@@ -243,7 +243,7 @@ class contactosController extends Controller
 			$archivo = $_FILES['excel']['name'];
 			$ruta_tmp = $_FILES['excel']['tmp_name'];
 			//print_r($ruta_tmp);
-			$ruta = $ruta = ROOT . 'public' . DS . 'docs' . DS . $archivo;
+			$ruta = ROOT . 'public' . DS . 'docs' . DS . $archivo;
 
 			//print_r($archivo);
 			//copy($ruta_tmp, $ruta);
