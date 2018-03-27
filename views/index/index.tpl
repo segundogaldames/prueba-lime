@@ -11,6 +11,7 @@
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}encuestas/encuestasSupervisores">Encuestas</a></li>
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}cargas">Listas</a></li>
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}usuarios/ejecutivos" >Ejecutivos</a></li>
+			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}agendamientoscontactos">Contactos Agendados</a></li>
 		</ul>
 
 		<!--Lista los resultados-->
@@ -27,19 +28,6 @@
 					{/foreach}
 				{else}
 					<strong>No tienes encuestas disponibles... </strong>
-				{/if}
-			</ul>
-			
-			<!--Lista de auditorias disponibles-->
-			<div class="col-md-12" style="height: 20px"></div>
-			<h4>Auditorías Disponibles</h4>
-			<ul class="nav flex-column">
-				{if isset($auditorias) && count($auditorias)}
-					{foreach from=$auditorias item=a}
-						<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}contactos/auditorias/{$a.encuesta_id}">{$a.nombre}</a></li>
-					{/foreach}
-				{else}
-					<strong>No tienes auditorías disponibles... </strong>
 				{/if}
 			</ul>
 		{/if}
@@ -76,7 +64,34 @@
 			</div>
 		</form>
 		{/if}
+
+		<!--lista de agendamientos por ejecutivo-->
+		{if Session::get('role_id')==2}
+			<h4>Agendamientos</h4>
+			{if isset($agendamientos) && count($agendamientos)}
+			<table class="table table-hover">
+				<tr>
+					<th>Fecha Agenda</th>
+					<th>Hora Agenda</th>
+					<th>Contacto</th>
+					<th></th>
+				</tr>
+				{foreach from=$agendamientos item=ag}
+					<tr>
+						<td>{$ag.fecha_agenda|date_format:"%d-%m-%Y"}</td>
+						<td>{$ag.hora_agenda|date_format:"%d-%m-%Y"}</td>
+						<td>{ucwords($ag.contacto)}</td>
+						<td><a href="{$_layoutParams.root}contactos/contactar/{$encuestas.id}/{Session::get('id_usuario')}"></a></td>
+					</tr>
+				{/foreach}
+			</table>
+			{else}
+				<p class="text-info"></p>
+			{/if}
+		{/if}
 	</div>
+
+
 		
 	<!--columna derecha para Lista los resultados #################################################################################-->
 	

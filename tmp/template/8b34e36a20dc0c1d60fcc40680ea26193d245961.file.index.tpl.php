@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-07 14:44:29
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-27 16:07:00
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1520448265,
+      1 => 1522177613,
       2 => 'file',
     ),
   ),
@@ -23,12 +23,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '_layoutParams' => 0,
     'encuestas' => 0,
     'e' => 0,
-    'auditorias' => 0,
-    'a' => 0,
     'datos' => 0,
     'enc_estadistica' => 0,
     'enc' => 0,
     'enviar' => 0,
+    'agendamientos' => 0,
+    'ag' => 0,
     'enc_nombre' => 0,
     'recorridos' => 0,
     'r' => 0,
@@ -39,7 +39,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5a1f0f02ce1420_54544407')) {function content_5a1f0f02ce1420_54544407($_smarty_tpl) {?><div class="row">
+<?php if ($_valid && !is_callable('content_5a1f0f02ce1420_54544407')) {function content_5a1f0f02ce1420_54544407($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/var/www/html/prueba-lime/libs/smarty/libs/plugins/modifier.date_format.php';
+?><div class="row">
 	<!--columna de la izquierda para mostrar menu #####################################################################################-->
 	<div class="col-md-3" style="padding-top: 10px">
 		<h6>Bienvenido(a) <?php echo $_smarty_tpl->tpl_vars['saludo']->value['nombre'];?>
@@ -58,6 +59,8 @@ encuestas/encuestasSupervisores">Encuestas</a></li>
 cargas">Listas</a></li>
 			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/ejecutivos" >Ejecutivos</a></li>
+			<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+agendamientoscontactos">Contactos Agendados</a></li>
 		</ul>
 
 		<!--Lista los resultados-->
@@ -82,26 +85,6 @@ contactos/contactoEncuesta/<?php echo $_smarty_tpl->tpl_vars['e']->value['encues
 					<?php } ?>
 				<?php } else { ?>
 					<strong>No tienes encuestas disponibles... </strong>
-				<?php }?>
-			</ul>
-			
-			<!--Lista de auditorias disponibles-->
-			<div class="col-md-12" style="height: 20px"></div>
-			<h4>Auditorías Disponibles</h4>
-			<ul class="nav flex-column">
-				<?php if (isset($_smarty_tpl->tpl_vars['auditorias']->value)&&count($_smarty_tpl->tpl_vars['auditorias']->value)) {?>
-					<?php  $_smarty_tpl->tpl_vars['a'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['a']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['auditorias']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['a']->key => $_smarty_tpl->tpl_vars['a']->value) {
-$_smarty_tpl->tpl_vars['a']->_loop = true;
-?>
-						<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos/auditorias/<?php echo $_smarty_tpl->tpl_vars['a']->value['encuesta_id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['a']->value['nombre'];?>
-</a></li>
-					<?php } ?>
-				<?php } else { ?>
-					<strong>No tienes auditorías disponibles... </strong>
 				<?php }?>
 			</ul>
 		<?php }?>
@@ -147,7 +130,44 @@ $_smarty_tpl->tpl_vars['enc']->_loop = true;
 			</div>
 		</form>
 		<?php }?>
+
+		<!--lista de agendamientos por ejecutivo-->
+		<?php if (Session::get('role_id')==2) {?>
+			<h4>Agendamientos</h4>
+			<?php if (isset($_smarty_tpl->tpl_vars['agendamientos']->value)&&count($_smarty_tpl->tpl_vars['agendamientos']->value)) {?>
+			<table class="table table-hover">
+				<tr>
+					<th>Fecha Agenda</th>
+					<th>Hora Agenda</th>
+					<th>Contacto</th>
+					<th></th>
+				</tr>
+				<?php  $_smarty_tpl->tpl_vars['ag'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['ag']->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['agendamientos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['ag']->key => $_smarty_tpl->tpl_vars['ag']->value) {
+$_smarty_tpl->tpl_vars['ag']->_loop = true;
+?>
+					<tr>
+						<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['ag']->value['fecha_agenda'],"%d-%m-%Y");?>
+</td>
+						<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['ag']->value['hora_agenda'],"%d-%m-%Y");?>
+</td>
+						<td><?php echo ucwords($_smarty_tpl->tpl_vars['ag']->value['contacto']);?>
+</td>
+						<td><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+contactos/contactar/<?php echo $_smarty_tpl->tpl_vars['encuestas']->value['id'];?>
+/<?php echo Session::get('id_usuario');?>
+"></a></td>
+					</tr>
+				<?php } ?>
+			</table>
+			<?php } else { ?>
+				<p class="text-info"></p>
+			<?php }?>
+		<?php }?>
 	</div>
+
+
 		
 	<!--columna derecha para Lista los resultados #################################################################################-->
 	

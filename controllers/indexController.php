@@ -10,6 +10,7 @@ class indexController extends Controller
 	private $_encuestaUsuario;
 	private $_encuesta;
 	private $_contacto;
+	private $_agendamiento;
 
 	public function __construct(){
 		parent::__construct();
@@ -19,6 +20,7 @@ class indexController extends Controller
 		$this->_encuestaUsuario = $this->loadModel('encuestausuario');
 		$this->_encuesta = $this->loadModel('encuesta');
 		$this->_contacto = $this->loadModel('contacto');
+		$this->_agendamiento = $this->loadModel('agendamientoContacto');
 	}
 
 	public function index()
@@ -37,6 +39,8 @@ class indexController extends Controller
 		$this->_view->assign('auditorias', $this->_encuestaUsuario->getEncuestaUsuarioAuditoriasPorUsuario(Session::get('id_usuario')));
 		//lista de encuestas para estadisticas
 		$this->_view->assign('enc_estadistica', $this->_encuesta->getEncuestasEncuestas());
+		#lista de agendamientos por usuario
+		$this->_view->assign('agendamientos', $this->_agendamiento->getAgendamientoUsuario(Session::get('id_usuario')));
 		
 
 		$this->_view->assign('enviar', CTRL);

@@ -50,6 +50,7 @@ class contactosController extends Controller
 		$this->_view->renderizar('index');
 	}
 
+	#metodo que permite contactar a un contacto desde una encuesta y criterio
 	public function contactoEncuesta($encuesta = null, $criterio = null){
 		$this->verificarSession();
 
@@ -142,6 +143,37 @@ class contactosController extends Controller
 		}
 		
 		$this->_view->renderizar('contactoEncuesta');
+	}
+
+	#metodo que permite contactar a un contacto desde una encuesta y contacto
+	public function contactar($encuesta = null, $contacto = null){
+		$this->verificarSession();
+
+		#verificar encuesta
+		if (!$this->filtrarInt($encuesta)) {
+			$this->redireccionar();
+		}
+
+		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
+			$this->redireccionar();
+		}
+
+		#verificar contacto
+		if (!$this->filtrarInt($contacto)) {
+			$this->redireccionar();
+		}
+
+		if (!$this->_contacto->getContactoId($this->filtrarInt($contacto))) {
+			$this->redireccionar();
+		}
+
+		$this->_view->assign('titulo', 'Contactar');
+		$this->_view->assign('contacto', $this->_contacto->getContactoId($this->filtrarInt($contacto)));
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
+		$this->_view->assign('estado_llamadas', $this->_estadoLlamada->getEstadoLlamadas());
+		$this->_view->assign('campos', $this->_campoContacto->getCamposContactosEncuesta($this->filtrarInt($encuesta)));
+		$this->_view->assign('enviar', CTRL);
+		$this->_view->renderizar('contactar');
 	}
 
 	//metodo para renderizar auditorias
