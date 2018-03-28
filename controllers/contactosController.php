@@ -120,7 +120,19 @@ class contactosController extends Controller
 				exit;
 			}
 
-			if ($this->getSql('fecha') || $this->getSql('hora')) {
+			if ($this->getInt('llamada') == 20) {
+				if (!$this->getSql('fecha')) {
+					$this->_view->assign('_error', 'Ingrese la fecha del agendamiento');
+					$this->_view->renderizar('contactoEncuesta');
+					exit;
+				}
+
+				if (!$this->getSql('hora')) {
+					$this->_view->assign('_error', 'Ingrese la hora del agendamiento');
+					$this->_view->renderizar('contactoEncuesta');
+					exit;
+				}
+
 				$this->_agendamiento->addAgendamiento(
 					Session::get('id_usuario'), 
 					$this->getInt('contacto'), 
@@ -129,6 +141,7 @@ class contactosController extends Controller
 					$this->filtrarInt($encuesta)
 				);
 			}
+
 
 			$row = $this->_estadoLlamada->getEstadoLlamadaId($this->getInt('llamada'));
 			$est_contacto = $row['estado_contacto'];
@@ -140,6 +153,11 @@ class contactosController extends Controller
 				$this->getInt('llamada'),
 				Session::get('id_usuario')
 			);
+
+			if (Session::get('role_id') == 2) {
+				$this->redireccionar('index/ejecutivos');
+			}
+			
 			$this->redireccionar();
 		}
 		
@@ -210,6 +228,11 @@ class contactosController extends Controller
 				$this->getInt('llamada'),
 				Session::get('id_usuario')
 			);
+
+			if (Session::get('role_id') == 2) {
+				$this->redireccionar('index/ejecutivos');
+			}
+			
 			$this->redireccionar();
 		}
 

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-02-28 11:27:56
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 17:45:06
          compiled from "/var/www/html/prueba-lime/views/clientes/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14361355235a217496d98fa3-74371008%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4a56ceae1f40d1f15550cb3dd642ffc647086f88' => 
     array (
       0 => '/var/www/html/prueba-lime/views/clientes/view.tpl',
-      1 => 1519831669,
+      1 => 1522269902,
       2 => 'file',
     ),
   ),
@@ -68,9 +68,11 @@ campaign/view/<?php echo $_smarty_tpl->tpl_vars['ca']->value['id'];?>
 		</ul>
 	<?php } else { ?>
 		<strong>No hay campañas asociadas</strong>
-		<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-campaign/add" class="btn btn-link btn-sm">Nueva Campaña</a></p>
+		
 	<?php }?>
+	<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+campaign/add/<?php echo $_smarty_tpl->tpl_vars['cliente']->value['id'];?>
+" class="btn btn-link btn-sm">Nueva Campaña</a></p>
 	<hr>
 	
 

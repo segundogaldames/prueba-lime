@@ -26,9 +26,17 @@ class campaignController extends Controller
 		$this->_view->renderizar('index');
 	}
 
-	public function add(){
+	public function add($cliente = null){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
+
+		if (!$this->filtrarInt($cliente)) {
+			$this->redireccionar('clientes');
+		}
+
+		if (!$this->_cliente->getClienteId($this->filtrarInt($cliente))) {
+			$this->redireccionar('clientes');
+		}
 
 		$this->_view->assign('titulo', 'Nueva Campaña');
 		$this->_view->assign('clientes', $this->_cliente->getClientes());
@@ -43,12 +51,6 @@ class campaignController extends Controller
 				exit;
 			}
 
-			if (!$this->getInt('cliente')) {
-				$this->_view->assign('_error', 'Debe seleccionar un cliente');
-				$this->_view->renderizar('add');
-				exit;
-			}
-
 			if ($this->_campaign->getCampaignNombre($this->getSql('nombre'))) {
 				$this->_view->assign('_error', 'La campaña ingresada ya existe...');
 				$this->_view->renderizar('add');
@@ -57,7 +59,7 @@ class campaignController extends Controller
 
 			$this->_campaign->addCampaign(
 				$this->getAlphaNum('nombre'), 
-				$this->getInt('cliente'), 
+				$this->filtrarInt($cliente), 
 				$this->getAlphaNum('vici')
 			);
 

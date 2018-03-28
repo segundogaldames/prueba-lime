@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 11:03:20
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 13:37:49
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1522245797,
+      1 => 1522254763,
       2 => 'file',
     ),
   ),
@@ -21,8 +21,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'saludo' => 0,
     '_layoutParams' => 0,
-    'encuestas' => 0,
-    'e' => 0,
     'datos' => 0,
     'enc_estadistica' => 0,
     'enc' => 0,
@@ -64,29 +62,6 @@ agendamientoscontactos">Contactos Agendados</a></li>
 		</ul>
 
 		<!--Lista los resultados-->
-		<?php }?>
-		<!--Mostrar encuestas para ejecutivos -->
-		<?php if (Session::get('role_id')==2) {?>
-
-		<!--Lista de encuestas disponibles-->
-			<h4>Encuestas Disponibles</h4>
-			<ul class="nav flex-column">
-				<?php if (isset($_smarty_tpl->tpl_vars['encuestas']->value)&&count($_smarty_tpl->tpl_vars['encuestas']->value)) {?>
-					<?php  $_smarty_tpl->tpl_vars['e'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['e']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['encuestas']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['e']->key => $_smarty_tpl->tpl_vars['e']->value) {
-$_smarty_tpl->tpl_vars['e']->_loop = true;
-?>
-						<li class="nav-item"><a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos/contactoEncuesta/<?php echo $_smarty_tpl->tpl_vars['e']->value['encuesta_id'];?>
-/<?php echo $_smarty_tpl->tpl_vars['e']->value['criterio_id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['e']->value['nombre'];?>
-</a></li>
-					<?php } ?>
-				<?php } else { ?>
-					<strong>No tienes encuestas disponibles... </strong>
-				<?php }?>
-			</ul>
 		<?php }?>
 	
 	</div>

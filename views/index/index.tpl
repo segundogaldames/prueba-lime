@@ -16,21 +16,6 @@
 
 		<!--Lista los resultados-->
 		{/if}
-		<!--Mostrar encuestas para ejecutivos -->
-		{if Session::get('role_id')==2}
-
-		<!--Lista de encuestas disponibles-->
-			<h4>Encuestas Disponibles</h4>
-			<ul class="nav flex-column">
-				{if isset($encuestas) && count($encuestas)}
-					{foreach from=$encuestas item=e}
-						<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}contactos/contactoEncuesta/{$e.encuesta_id}/{$e.criterio_id}">{$e.nombre}</a></li>
-					{/foreach}
-				{else}
-					<strong>No tienes encuestas disponibles... </strong>
-				{/if}
-			</ul>
-		{/if}
 	
 	</div>
 	<!--columna del medio para mostrar estadistica ##############################################################-->

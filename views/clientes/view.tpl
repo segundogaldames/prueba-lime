@@ -21,8 +21,9 @@
 		</ul>
 	{else}
 		<strong>No hay campañas asociadas</strong>
-		<p><a href="{$_layoutParams.root}campaign/add" class="btn btn-link btn-sm">Nueva Campaña</a></p>
+		
 	{/if}
+	<p><a href="{$_layoutParams.root}campaign/add/{$cliente.id}" class="btn btn-link btn-sm">Nueva Campaña</a></p>
 	<hr>
 	
 

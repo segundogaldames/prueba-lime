@@ -21,7 +21,7 @@
 	        		<a class="nav-link" href="{$_layoutParams.root}usuarios/add">Crear Usuario</a>
 	     		</li>
 	     	{/if}
-	      
+	      	{if Session::get('role_id') != 2}
 		      	<li class="nav-item dropdown">
 		        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración</a>
 		        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -32,7 +32,9 @@
 		          		{/if}
 		         		<a class="dropdown-item" href="{$_layoutParams.root}clientes">Clientes</a>
 		           		<a class="dropdown-item" href="{$_layoutParams.root}campaign">Campañas</a>
-		           		<a class="dropdown-item" href="{$_layoutParams.root}encuestas">Encuestas</a>
+		           		{if Session::get('role_id')==1}
+		           			<a class="dropdown-item" href="{$_layoutParams.root}encuestas">Encuestas</a>
+		           		{/if}
 		           		<a class="dropdown-item" href="{$_layoutParams.root}encuestasusuarios">Encuestas y Usuarios</a>
 		           		{if Session::get('role_id')==1}
 		           			<a class="dropdown-item" href="{$_layoutParams.root}encuestassupervisores">Encuestas y Supervisores</a>
@@ -48,7 +50,7 @@
 		            	{/if}
 		        	</div>
 		      	</li>
-	      
+	      	 {/if}
 		    	{if Session::get('autenticado')}
 		      		<li class="nav-item">
 		        		<a class="nav-link" href="{$_layoutParams.root}usuarios/cerrar">Cerrar Sesión</a>
@@ -58,6 +60,7 @@
 		        		<a class="nav-link" href="{$_layoutParams.root}usuarios/login">Iniciar Sesión</a>
 		      		</li>
 		      	{/if}
+		    
 	    	</ul>
 	  	</div>
 	</nav>

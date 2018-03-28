@@ -40,7 +40,6 @@ class indexController extends Controller
 		//lista de encuestas para estadisticas
 		$this->_view->assign('enc_estadistica', $this->_encuesta->getEncuestasEncuestas());
 		#lista de agendamientos por usuario
-		$this->_view->assign('agendamientos', $this->_agendamiento->getAgendamientoUsuario(Session::get('id_usuario')));
 		
 
 		$this->_view->assign('enviar', CTRL);
@@ -105,5 +104,18 @@ class indexController extends Controller
 		}
 		
 		$this->_view->renderizar('index');
+	}
+
+	public function ejecutivos(){
+		if (!Session::get('autenticado')) {
+			$this->redireccionar('usuarios/login');
+		}
+
+		$this->_view->assign('titulo', 'Bienvenido a Meta Solutions');
+		//Saludar a usuario logueado
+		$this->_view->assign('saludo', $this->_usuario->getUsuarioId(Session::get('id_usuario')));
+		$this->_view->assign('encuestas', $this->_encuestaUsuario->getEncuestaUsuarioPorUsuario(Session::get('id_usuario')));
+		$this->_view->assign('agendamientos', $this->_agendamiento->getAgendamientoUsuario(Session::get('id_usuario')));
+		$this->_view->renderizar('ejecutivos');
 	}
 }

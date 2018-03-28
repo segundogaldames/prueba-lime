@@ -6,17 +6,6 @@
 			<input type="text" name="nombre" class="form-control" value="{$datos.nombre|default:""}" placeholder="Nombre de la campaña">
 		</div>
 		<div class="form-group">
-			<label>Cliente:</label>
-			<select name="cliente" class="form-control">
-				<option value="">Seleccione</option>
-				{if isset($clientes) && count($clientes)}
-					{foreach from=$clientes item=c}
-						<option value="{$c.id}">{$c.nombre}</option>
-					{/foreach}
-				{/if}
-			</select>
-		</div>
-		<div class="form-group">
 			<label>Campaña ViciDial:</label>
 			<input type="text" name="vici" class="form-control" value="{$datos.vici|default:""}" placeholder="Código de la camapaña en ViciDial">
 		</div>

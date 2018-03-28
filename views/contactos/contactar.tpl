@@ -12,6 +12,17 @@
 		font-size: 14px;
 	}
 </style>
+<script type="text/javascript">
+	function mostrar(id){
+		if (id == 20) {
+			$("#fecha").show();
+			$("#hora").show();
+		}else{
+			$("#fecha").hide();
+			$("#hora").hide();
+		}
+	}
+</script>
 <div class="container">
 	<!--fila para mostrar datos de contacto-->
 	<div class="row" id="contactos">
@@ -231,17 +242,10 @@
 			
 			<hr>
 			<form action="" method="post">
-				<div class="form-group">
-					<label>Volver a llamar</label>
-					<input type="date" name="fecha" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>Hora (aproximada)</label>
-					<input type="time" name="hora" class="form-control">
-				</div>
+				
 				<div class="form-group">
 					<label>Estado de Llamada<span class="text-danger">*</span></label>
-					<select name="llamada" class="form-control">
+					<select name="llamada" class="form-control" onchange="mostrar(this.value);">
 						<option value="">Selecione</option>
 						{if isset($estado_llamadas) && count($estado_llamadas)}
 							{foreach from=$estado_llamadas item=ell}
@@ -249,6 +253,14 @@
 							{/foreach}
 						{/if}
 					</select>
+				</div>
+				<div class="form-group" id="fecha" style="display: none">
+					<label>Volver a llamar</label>
+					<input type="date" name="fecha" class="form-control">
+				</div>
+				<div class="form-group" id="hora" style="display: none;">
+					<label>Hora (aproximada)</label>
+					<input type="time" name="hora" class="form-control">
 				</div>
 				<div class="form-group">
 					<input type="hidden" name="contacto" value="{$contacto.id}">

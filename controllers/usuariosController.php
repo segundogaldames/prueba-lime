@@ -68,6 +68,11 @@ class usuariosController extends Controller
 			Session::set('id_usuario', $row['id']); 
 			Session::set('role_id', $row['role_id']);
 			Session::set('tiempo', time()); 
+
+			if (Session::get('role_id') == 2) {
+				$this->redireccionar('index/ejecutivos');
+			}
+
 			$this->redireccionar('index');
 		}
 

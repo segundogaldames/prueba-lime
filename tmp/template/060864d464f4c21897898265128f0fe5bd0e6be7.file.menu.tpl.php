@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-26 11:28:25
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 13:46:51
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1522074483,
+      1 => 1522255608,
       2 => 'file',
     ),
   ),
@@ -49,7 +49,7 @@ index">Inicio <span class="sr-only">(current)</span></a>
 usuarios/add">Crear Usuario</a>
 	     		</li>
 	     	<?php }?>
-	      
+	      	<?php if (Session::get('role_id')!=2) {?>
 		      	<li class="nav-item dropdown">
 		        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración</a>
 		        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -64,8 +64,10 @@ roles">Roles</a>
 clientes">Clientes</a>
 		           		<a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 campaign">Campañas</a>
-		           		<a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+		           		<?php if (Session::get('role_id')==1) {?>
+		           			<a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestas">Encuestas</a>
+		           		<?php }?>
 		           		<a class="dropdown-item" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 encuestasusuarios">Encuestas y Usuarios</a>
 		           		<?php if (Session::get('role_id')==1) {?>
@@ -88,7 +90,7 @@ estadocontactos">Estado Contactos</a>
 		            	<?php }?>
 		        	</div>
 		      	</li>
-	      
+	      	 <?php }?>
 		    	<?php if (Session::get('autenticado')) {?>
 		      		<li class="nav-item">
 		        		<a class="nav-link" href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
@@ -100,6 +102,7 @@ usuarios/cerrar">Cerrar Sesión</a>
 usuarios/login">Iniciar Sesión</a>
 		      		</li>
 		      	<?php }?>
+		    
 	    	</ul>
 	  	</div>
 	</nav>

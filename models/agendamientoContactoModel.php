@@ -11,7 +11,7 @@ class agendamientoContactoModel extends Model
 
 	#lista todos los agendamientos
 	public function getAgendamientosContactos(){
-		$age = $this->_db->query("SELECT DISTINCT ag.id, ag.contacto_id, ag.fecha_agenda, ag.hora_agenda, ag.created_at as creado, ag.status, ag.encuesta_id, u.nombre as ejecutivo, c.nombre as contacto, c.modified_at as modificado, ell.nombre as llamada, e.nombre as encuesta FROM agendamientos_contactos ag INNER JOIN usuarios u ON ag.ejecutivo_id = u.id INNER JOIN contactos c ON ag.contacto_id = c.id INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON ag.encuesta_id = e.id ORDER BY ag.fecha_agenda");
+		$age = $this->_db->query("SELECT DISTINCT ag.id, ag.contacto_id, ag.fecha_agenda, ag.hora_agenda, ag.created_at as creado, ag.status, ag.encuesta_id, u.nombre as ejecutivo, c.nombre as contacto, c.modified_at as modificado, ell.nombre as llamada, e.nombre as encuesta FROM agendamientos_contactos ag INNER JOIN usuarios u ON ag.ejecutivo_id = u.id INNER JOIN contactos c ON ag.contacto_id = c.id INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON ag.encuesta_id = e.id ORDER BY ag.fecha_agenda, ag.hora_agenda");
 
 		return $age->fetchall();
 	}
@@ -20,7 +20,7 @@ class agendamientoContactoModel extends Model
 	public function getAgendamientoContactoId($id){
 		$id = (int) $id;
 
-		$age = $this->_db->prepare("SELECT DISTINCT ag.id, ag.contacto_id, ag.fecha_agenda, ag.hora_agenda, ag.created_at as creado, ag.status, ag.encuesta_id, u.nombre as ejecutivo, c.nombre as contacto, c.modified_at as modificado, ell.nombre as llamada, e.nombre as encuesta FROM agendamientos_contactos ag INNER JOIN usuarios u ON ag.ejecutivo_id = u.id INNER JOIN contactos c ON ag.contacto_id = c.id INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON ag.encuesta_id = e.id WHERE ag.id = ?");
+		$age = $this->_db->prepare("SELECT DISTINCT ag.id, ag.contacto_id, ag.ejecutivo_id, ag.fecha_agenda, ag.hora_agenda, ag.created_at as creado, ag.status, ag.encuesta_id, u.nombre as ejecutivo, c.nombre as contacto, c.modified_at as modificado, ell.nombre as llamada, e.nombre as encuesta FROM agendamientos_contactos ag INNER JOIN usuarios u ON ag.ejecutivo_id = u.id INNER JOIN contactos c ON ag.contacto_id = c.id INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON ag.encuesta_id = e.id WHERE ag.id = ?");
 		$age->bindParam(1, $id);
 		$age->execute();
 
@@ -31,7 +31,7 @@ class agendamientoContactoModel extends Model
 	public function getAgendamientoUsuario($usuario){
 		$usuario = (int) $usuario;
 
-		$age = $this->_db->prepare("SELECT DISTINCT ag.id, ag.contacto_id, ag.fecha_agenda, ag.hora_agenda, ag.created_at as creado, ag.status,ag.encuesta_id, u.nombre as ejecutivo, c.nombre as contacto, c.modified_at as modificado, ell.nombre as llamada, e.nombre as encuesta FROM agendamientos_contactos ag INNER JOIN usuarios u ON ag.ejecutivo_id = u.id INNER JOIN contactos c ON ag.contacto_id = c.id INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON ag.encuesta_id = e.id WHERE ag.ejecutivo_id = ? AND ag.status = 1 ORDER BY ag.fecha_agenda");
+		$age = $this->_db->prepare("SELECT DISTINCT ag.id, ag.contacto_id, ag.fecha_agenda, ag.hora_agenda, ag.created_at as creado, ag.status,ag.encuesta_id, u.nombre as ejecutivo, c.nombre as contacto, c.modified_at as modificado, ell.nombre as llamada, e.nombre as encuesta FROM agendamientos_contactos ag INNER JOIN usuarios u ON ag.ejecutivo_id = u.id INNER JOIN contactos c ON ag.contacto_id = c.id INNER JOIN estado_llamadas ell ON c.estado_llamada = ell.id INNER JOIN encuestas e ON ag.encuesta_id = e.id WHERE ag.ejecutivo_id = ? AND ag.status = 1 ORDER BY ag.fecha_agenda, ag.hora_agenda");
 		$age->bindParam(1, $usuario);
 		$age->execute();
 

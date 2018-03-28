@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-26 18:18:29
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 16:12:51
          compiled from "/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1477320425a7a1397d01b50-05189215%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '86d053ce0c677063ab517c68ff761b57f041155c' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/contactoEncuesta.tpl',
-      1 => 1522099069,
+      1 => 1522264368,
       2 => 'file',
     ),
   ),
@@ -43,6 +43,19 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		font-size: 14px;
 	}
 </style>
+<?php echo '<script'; ?>
+ type="text/javascript">
+	function mostrar(id){
+		if (id == 20) {
+			$("#fecha").show();
+			$("#hora").show();
+		}else{
+			$("#fecha").hide();
+			$("#hora").hide();
+		}
+	}
+<?php echo '</script'; ?>
+>
 <div class="container">
 	<!--fila para mostrar datos de contacto-->
 	<div class="row" id="contactos">
@@ -308,17 +321,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			
 			<hr>
 			<form action="" method="post">
-				<div class="form-group">
-					<label>Volver a llamar</label>
-					<input type="date" name="fecha" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>Hora (aproximada)</label>
-					<input type="time" name="hora" class="form-control">
-				</div>
+				
 				<div class="form-group">
 					<label>Estado de Llamada<span class="text-danger">*</span></label>
-					<select name="llamada" class="form-control">
+					<select name="llamada" class="form-control" onchange="mostrar(this.value);">
 						<option value="">Selecione</option>
 						<?php if (isset($_smarty_tpl->tpl_vars['estado_llamadas']->value)&&count($_smarty_tpl->tpl_vars['estado_llamadas']->value)) {?>
 							<?php  $_smarty_tpl->tpl_vars['ell'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['ell']->_loop = false;
@@ -333,14 +339,27 @@ $_smarty_tpl->tpl_vars['ell']->_loop = true;
 						<?php }?>
 					</select>
 				</div>
+				<div class="form-group" id="fecha" style="display: none">
+					<label>Volver a llamar</label>
+					<input type="date" name="fecha" class="form-control">
+				</div>
+				<div class="form-group" id="hora" style="display: none;">
+					<label>Hora (aproximada)</label>
+					<input type="time" name="hora" class="form-control">
+				</div>
 				<div class="form-group">
 					<input type="hidden" name="contacto" value="<?php echo $_smarty_tpl->tpl_vars['contacto']->value['id'];?>
 ">
 					<input type="hidden" name="enviar" value="<?php echo $_smarty_tpl->tpl_vars['enviar']->value;?>
 ">
 					<input type="submit" value="Guardar" class="btn btn-success">
-					<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+					<?php if (Session::get('role_id')==2) {?>
+						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+index/ejecutivos" class="btn btn-primary">Volver</a>
+					<?php } else { ?>
+						<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 index" class="btn btn-primary">Volver</a>
+					<?php }?>
 				</div>
 			</form>
 		</div>
