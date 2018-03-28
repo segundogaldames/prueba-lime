@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-27 14:54:44
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 10:57:57
          compiled from "/var/www/html/prueba-lime/views/contactos/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:20178928695aa188b4f31959-81642111%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5df2bbc921bcf71fbf13a9bbbf34398f42d12480' => 
     array (
       0 => '/var/www/html/prueba-lime/views/contactos/view.tpl',
-      1 => 1522173278,
+      1 => 1522245474,
       2 => 'file',
     ),
   ),
@@ -269,7 +269,7 @@ contactos" class="btn btn-link">Contactos</a>
 			<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 contactos/contactar/<?php echo $_smarty_tpl->tpl_vars['contacto']->value['encuesta'];?>
 /<?php echo $_smarty_tpl->tpl_vars['contacto']->value['id'];?>
-" class="btn btn-primary">Contactar</a>
+/" class="btn btn-primary">Contactar</a>
 		</p>
 	</div>
 </div><?php }} ?>

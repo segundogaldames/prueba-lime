@@ -24,6 +24,9 @@
 			<input type="time" name="hora" value="{$dato.hora_agenda}" class="form-control">
 		</div>
 		<div class="form-group">
+			<label>Encuesta: {ucwords($dato.encuesta)}</label>
+		</div>
+		<div class="form-group">
 			<label>Status</label>
 			<select name="status" class="form-control">
 				<option value="{$dato.status}">{if $dato.status==1}Pendiente{else}Contactado{/if}</option>

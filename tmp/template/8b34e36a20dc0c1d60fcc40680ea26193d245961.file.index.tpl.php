@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-27 16:07:00
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 11:03:20
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1522177613,
+      1 => 1522245797,
       2 => 'file',
     ),
   ),
@@ -135,34 +135,39 @@ $_smarty_tpl->tpl_vars['enc']->_loop = true;
 		<?php if (Session::get('role_id')==2) {?>
 			<h4>Agendamientos</h4>
 			<?php if (isset($_smarty_tpl->tpl_vars['agendamientos']->value)&&count($_smarty_tpl->tpl_vars['agendamientos']->value)) {?>
-			<table class="table table-hover">
-				<tr>
-					<th>Fecha Agenda</th>
-					<th>Hora Agenda</th>
-					<th>Contacto</th>
-					<th></th>
-				</tr>
-				<?php  $_smarty_tpl->tpl_vars['ag'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['ag']->_loop = false;
+				<table class="table table-hover table-responsive">
+					<tr>
+						<th>Fecha Agenda</th>
+						<th>Hora Agenda</th>
+						<th>Contacto</th>
+						<th>Status</th>
+						<th></th>
+					</tr>
+					<?php  $_smarty_tpl->tpl_vars['ag'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['ag']->_loop = false;
  $_from = $_smarty_tpl->tpl_vars['agendamientos']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['ag']->key => $_smarty_tpl->tpl_vars['ag']->value) {
 $_smarty_tpl->tpl_vars['ag']->_loop = true;
 ?>
-					<tr>
-						<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['ag']->value['fecha_agenda'],"%d-%m-%Y");?>
+						<tr>
+							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['ag']->value['fecha_agenda'],"%d-%m-%Y");?>
 </td>
-						<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['ag']->value['hora_agenda'],"%d-%m-%Y");?>
+							<td><?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['ag']->value['hora_agenda'],"%d-%m-%Y");?>
 </td>
-						<td><?php echo ucwords($_smarty_tpl->tpl_vars['ag']->value['contacto']);?>
+							<td><?php echo ucwords($_smarty_tpl->tpl_vars['ag']->value['contacto']);?>
 </td>
-						<td><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-contactos/contactar/<?php echo $_smarty_tpl->tpl_vars['encuestas']->value['id'];?>
-/<?php echo Session::get('id_usuario');?>
-"></a></td>
-					</tr>
-				<?php } ?>
-			</table>
+							<td><?php echo ucwords($_smarty_tpl->tpl_vars['ag']->value['encuesta']);?>
+</td>
+							<td><?php if ($_smarty_tpl->tpl_vars['ag']->value['status']==1) {?>Pendiente<?php } else { ?>Contactado<?php }?></td>
+							<td><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+contactos/contactar/<?php echo $_smarty_tpl->tpl_vars['ag']->value['encuesta_id'];?>
+/<?php echo $_smarty_tpl->tpl_vars['ag']->value['contacto_id'];?>
+/<?php echo $_smarty_tpl->tpl_vars['ag']->value['id'];?>
+" class="btn btn-primary">Contactar</a></td>
+						</tr>
+					<?php } ?>
+				</table>
 			<?php } else { ?>
-				<p class="text-info"></p>
+				<p class="text-info">No tienes agendamientos pendientes</p>
 			<?php }?>
 		<?php }?>
 	</div>
