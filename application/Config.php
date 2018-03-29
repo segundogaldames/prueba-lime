@@ -15,6 +15,7 @@ define('DB_NAME', 'prueba_lime');
 define('DB_CHAR', 'utf8');*/
 
 //config heroku
+define('BASE_URL', 'https://plime.herokuapp.com/');
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_LAYOUT', 'default');
 
