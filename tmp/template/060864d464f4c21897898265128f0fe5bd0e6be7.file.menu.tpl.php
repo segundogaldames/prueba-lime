@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 13:46:51
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-29 17:28:09
          compiled from "/var/www/html/prueba-lime/views/layout/default/menu.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:12450614905a1f14b33b84f6-95564181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '060864d464f4c21897898265128f0fe5bd0e6be7' => 
     array (
       0 => '/var/www/html/prueba-lime/views/layout/default/menu.tpl',
-      1 => 1522255608,
+      1 => 1522355286,
       2 => 'file',
     ),
   ),
@@ -49,7 +49,7 @@ index">Inicio <span class="sr-only">(current)</span></a>
 usuarios/add">Crear Usuario</a>
 	     		</li>
 	     	<?php }?>
-	      	<?php if (Session::get('role_id')!=2) {?>
+	      	<?php if (Session::get('autenticado')&&Session::get('role_id')!=2) {?>
 		      	<li class="nav-item dropdown">
 		        	<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración</a>
 		        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">

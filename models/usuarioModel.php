@@ -26,9 +26,11 @@ class usuarioModel extends Model
 	}
 
 	public function login($email, $clave){
+		$clave = Hash::getHash('sha1', $clave, HASH_KEY);
+
 		$usu = $this->_db->prepare("SELECT id, nombre, role_id FROM usuarios WHERE email = ? and clave = ?");
 		$usu->bindParam(1, $email);
-		$usu->bindParam(2, Hash::getHash('sha1', $clave, HASH_KEY));
+		$usu->bindParam(2, $clave);
 		$usu->execute();
 
 		return $usu->fetch();
@@ -53,10 +55,12 @@ class usuarioModel extends Model
 	}
 
 	public function addUsuario($nombre, $email, $clave, $role){
+		$clave = Hash::getHash('sha1', $clave, HASH_KEY);
+
 		$usu = $this->_db->prepare("INSERT INTO usuarios VALUES(null, ?, ?, ?, now(), now(), ?)");
 		$usu->bindParam(1, $nombre);
 		$usu->bindParam(2, $email);
-		$usu->bindParam(3, Hash::getHash('sha1', $clave, HASH_KEY));
+		$usu->bindParam(3, $clave);
 		$usu->bindParam(4, $role);
 		$usu->execute();
 	}
