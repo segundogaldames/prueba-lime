@@ -5,6 +5,7 @@
 			<tr>
 				<th>Encuesta</th>
 				<th>Usuario</th>
+				<th>Criterio</th>
 				<th>Acciones</th>
 			</tr>
 			{foreach from=$encuestasUsuarios item=eu}
@@ -15,8 +16,8 @@
 					<td>
 						<a href="{$_layoutParams.root}usuarios/view/{$eu.usuario_id}" class="btn btn-link btn-sm">{$eu.usuario}</a>
 					</td>
+					<td><a href="{$_layoutParams.root}criterios/view/{$eu.criterio_id}" class="btn btn-link btn-sm">{$eu.criterio}</a></td>
 					<td>
-						<a href="{$_layoutParams.root}encuestasusuarios/edit/{$eu.usuario_id}" class="btn btn-link btn-sm">Editar</a>
 						<a href="{$_layoutParams.root}encuestasusuarios/delete/{$eu.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestasusuarios/delete/{$eu.id}','la asociación {$eu.encuesta} - {$eu.usuario}')">Eliminar</a>
 					</td>
 				</tr>

@@ -45,12 +45,6 @@ class encuestasController extends Controller
 		$this->_view->renderizar('encuestasSupervisores');
 	}
 
-	public function fin(){
-		$this->verificarSession();
-		$this->_view->assign('titulo', 'Volver a Encuestar');
-		$this->_view->renderizar('fin');
-	}
-
 	public function add(){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
@@ -111,7 +105,7 @@ class encuestasController extends Controller
 				$this->getInt('tipo')
 			);
 
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		$this->_view->renderizar('add');
@@ -178,7 +172,7 @@ class encuestasController extends Controller
 				$this->getInt('tipo')
 			);
 
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		$this->_view->renderizar('addEncuestaCampaign');
@@ -282,15 +276,16 @@ class encuestasController extends Controller
 		$this->verificarParams($id);
 
 		$this->_encuesta->deleteEncuestas($this->filtrarInt());
+		$this->redireccionar('encuestas');
 	}
 
 	private function verificarParams($id){
 		if (!$this->filtrarInt($id)) {
-			$this->redireccionar('encuesta');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($id))) {
-			$this->redireccionar('encuesta');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 	}
 }

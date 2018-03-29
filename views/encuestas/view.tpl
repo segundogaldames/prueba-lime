@@ -32,7 +32,7 @@
 			</ul>
 		{else}
 			<p class="text-info">No hay criterios asociados</p>
-			<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
+			
 
 			<!--Lista de cargas realizadas asociadas a un usuario-->
 			{if isset($cargas) && count($cargas)}
@@ -74,6 +74,7 @@
 			{/if}
 			
 		{/if}
+		<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
 	{/if}
 	<hr>
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->
@@ -81,7 +82,12 @@
 	{if isset($usuarios) && count($usuarios)}
 		<ul type="square"></ul>
 		{foreach from=$usuarios item=u}
-			<li><a href="{$_layoutParams.root}usuarios/view/{$u.usuario_id}" class="btn btn-link btn-sm">{$u.usuario}</a></li>
+			<li>
+				<a href="{$_layoutParams.root}usuarios/view/{$u.usuario_id}" class="btn btn-link btn-sm">{$u.usuario}</a>
+				{if isset($criterios) && count($criterios)}
+					<a href="{$_layoutParams.root}encuestasusuarios/criterioEjecutivo/{$u.id}/{$u.encuesta_id}" class="btn btn-link btn-sm">Cambiar Criterio</a>
+				{/if}
+			</li>
 		{/foreach}
 	{else}
 		<strong>No hay ejecutivos asociados</strong>

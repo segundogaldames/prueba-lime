@@ -8,7 +8,7 @@
 	<p>
 		<a href="{$_layoutParams.root}usuarios/edit/{$usuario.id}" class="btn btn-link btn-sm">Editar</a>
 		{if Session::get('role_id') == 1}
-		<a href="{$_layoutParams.root}usuarios/delete/{$usuario.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}usuarios/delete/{$usuario.id}','{$u.nombre}')">Eliminar</a>
+		<a href="{$_layoutParams.root}usuarios/delete/{$usuario.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}usuarios/delete/{$usuario.id}','{$usuario.nombre}')">Eliminar</a>
 
 		<a href="{$_layoutParams.root}usuarios" class="btn btn-link btn-sm">Usuarios</a>
 		{/if}
@@ -27,19 +27,5 @@
 	{else}
 		<strong>No hay encuestas asociadas</strong>
 	{/if}
-	<hr>
-	{if isset($usuarioAuditoria) && count($usuarioAuditoria)}
-		<h4>Auditorias Asociadas</h4>
-		<ul type="square">
-			{foreach from=$usuarioAuditoria item=ua}
-				<li>
-					<a href="{$_layoutParams.root}encuestas/view/{$ua.encuesta_id}">{$ua.nombre}</a>
-				</li>
-			{/foreach}
-		</ul>
 
-		<p><a href="{$_layoutParams.root}audios/add/{$usuario.id}/{$ua.encuesta_id}" class="btn btn-link">Cargar Audios</a></p>
-	{else}
-		<strong>No hay auditorias asociadas</strong>
-	{/if}
 </div>

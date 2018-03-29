@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-26 11:30:16
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-29 11:15:43
          compiled from "/var/www/html/prueba-lime/views/usuarios/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1598868275a269004d87667-47975696%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '46ec8b2c75512a5734e6d07c64b8b6ca7cd206d0' => 
     array (
       0 => '/var/www/html/prueba-lime/views/usuarios/view.tpl',
-      1 => 1521044994,
+      1 => 1522332939,
       2 => 'file',
     ),
   ),
@@ -21,11 +21,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   array (
     'usuario' => 0,
     '_layoutParams' => 0,
-    'u' => 0,
     'usuarioEncuesta' => 0,
     'ue' => 0,
-    'usuarioAuditoria' => 0,
-    'ua' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -51,7 +48,7 @@ usuarios/edit/<?php echo $_smarty_tpl->tpl_vars['usuario']->value['id'];?>
 usuarios/delete/<?php echo $_smarty_tpl->tpl_vars['usuario']->value['id'];?>
 " class="btn btn-link btn-sm" onclick="return eliminar('<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/delete/<?php echo $_smarty_tpl->tpl_vars['usuario']->value['id'];?>
-','<?php echo $_smarty_tpl->tpl_vars['u']->value['nombre'];?>
+','<?php echo $_smarty_tpl->tpl_vars['usuario']->value['nombre'];?>
 ')">Eliminar</a>
 
 		<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
@@ -80,29 +77,5 @@ encuestas/view/<?php echo $_smarty_tpl->tpl_vars['ue']->value['encuesta_id'];?>
 	<?php } else { ?>
 		<strong>No hay encuestas asociadas</strong>
 	<?php }?>
-	<hr>
-	<?php if (isset($_smarty_tpl->tpl_vars['usuarioAuditoria']->value)&&count($_smarty_tpl->tpl_vars['usuarioAuditoria']->value)) {?>
-		<h4>Auditorias Asociadas</h4>
-		<ul type="square">
-			<?php  $_smarty_tpl->tpl_vars['ua'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['ua']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['usuarioAuditoria']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['ua']->key => $_smarty_tpl->tpl_vars['ua']->value) {
-$_smarty_tpl->tpl_vars['ua']->_loop = true;
-?>
-				<li>
-					<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-encuestas/view/<?php echo $_smarty_tpl->tpl_vars['ua']->value['encuesta_id'];?>
-"><?php echo $_smarty_tpl->tpl_vars['ua']->value['nombre'];?>
-</a>
-				</li>
-			<?php } ?>
-		</ul>
 
-		<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-audios/add/<?php echo $_smarty_tpl->tpl_vars['usuario']->value['id'];?>
-/<?php echo $_smarty_tpl->tpl_vars['ua']->value['encuesta_id'];?>
-" class="btn btn-link">Cargar Audios</a></p>
-	<?php } else { ?>
-		<strong>No hay auditorias asociadas</strong>
-	<?php }?>
 </div><?php }} ?>

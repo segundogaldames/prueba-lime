@@ -129,7 +129,7 @@ class encuestasusuariosController extends Controller
 		}
 
 		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		$this->_view->assign('titulo', 'Nueva Encuesta Usuario');
@@ -147,7 +147,7 @@ class encuestasusuariosController extends Controller
 			}
 
 			if ($this->_encuestaUsuario->getEncuestaUsuarioDuplicate($this->filtrarInt($encuesta), $this->getInt('usuario'))) {
-				$this->_view->assign('_error', 'La asociación encuesta y usuario ya existen...');
+				$this->_view->assign('_error', 'La asociación encuesta y usuario ya existe...');
 				$this->_view->renderizar('addUsuarioEncuesta');
 				exit;
 			}
@@ -175,6 +175,39 @@ class encuestasusuariosController extends Controller
 		}
 
 		$this->_view->renderizar('addUsuarioEncuesta');
+	}
+
+	#metodo para cambiar criterio asociado a un usuario
+	public function criterioEjecutivo($id = null, $encuesta = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		if (!$this->filtrarInt($encuesta)) {
+			$this->redireccionar('encuestas/encuestasSupervisores');
+		}
+
+		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
+			$this->redireccionar('encuestas/encuestasSupervisores');
+		}
+
+		$this->_view->assign('titulo', 'Editar Criterio Ejecutivo');
+		$this->_view->assign('dato', $this->_encuestaUsuario->getEncuestaUsuarioId($this->filtrarInt($id)));
+		$this->_view->assign('criterios', $this->_criterio->getCriteriosEncuesta($this->filtrarInt($encuesta)));
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			if (!$this->getInt('criterio')) {
+				$this->_view->assign('_error', 'Seleccione un criterio');
+				$this->_view->renderizar('criterioEjecutivo');
+				exit;
+			}
+
+			$this->_encuestaUsuario->editEncuestaUsuarioCriterio($this->filtrarInt($id), $this->getInt('criterio'));
+			$this->redireccionar('encuestas/encuestasSupervisores');
+		}
+
+		$this->_view->renderizar('criterioEjecutivo');
 	}
 
 	public function delete($id = null){

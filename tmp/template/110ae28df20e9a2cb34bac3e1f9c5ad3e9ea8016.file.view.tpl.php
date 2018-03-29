@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-26 11:28:44
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-29 12:36:32
          compiled from "/var/www/html/prueba-lime/views/encuestas/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9185742495a257f02d3df57-44357234%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '110ae28df20e9a2cb34bac3e1f9c5ad3e9ea8016' => 
     array (
       0 => '/var/www/html/prueba-lime/views/encuestas/view.tpl',
-      1 => 1521044994,
+      1 => 1522337785,
       2 => 'file',
     ),
   ),
@@ -93,9 +93,7 @@ criterios/view/<?php echo $_smarty_tpl->tpl_vars['cr']->value['id'];?>
 			</ul>
 		<?php } else { ?>
 			<p class="text-info">No hay criterios asociados</p>
-			<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-criterios/addCriterioEncuesta/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
-" class="btn btn-link">Crear Criterio</a></p>
+			
 
 			<!--Lista de cargas realizadas asociadas a un usuario-->
 			<?php if (isset($_smarty_tpl->tpl_vars['cargas']->value)&&count($_smarty_tpl->tpl_vars['cargas']->value)) {?>
@@ -154,6 +152,9 @@ cuotas/add/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 			<?php }?>
 			
 		<?php }?>
+		<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+criterios/addCriterioEncuesta/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
+" class="btn btn-link">Crear Criterio</a></p>
 	<?php }?>
 	<hr>
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->
@@ -165,10 +166,18 @@ cuotas/add/<?php echo $_smarty_tpl->tpl_vars['encuesta']->value['id'];?>
 foreach ($_from as $_smarty_tpl->tpl_vars['u']->key => $_smarty_tpl->tpl_vars['u']->value) {
 $_smarty_tpl->tpl_vars['u']->_loop = true;
 ?>
-			<li><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+			<li>
+				<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
 usuarios/view/<?php echo $_smarty_tpl->tpl_vars['u']->value['usuario_id'];?>
 " class="btn btn-link btn-sm"><?php echo $_smarty_tpl->tpl_vars['u']->value['usuario'];?>
-</a></li>
+</a>
+				<?php if (isset($_smarty_tpl->tpl_vars['criterios']->value)&&count($_smarty_tpl->tpl_vars['criterios']->value)) {?>
+					<a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
+encuestasusuarios/criterioEjecutivo/<?php echo $_smarty_tpl->tpl_vars['u']->value['id'];?>
+/<?php echo $_smarty_tpl->tpl_vars['u']->value['encuesta_id'];?>
+" class="btn btn-link btn-sm">Cambiar Criterio</a>
+				<?php }?>
+			</li>
 		<?php } ?>
 	<?php } else { ?>
 		<strong>No hay ejecutivos asociados</strong>

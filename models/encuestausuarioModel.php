@@ -11,7 +11,7 @@ class encuestausuarioModel extends model
 
 	//mostrar todos los registros en la tabla encuestas_usuarios
 	public function getEncuestasUsuarios(){
-		$ues = $this->_db->query("SELECT eu.id, eu.encuesta_id, eu.usuario_id, e.nombre as encuesta, u.nombre as usuario FROM encuestas_usuarios as eu INNER JOIN encuestas as e ON eu.encuesta_id = e.id INNER JOIN usuarios as u ON eu.usuario_id = u.id");
+		$ues = $this->_db->query("SELECT eu.id, eu.encuesta_id, eu.usuario_id, eu.criterio_id, e.nombre as encuesta, u.nombre as usuario, cr.nombre as criterio FROM encuestas_usuarios as eu INNER JOIN encuestas as e ON eu.encuesta_id = e.id INNER JOIN usuarios as u ON eu.usuario_id = u.id LEFT JOIN criterios cr ON eu.criterio_id = cr.id ORDER BY encuesta");
 
 		return $ues->fetchall();
 	}
@@ -20,7 +20,7 @@ class encuestausuarioModel extends model
 	public function getEncuestaUsuarioId($id){
 		$id = (int) $id;
 
-		$eus = $this->_db->prepare("SELECT eu.id, eu.encuesta_id, eu.usuario_id, e.nombre as encuesta, u.nombre as usuario FROM encuestas_usuarios as eu INNER JOIN encuestas as e ON eu.encuesta_id = e.id INNER JOIN usuarios as u ON eu.usuario_id = u.id WHERE eu.id = ?");
+		$eus = $this->_db->prepare("SELECT eu.id, eu.encuesta_id, eu.usuario_id, eu.criterio_id, e.nombre as encuesta, u.nombre as usuario, cr.nombre as criterio FROM encuestas_usuarios as eu INNER JOIN encuestas as e ON eu.encuesta_id = e.id INNER JOIN usuarios as u ON eu.usuario_id = u.id LEFT JOIN criterios cr ON eu.criterio_id = cr.id WHERE eu.id = ?");
 		$eus->bindParam(1, $id);
 		$eus->execute();
 
@@ -85,6 +85,17 @@ class encuestausuarioModel extends model
 		$eus->bindParam(1, $encuesta);
 		$eus->bindParam(2, $usuario);
 		$eus->bindParam(3, $criterio);
+		$eus->execute();
+	}
+
+	#cambiar criterio asociado a un ejecutivo
+	public function editEncuestaUsuarioCriterio($id, $criterio){
+		$id = (int) $id;
+		$criterio = (int) $criterio;
+
+		$eus = $this->_db->prepare("UPDATE encuestas_usuarios SET criterio_id = ? WHERE id = ?");
+		$eus->bindParam(1, $criterio);
+		$eus->bindParam(2, $id);
 		$eus->execute();
 	}
 

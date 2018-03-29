@@ -40,8 +40,12 @@ class criteriosController extends Controller
 
 			$encuestados = $this->_contacto->getContactosEncuestadosCriterio($cuota['desde'], $cuota['hasta'], $cuota['criterio_id']);
 			if ($encuestados) {
-				$this->_view->assign('encuestados', $encuestados);
+				$encuestados = $encuestados;
+			}else{
+				$encuestados = 0;
 			}
+
+			$this->_view->assign('encuestados', $encuestados);
 		}
 		
 		$this->_view->renderizar('view');
@@ -52,11 +56,11 @@ class criteriosController extends Controller
 		$this->verificarRolAdminSuper();
 
 		if (!$this->filtrarInt($encuesta)) {
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($encuesta));
@@ -87,7 +91,7 @@ class criteriosController extends Controller
 			}
 
 			$this->_criterio->addCriterio($this->getAlphaNum('nombre'), $this->filtrarInt($encuesta));
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		$this->_view->renderizar('addCriterioEncuesta');
@@ -110,7 +114,7 @@ class criteriosController extends Controller
 			}
 
 			$this->_criterio->editCriterio($this->filtrarInt($id), $this->getSql('nombre'));
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 		$this->_view->renderizar('edit');
 	}
@@ -128,16 +132,16 @@ class criteriosController extends Controller
 		}
 
 		$this->_criterio->deleteCriterio($this->filtrarInt($id));
-		$this->redireccionar('encuestas');
+		$this->redireccionar('encuestas/encuestasSupervisores');
 	}
 
 	private function verificarParams($id){
 		if (!$this->filtrarInt($id)) {
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		if (!$this->_criterio->getCriterioId($this->filtrarInt($id))) {
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 	}
 }

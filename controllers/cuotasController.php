@@ -67,7 +67,7 @@ class cuotasController extends Controller
 				$this->getInt('valor')
 			);
 			
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 		$this->_view->renderizar('add');
 	}
@@ -124,11 +124,11 @@ class cuotasController extends Controller
 
 	private function verificarParams($id){
 		if (!$this->filtrarInt($id)) {
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		if (!$this->_cuota->getCuotaId($this->filtrarInt($id))) {
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 	}
 }
