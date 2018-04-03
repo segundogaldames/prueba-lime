@@ -63,12 +63,20 @@ class criteriosController extends Controller
 			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
-		$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($encuesta));
-			//print_r($encuesta);exit;
+		$criterios = $this->_criterio->getCriteriosEncuesta($this->filtrarInt($encuesta));
+
+		if (!$criterios) {
+			$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($encuesta));
+
 			if ($cuota) {
 				throw new Exception("No se puede agregar un criterio a esta encuesta... tiene cuotas asociadas", 1);
 				
 			}
+		}
+
+		
+			//print_r($encuesta);exit;
+			
 
 		$this->_view->assign('titulo', 'Nuevo Criterio Encuesta');
 		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));

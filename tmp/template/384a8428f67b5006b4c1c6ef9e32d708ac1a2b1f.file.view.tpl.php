@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-09 09:49:11
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-04-03 11:58:41
          compiled from "/var/www/html/prueba-lime/views/criterios/view.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14924258545a9dab9d71f245-71068288%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '384a8428f67b5006b4c1c6ef9e32d708ac1a2b1f' => 
     array (
       0 => '/var/www/html/prueba-lime/views/criterios/view.tpl',
-      1 => 1520603299,
+      1 => 1522767515,
       2 => 'file',
     ),
   ),
@@ -102,8 +102,7 @@ contactos/addContactosEncuestaCriterio/<?php echo $_smarty_tpl->tpl_vars['criter
 			</table>
 		</div>
 		<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>
-cuotas/edit/<?php echo $_smarty_tpl->tpl_vars['criterio']->value['encuesta_id'];?>
-/<?php echo $_smarty_tpl->tpl_vars['criterio']->value['id'];?>
+cuotas/edit/<?php echo $_smarty_tpl->tpl_vars['cuota']->value['id'];?>
 " class="btn btn-link">Modificar</a></p>
 	<?php } else { ?>
 		<p><a href="<?php echo $_smarty_tpl->tpl_vars['_layoutParams']->value['root'];?>

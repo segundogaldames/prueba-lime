@@ -44,7 +44,7 @@
 				</tr>
 			</table>
 		</div>
-		<p><a href="{$_layoutParams.root}cuotas/edit/{$criterio.encuesta_id}/{$criterio.id}" class="btn btn-link">Modificar</a></p>
+		<p><a href="{$_layoutParams.root}cuotas/edit/{$cuota.id}" class="btn btn-link">Modificar</a></p>
 	{else}
 		<p><a href="{$_layoutParams.root}cuotas/add/{$criterio.encuesta_id}/{$criterio.id}" class="btn btn-link">Agregar Cuota</a></p>
 	{/if}
