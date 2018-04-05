@@ -31,7 +31,7 @@
 					{foreach from=$agendamientos item=ag}
 						<tr>
 							<td>{$ag.fecha_agenda|date_format:"%d-%m-%Y"}</td>
-							<td>{$ag.hora_agenda|date_format:"%d-%m-%Y"}</td>
+							<td>{$ag.hora_agenda}</td>
 							<td>{ucwords($ag.contacto)}</td>
 							<td>{ucwords($ag.encuesta)}</td>
 							<td>{if $ag.status==1}Pendiente{else}Contactado{/if}</td>
