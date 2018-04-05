@@ -1,5 +1,2 @@
-#ignore temporales
-/tmp
-
 #ignore config
 application/Config.php
