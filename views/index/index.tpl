@@ -26,11 +26,11 @@
 		<form action="" method="post">
 			<div class="form-group">
 				<label>Desde:</label>
-				<input type="date" name="desde" value="{$datos.desde|default:""}" class="form-control" value="{$datos.desde|default:""}">
+				<input type="date" name="desde" value="{$datos.desde|default:""}" class="form-control">
 			</div>
 			<div class="form-group">
 				<label>Hasta:</label>
-				<input type="date" name="hasta" value="{$datos.desde|default:""}" class="form-control" value="{$datos.hasta|default:""}">
+				<input type="date" name="hasta" value="{$datos.desde|default:""}" class="form-control">
 			</div>
 			<div class="form-group">
 				<label>Encuesta:</label>
