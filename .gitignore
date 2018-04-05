@@ -1,2 +1,5 @@
 #ignore config
-application/Config.php
+/application/Config.php
+
+# Ignore others
+.DS_Store
