@@ -266,7 +266,11 @@
 					<input type="hidden" name="contacto" value="{$contacto.id}">
 					<input type="hidden" name="enviar" value="{$enviar}">
 					<input type="submit" value="Guardar" class="btn btn-success">
-					<a href="{$_layoutParams.root}index" class="btn btn-primary">Volver</a>
+					{if Session::get('role_id') ==2}
+						<a href="{$_layoutParams.root}index/ejecutivos" class="btn btn-primary">Volver</a>
+					{else}
+						<a href="{$_layoutParams.root}index" class="btn btn-primary">Volver</a>
+					{/if}
 				</div>
 			</form>
 		</div>

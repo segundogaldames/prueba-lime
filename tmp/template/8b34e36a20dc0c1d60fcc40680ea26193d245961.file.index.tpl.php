@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-03-28 13:37:49
+<?php /* Smarty version Smarty-3.1.21-dev, created on 2018-04-05 10:05:07
          compiled from "/var/www/html/prueba-lime/views/index/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19951221665a1f0f02cd89d7-86182541%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b34e36a20dc0c1d60fcc40680ea26193d245961' => 
     array (
       0 => '/var/www/html/prueba-lime/views/index/index.tpl',
-      1 => 1522254763,
+      1 => 1522933500,
       2 => 'file',
     ),
   ),
@@ -74,12 +74,14 @@ agendamientoscontactos">Contactos Agendados</a></li>
 			<div class="form-group">
 				<label>Desde:</label>
 				<input type="date" name="desde" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['datos']->value['desde'])===null||$tmp==='' ? '' : $tmp);?>
-" class="form-control">
+" class="form-control" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['datos']->value['desde'])===null||$tmp==='' ? '' : $tmp);?>
+">
 			</div>
 			<div class="form-group">
 				<label>Hasta:</label>
 				<input type="date" name="hasta" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['datos']->value['desde'])===null||$tmp==='' ? '' : $tmp);?>
-" class="form-control">
+" class="form-control" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['datos']->value['hasta'])===null||$tmp==='' ? '' : $tmp);?>
+">
 			</div>
 			<div class="form-group">
 				<label>Encuesta:</label>
