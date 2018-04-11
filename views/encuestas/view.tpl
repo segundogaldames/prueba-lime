@@ -25,15 +25,80 @@
 	<!--lista de criterios asociados-->
 		{if isset($criterios) && count($criterios)}
 			<h4>Criterios Asociados</h4>
-			<ul type="square">
-				{foreach from=$criterios item=cr}
-					<li><a href="{$_layoutParams.root}criterios/view/{$cr.id}">{ucwords($cr.nombre)}</a></li>
-				{/foreach}
-			</ul>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<!--tabla disponibles-->
+					<table class="table table-hover table-bordered">
+						<tr>
+							<th>Criterio</th>
+							<th>Disponibles</th>
+						</tr>
+						{foreach from=$disponibles item=d}
+							<tr>
+								<td>{$d.nom_criterio}</td>
+								<td>{$d.filas}</td>
+							</tr>
+						{/foreach}
+					</table>
+					
+				</div>
+				<div class="col-md-6">
+					<!--tabla criterios-->
+					<table class="table table-hover table-bordered">
+						<tr>
+							<th>Criterios</th>
+							<th>Carga</th>
+						</tr>
+						{foreach from=$criterios item=cr}
+							<tr>
+								<td>
+									<a href="{$_layoutParams.root}criterios/view/{$cr.id}" class="btn btn-link btn-sm" title="Administrar Criterio">{ucwords($cr.nombre)}</a>
+								</td>
+								<td>
+									<a href="{$_layoutParams.root}contactos/addContactosEncuestaCriterio/{$encuesta.id}/{$cr.id}">Cargar Contactos</a>
+								</td>
+							</tr>
+						{/foreach}
+					</table>
+					<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
+					
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<hr>
+				</div>
+				<div class="col-md-6">
+					<table class="table table-hover table-bordered">
+						<tr>
+							<th>Criterio</th>
+							<th>Desde</th>
+							<th>Hasta</th>
+							<th>Cuota</th>
+						</tr>
+						{foreach from=$cuotas item=cu}
+							<tr>
+								<td>
+									<a href="{$_layoutParams.root}criterios/view/{$cu.criterio_id}" class="btn btn-link btn-sm" title="Modificar Cuota">{$cu.criterio}</a>
+									
+								</td>
+								<td>{$cu.desde|date_format:"%d-%m-%Y"}</td>
+								<td>{$cu.hasta|date_format:"%d-%m-%Y"}</td>
+								<td>{$cu.valor}</td>
+							</tr>
+						{/foreach}
+					</table>
+				</div>
+				<div class="col-md-4">
+					<a href="{$_layoutParams.root}index" class="btn btn-link">Ver Estadística</a>
+				</div>
+			</div>
 		{else}
 			<p class="text-info">No hay criterios asociados</p>
 			
-
+			<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
 			<!--Lista de cargas realizadas asociadas a un usuario-->
 			{if isset($cargas) && count($cargas)}
 				<h4>Listas de Contactos Asociados</h4>
@@ -74,7 +139,6 @@
 			{/if}
 			
 		{/if}
-		<p><a href="{$_layoutParams.root}criterios/addCriterioEncuesta/{$encuesta.id}" class="btn btn-link">Crear Criterio</a></p>
 	{/if}
 	<hr>
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->

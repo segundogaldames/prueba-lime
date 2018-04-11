@@ -27,21 +27,41 @@ class encuestasController extends Controller
 		$this->_contacto = $this->loadModel('contacto');
 	}
 
-	public function index(){
+	public function index($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdmin();
 
+		if ($pagina) {
+			$pagina = $this->filtrarInt($pagina);
+		}else{
+			$pagina = false;
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'Encuestas');
-		$this->_view->assign('encuestas', $this->_encuesta->getEncuestas());
+		$this->_view->assign('encuestas', $paginador->paginar($this->_encuesta->getEncuestas(), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'encuestas/index'));
 		$this->_view->renderizar('index');
 	}
 
-	public function encuestasSupervisores(){
+	public function encuestasSupervisores($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 
+		if ($pagina) {
+			$pagina = $this->filtrarInt($pagina);
+		}else{
+			$pagina = false;
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'Encuestas');
-		$this->_view->assign('encuestas', $this->_encuestaSupervisor->getEncuestasSupervisorUsuario(Session::get('id_usuario')));
+		$this->_view->assign('encuestas', $paginador->paginar($this->_encuestaSupervisor->getEncuestasSupervisorUsuario(Session::get('id_usuario')), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'encuestas/encuestasSupervisores'));
 		$this->_view->renderizar('encuestasSupervisores');
 	}
 
@@ -203,6 +223,25 @@ class encuestasController extends Controller
 			$this->_view->assign('encuestados', $encuestados);
 		}
 
+		###########################################################################################
+		#parametros para recuperar contactos disponibles, cuotas y encuestados en encuestas con criterio
+
+		#contactos disponibles agrupados por criterio
+		$disponibles = $this->_contacto->getCountDisponiblesEncuestaCriterio($this->filtrarInt($id));
+		$cuotas = $this->_cuota->getCuotasEncuestas($this->filtrarInt($id));
+
+		if (!$disponibles) {
+			$disponibles = 0;
+		}
+
+		$this->_view->assign('disponibles', $disponibles);
+
+		if (!$cuotas) {
+			$cuotas = 0;
+		}
+
+		$this->_view->assign('cuotas', $cuotas);
+
 		
 		$this->_view->renderizar('view');
 	}
@@ -264,7 +303,7 @@ class encuestasController extends Controller
 				$this->getInt('tipo')
 			);
 
-			$this->redireccionar('encuestas');
+			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 
 		$this->_view->renderizar('edit');

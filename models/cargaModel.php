@@ -10,7 +10,7 @@ class cargaModel extends Model
 	}
 
 	public function getCargas(){
-		$car = $this->_db->query("SELECT c.id, c.usuario_id, c.created_at as fecha, c.estado, c.modified_at as modificado, c.encuesta, e.nombre, u.nombre as usuario FROM cargas c INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN usuarios u ON c.usuario_id = u.id ORDER BY fecha");
+		$car = $this->_db->query("SELECT c.id, c.usuario_id, c.created_at as fecha, c.estado, c.modified_at as modificado, c.encuesta, e.nombre, u.nombre as usuario, cr.nombre as criterio FROM cargas c INNER JOIN encuestas e ON c.encuesta = e.id INNER JOIN usuarios u ON c.usuario_id = u.id LEFT JOIN criterios cr ON c.criterio_id = cr.id ORDER BY fecha");
 		return $car->fetchall();
 	}
 
@@ -53,7 +53,7 @@ class cargaModel extends Model
 	}
 
 	public function getCargasUsuario($usuario){
-		$car = $this->_db->prepare("SELECT distinct c.id, c.usuario_id, c.created_at as fecha, c.estado, c.modified_at as modificado, e.nombre FROM cargas c INNER JOIN encuestas e ON c.encuesta = e.id WHERE usuario_id = ? ORDER BY fecha");
+		$car = $this->_db->prepare("SELECT distinct c.id, c.encuesta, c.usuario_id, c.created_at as fecha, c.estado, c.modified_at as modificado, e.nombre, cr.nombre as criterio FROM cargas c INNER JOIN encuestas e ON c.encuesta = e.id LEFT JOIN criterios cr ON c.criterio_id = cr.id WHERE usuario_id = ? ORDER BY fecha");
 		$car->bindParam(1, $usuario);
 		$car->execute();
 

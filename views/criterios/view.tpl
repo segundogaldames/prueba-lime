@@ -8,6 +8,7 @@
 		<a href="{$_layoutParams.root}criterios/edit/{$criterio.id}" class="btn btn-link">Editar</a>
 		<a href="{$_layoutParams.root}criterios/delete/{$criterio.id}" class="btn btn-link" onclick="return eliminar('{$_layoutParams.root}criterios/delete/{$criterio.id}', '{$criterio.nombre}')">Eliminar</a>
 		<a href="{$_layoutParams.root}encuestas/encuestasSupervisores" class="btn btn-link">Encuestas</a>
+		<a href="{$_layoutParams.root}encuestas/view/{$criterio.encuesta_id}" class="btn btn-link">Volver</a>
 	</p>
 
 	<hr>
@@ -23,7 +24,6 @@
 	{else}
 		<strong>No hay listas asociadas</strong>
 	{/if}
-	<p><a href="{$_layoutParams.root}contactos/addContactosEncuestaCriterio/{$criterio.encuesta_id}/{$criterio.id}" class="btn btn-link">Cargar Contactos</a></p>
 
 	<!--Cuota Asociada-->
 	{if isset($cuota) && count($cuota)}

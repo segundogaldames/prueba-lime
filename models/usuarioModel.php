@@ -75,6 +75,16 @@ class usuarioModel extends Model
 		$usu->execute();
 	}
 
+	public function editClaveUsuario($id, $clave){
+		$id = (int) $id;
+		$clave = Hash::getHash('sha1', $clave, HASH_KEY);
+
+		$usu = $this->_db->prepare("UPDATE usuarios SET clave = ?, updated_at = now() WHERE id = ?");
+		$usu->bindParam(1, $clave);
+		$usu->bindParam(2, $id);
+		$usu->execute();
+	}
+
 	public function deleteUsuario($id){
 		$id = (int) $id;
 

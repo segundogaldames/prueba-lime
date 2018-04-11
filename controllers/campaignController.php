@@ -17,12 +17,22 @@ class campaignController extends Controller
 		$this->_encuesta = $this->loadModel('encuesta');
 	}
 
-	public function index(){
+	public function index($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 
+		if ($pagina) {
+			$pagina = $this->filtrarInt($pagina);
+		}else{
+			$pagina = false;
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'Campañas');
-		$this->_view->assign('campaign', $this->_campaign->getCampaign());
+		$this->_view->assign('campaign', $paginador->paginar($this->_campaign->getCampaign(), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'campaign/index'));
 		$this->_view->renderizar('index');
 	}
 

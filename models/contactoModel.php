@@ -109,6 +109,17 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
+	#cuenta contactos disponibles de una encuesta agrupados por criterio
+	public function getCountDisponiblesEncuestaCriterio($encuesta){
+		$encuesta =  (int) $encuesta;
+
+		$cont = $this->_db->prepare("SELECT count(c.id) as filas, cr.nombre as nom_criterio FROM contactos c LEFT JOIN criterios cr ON c.criterio = cr.id WHERE encuesta = ? AND estado_contacto = 1 AND estado_llamada = 7 GROUP BY nom_criterio");
+		$cont->bindParam(1, $encuesta);
+		$cont->execute();
+
+		return $cont->fetchall();
+	}
+
 	#cuenta contactos encuestados por carga
 	public function getCountContactosEncuestadosCarga($carga){
 		$carga = (int) $carga;
@@ -119,6 +130,17 @@ class contactoModel extends Model
 		//print_r($row);exit;
 		
 		return $row;
+	}
+
+	#cuenta encuuestados por encuesta agrupados por criterios
+	public function getCounEncuestadosEncuestaCriterios($encuesta){
+		$encuesta =  (int) $encuesta;
+
+		$cont = $this->_db->prepare("SELECT count(id) as filas, criterio FROM contactos WHERE encuesta = ? AND estado_llamada = 1 GROUP BY criterio");
+		$cont->bindParam(1, $encuesta);
+		$cont->execute();
+
+		return $cont->fetchall();
 	}
 
 	#cuenta contactos por rango de fecha y encuesta agrupados por ejecutivos
@@ -224,7 +246,7 @@ class contactoModel extends Model
 	//metodos de edicion
 	//metodo que modifica el estado de contacto y de llamada desde una encuesta
 	public function editContactoContactado($id, $estado_contacto, $llamada, $usuario){
-		//print_r($llamada);exit;
+		#print_r($llamada);exit;
 		$id = (int) $id;
 		$estado_contacto = (int) $estado_contacto;
 		$llamada = (int) $llamada;

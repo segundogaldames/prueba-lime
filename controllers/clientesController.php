@@ -16,12 +16,22 @@ class clientesController extends Controller
 		$this->_campaign = $this->loadModel('campaign');
 	}
 
-	public function index(){
+	public function index($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 
+		if ($pagina) {
+			$pagina = $this->filtrarInt($pagina);
+		}else{
+			$pagina = false;
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'Clientes');
-		$this->_view->assign('clientes', $this->_cliente->getClientes());
+		$this->_view->assign('clientes', $paginador->paginar($this->_cliente->getClientes(), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'clientes/index'));
 		$this->_view->renderizar('index');
 	}
 

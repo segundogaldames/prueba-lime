@@ -24,12 +24,22 @@ class encuestasusuariosController extends Controller
 		$this->_criterio = $this->loadModel('criterio');
 	}
 
-	public function index(){
+	public function index($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 
+		if (!$this->filtrarInt($pagina)) {
+			$pagina = false;
+		}else{
+			$pagina = $this->filtrarInt($pagina);
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'Encuestas Usuarios');
-		$this->_view->assign('encuestasUsuarios', $this->_encuestaUsuario->getEncuestasUsuarios());
+		$this->_view->assign('encuestasUsuarios', $paginador->paginar($this->_encuestaUsuario->getEncuestasUsuarios(), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'encuestasusuarios/index'));
 		$this->_view->renderizar('index');
 	}
 
@@ -152,17 +162,10 @@ class encuestasusuariosController extends Controller
 				exit;
 			}
 
-			$row = $this->_criterio->getCriteriosEncuesta($this->filtrarInt($encuesta));
-			if ($row) {
-				if (!$this->getInt('criterio')) {
-					$this->_view->assign('_error', 'Debe seleccionar un criterio');
-					$this->_view->renderizar('addUsuarioEncuesta');
-					exit;
-				}
-
+			if ($this->getInt('criterio')) {
 				$criterio = $this->getInt('criterio');
 			}else{
-				$criterio = NULL;
+				$criterio = null;
 			}
 
 			$this->_encuestaUsuario->addEncuestaUsuario(
@@ -197,13 +200,13 @@ class encuestasusuariosController extends Controller
 		$this->_view->assign('enviar', CTRL);
 
 		if ($this->getAlphaNum('enviar') == CTRL) {
-			if (!$this->getInt('criterio')) {
-				$this->_view->assign('_error', 'Seleccione un criterio');
-				$this->_view->renderizar('criterioEjecutivo');
-				exit;
+			if ($this->getInt('criterio')) {
+				$criterio = $this->getInt('criterio');
+			}else{
+				$criterio = null;
 			}
 
-			$this->_encuestaUsuario->editEncuestaUsuarioCriterio($this->filtrarInt($id), $this->getInt('criterio'));
+			$this->_encuestaUsuario->editEncuestaUsuarioCriterio($this->filtrarInt($id), $criterio);
 			$this->redireccionar('encuestas/encuestasSupervisores');
 		}
 

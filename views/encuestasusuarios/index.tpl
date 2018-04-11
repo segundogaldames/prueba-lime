@@ -23,6 +23,7 @@
 				</tr>
 			{/foreach}		
 		</table>
+		{if isset($paginacion)}{$paginacion}{/if}
 	{else}
 		<strong>No hay asociaciones generadas</strong>
 	{/if}

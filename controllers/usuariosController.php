@@ -245,12 +245,22 @@ class usuariosController extends Controller
 		$this->_view->renderizar('view');
 	}
 
-	public function ejecutivos(){
+	public function ejecutivos($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 
+		if (!$this->filtrarInt($pagina)) {
+			$pagina = false;
+		}else{
+			$pagina = $this->filtrarInt($pagina);
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'APP::Ejecutivos');
-		$this->_view->assign('ejecutivos', $this->_usuario->getUsuariosEjecutivos());
+		$this->_view->assign('ejecutivos', $paginador->paginar($this->_usuario->getUsuariosEjecutivos(), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'usuarios/ejecutivos'));
 		$this->_view->renderizar('ejecutivos');
 	}
 
@@ -287,6 +297,53 @@ class usuariosController extends Controller
 		}
 
 		$this->_view->renderizar('edit');
+	}
+
+	public function editClave($id = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+		$this->verificarParams($id);
+
+		$this->_view->assign('titulo', 'Cambiar Clave');
+		$this->_view->assign('usuario', $this->filtrarInt($id));
+		$this->_view->assign('enviar', CTRL);
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			if (!$this->getSql('clave')) {
+				$this->_view->assign('_error', 'Debe ingresar un password');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			if (strlen($this->getSql('clave')) < 8) {
+				$this->_view->assign('_error', 'El password debe contener al menos 8 caracteres');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			if (!$this->getSql('reclave')) {
+				$this->_view->assign('_error', 'Debe confirmar el password');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			if ($this->getSql('reclave') != $this->getSql('clave')) {
+				$this->_view->assign('_error', 'El password no coincide');
+				$this->_view->renderizar('add');
+				exit;
+			}
+
+			#se envia el cambio
+			$this->_usuario->editClaveUsuario($this->filtrarInt($id), $this->getSql('clave'));
+
+			if (Session::get('role_id') == 3) {
+				$this->redireccionar('usuarios/ejecutivos');
+			}
+			
+			$this->redireccionar('usuarios');
+		}
+
+		$this->_view->renderizar('editClave');
 	}
 
 	public function delete($id = null){

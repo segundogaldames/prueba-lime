@@ -23,6 +23,7 @@
 				</tr>
 			{/foreach}
 		</table>
+		{if isset($paginacion)}{$paginacion}{/if}
 	{else}
 		<strong>No hay encuestas registradas</strong>
 	{/if}

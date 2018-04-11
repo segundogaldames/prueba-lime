@@ -67,7 +67,7 @@ class cuotasController extends Controller
 				$this->getInt('valor')
 			);
 			
-			$this->redireccionar('encuestas/encuestasSupervisores');
+			$this->redireccionar('criterios/encuestasSupervisores');
 		}
 		$this->_view->renderizar('add');
 	}

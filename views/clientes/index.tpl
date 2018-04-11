@@ -13,6 +13,7 @@
 				</tr>
 			{/foreach}
 		</table>
+		{if isset($paginacion)}{$paginacion}{/if}
 	{else}
 		<strong>No hay clientes registrados</strong>
 	{/if}

@@ -15,6 +15,7 @@
 			</tr>
 		{/foreach}
 	</table>
+	{if isset($paginacion)}{$paginacion}{/if}
 	{else}
 		<strong>No hay campañas registradas</strong>
 	{/if}

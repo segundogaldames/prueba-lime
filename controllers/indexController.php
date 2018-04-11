@@ -29,6 +29,8 @@ class indexController extends Controller
 			$this->redireccionar('usuarios/login');
 		}
 
+		$this->verificarRolAdminSuper();
+
 		$this->_view->assign('titulo', 'Bienvenido a Meta Solutions');
 		//Saludar a usuario logueado
 		$this->_view->assign('saludo', $this->_usuario->getUsuarioId(Session::get('id_usuario')));

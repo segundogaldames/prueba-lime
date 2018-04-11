@@ -23,6 +23,7 @@
 				</tr>
 			{/foreach}
 		</table>
+		{if isset($paginacion)}{$paginacion}{/if}
 	{else}
 		<p class="text-info">Usted no tiene encuestas a su cargo</p>
 		<p class="text-info">Comuníquese con el Administrador del Sistema</p>

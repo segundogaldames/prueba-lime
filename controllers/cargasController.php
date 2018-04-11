@@ -15,13 +15,23 @@ class cargasController extends Controller
 		$this->_contacto = $this->loadModel('contacto');
 	}
 
-	public function index(){
+	public function index($pagina = false){
 		$this->verificarSession();
 		$this->verificarRolAdminSuper();
 
+		if ($pagina) {
+			$pagina = $this->filtrarInt($pagina);
+		}else{
+			$pagina = false;
+		}
+
+		$this->getLibrary('paginador');
+		$paginador = new Paginador();
+
 		$this->_view->assign('titulo', 'APP::Cargas Realizadas');
-		$this->_view->assign('cargas', $this->_carga->getCargasUsuario(Session::get('id_usuario')));
-		$this->_view->assign('cargasAll', $this->_carga->getCargas());
+		$this->_view->assign('cargas', $paginador->paginar($this->_carga->getCargasUsuario(Session::get('id_usuario')), $pagina));
+		$this->_view->assign('cargasAll', $paginador->paginar($this->_carga->getCargas(), $pagina));
+		$this->_view->assign('paginacion', $paginador->getView('prueba', 'cargas/index'));
 		$this->_view->renderizar('index');
 	}
 

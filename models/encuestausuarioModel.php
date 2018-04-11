@@ -91,7 +91,6 @@ class encuestausuarioModel extends model
 	#cambiar criterio asociado a un ejecutivo
 	public function editEncuestaUsuarioCriterio($id, $criterio){
 		$id = (int) $id;
-		$criterio = (int) $criterio;
 
 		$eus = $this->_db->prepare("UPDATE encuestas_usuarios SET criterio_id = ? WHERE id = ?");
 		$eus->bindParam(1, $criterio);

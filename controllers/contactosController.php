@@ -64,6 +64,9 @@ class contactosController extends Controller
 		//print_r($criterio);exit;
 		//se comprueba que existe el criterio
 		if ($this->filtrarInt($criterio)) {
+			#enviar a la vista el nombre del criterio
+			$this->_view->assign('criterio', $this->_criterio->getCriterioId($this->filtrarInt($criterio)));
+
 			//recuperar cuota asociada a un criterio
 			$cuota = $this->_cuota->getCuotaEncuestaCriterio($this->filtrarInt($criterio));
 			//print_r($cuota);exit;
@@ -81,7 +84,7 @@ class contactosController extends Controller
 				throw new Exception("No hay contactos disponibles... no hay cuota establecida", 1);
 				
 			}
-
+			#si no hay criterio
 		}else{
 			//se recupera la cuota asociada a la encuesta
 			$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($encuesta));
@@ -92,6 +95,13 @@ class contactosController extends Controller
 				//se comprueba que la cantidad de encucestados sea menor que la cuota
 				if ($encuestados < $cuota['valor']) {
 					$this->_view->assign('contacto', $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta)));
+					
+					#recupera el criterio que viene en el contacto que lanza el sistema
+					$criterio = $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta));
+					#consulta el criterio recuperado en la consulta anterior
+					$criterio = $this->_criterio->getCriterioId($criterio['criterio']);
+					#envia los valores del criterio a la vista
+					$this->_view->assign('criterio', $criterio);
 				}else{
 					throw new Exception("No hay contactos disponibles... Se ha cumplido la cuota", 1);
 					
@@ -398,6 +408,7 @@ class contactosController extends Controller
 		}
 
 		$this->_view->assign('titulo', 'Carga Contactos');
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
 
 		$this->_view->assign('enviar', CTRL);
 
@@ -566,7 +577,7 @@ class contactosController extends Controller
 				
 			}
 			
-			$this->redireccionar();		
+			$this->redireccionar('cargas');		
 		}
 
 		$this->_view->renderizar('addContactosEncuesta');
@@ -681,6 +692,8 @@ class contactosController extends Controller
 		}
 
 		$this->_view->assign('titulo', 'Carga Contactos');
+		$this->_view->assign('criterio', $this->_criterio->getCriterioId($this->filtrarInt($criterio)));
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
 
 		$this->_view->assign('enviar', CTRL);
 
@@ -846,7 +859,7 @@ class contactosController extends Controller
 				
 			}
 			
-			$this->redireccionar();		
+			$this->redireccionar('cargas');		
 		}
 
 		$this->_view->renderizar('addContactosEncuesta');

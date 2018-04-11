@@ -10,12 +10,13 @@
 		<div class="form-group">
 			<label>Criterio</label>
 			<select name="criterio" class="form-control">
-				<option value="{$dato.criterio_id}">{$dato.criterio}</option>
+				<option value="{$dato.criterio_id}">{if isset($dato.criterio)}{$dato.criterio}{else}Sin Criterio{/if}</option>
 				{if isset($criterios) && count($criterios)}
 					{foreach from=$criterios item=cr}
 						<option value="{$cr.id}">{$cr.nombre}</option>
 					{/foreach}
 				{/if}
+				<option value="">Sin Criterio</option>
 			</select>
 		</div>
 		<div class="form-group">

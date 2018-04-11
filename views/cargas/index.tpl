@@ -9,6 +9,7 @@
 				<th>Lista N°</th>
 				<th>Encuesta</th>
 				<th>Estado</th>
+				<th>Criterio</th>
 				<th>Modificado</th>
 				<th>Acciones</th>
 			</tr>
@@ -16,8 +17,9 @@
 				<tr>
 					<td>{$c.fecha|date_format:"%d-%m-%Y %H:%M"}</td>
 					<td>{$c.id}</td>
-					<td>{$c.nombre}</td>
+					<td><a href="{$_layoutParams.root}encuestas/view/{$c.encuesta}" class="btn btn-link btn-sm">{$c.nombre}</a></td>
 					<td>{if $c.estado ==1}Activa{else}No Activa{/if}</td>
+					<td>{if isset($c.criterio)}{ucwords($c.criterio)}{else}Sin Criterios{/if}</td>
 					<td>{$c.modificado|date_format:"%d-%m-%Y %H:%M"}</td>
 					<td>
 						<a href="{$_layoutParams.root}contactos/contactosCarga/{$c.id}" class="btn btn-link btn-sm">Ver Contactos</a>
@@ -30,7 +32,7 @@
 				</tr>
 			{/foreach}
 		</table>
-
+		{if isset($paginacion)}{$paginacion}{/if}
 		{else}
 			<p class="text-info">Usted no ha realizado cargas</p>
 		{/if}
@@ -44,6 +46,7 @@
 					<th>Lista N°</th>
 					<th>Encuesta</th>
 					<th>Estado</th>
+					<th>Criterio</th>
 					<th>Modificado</th>
 					<th>Acciones</th>
 				</tr>
@@ -53,6 +56,7 @@
 						<td>{$c.id}</td>
 						<td>{$c.nombre}</td>
 						<td>{if $c.estado ==1}Activa{else}No Activa{/if}</td>
+						<td>{if isset($c.criterio)}{ucwords($c.criterio)}{else}Sin Criterios{/if}</td>
 						<td>{$c.modificado|date_format:"%d-%m-%Y %H:%M"}</td>
 						<td>
 							<a href="{$_layoutParams.root}contactos/contactosCarga/{$c.id}" class="btn btn-link btn-sm">Ver Contactos</a>
@@ -64,6 +68,7 @@
 					</tr>
 				{/foreach}
 			</table>
+			{if isset($paginacion)}{$paginacion}{/if}
 		{/if}
 	{/if}
 </div>

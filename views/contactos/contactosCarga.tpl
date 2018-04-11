@@ -81,11 +81,11 @@
 								<td>{$c.telefono}</td>
 								<td>{$c.telefono2}</td>
 								<td>{$c.telefono3}</td>
-								<td>{ucwords($c.nom_encuesta)}</td>
+								<td><a href="{$_layoutParams.root}encuestas/view/{$c.encuesta}">{ucwords($c.nom_encuesta)}</a></td>
 								<td>{ucwords($c.criterio)}</td>
 								<td>{$c.creado|date_format:"%d-%m-%Y %H:%M"}</td>
 								<td>{$c.e_contacto}</td>
-								<td>{if $c.estado_llamada!=1}<a href="{$_layoutParams.root}contactos/contactosCargaLlamada/{$carga.id}/{$c.estado_llamada}">{ucwords($c.llamada)}</a>{else}{ucwords($c.llamada)}{/if}</td>
+								<td>{if $c.estado_llamada!=1}<a href="{$_layoutParams.root}contactos/contactosCargaLlamada/{$carga.id}/{$c.estado_llamada}" title="Cambiar Estado Global">{ucwords($c.llamada)}</a>{else}{ucwords($c.llamada)}{/if}</td>
 								<td>{$c.modificado|date_format:"%d-%m-%Y %H:%M"}</td>
 							</tr>
 						{/foreach}

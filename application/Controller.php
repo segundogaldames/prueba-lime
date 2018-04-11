@@ -33,14 +33,18 @@ abstract class Controller
 	}
 
 	protected function verificarRolAdmin(){
-		if (Session::get('role_id') != 1) {
+		if (Session::get('role_id') == 2) {
+			$this->redireccionar('index/ejecutivos');
+		}
+
+		if (Session::get('role_id') == 3) {
 			$this->redireccionar();
 		}
 	}
 
 	protected function verificarRolAdminSuper(){
 		if (Session::get('role_id') == 2) {
-			$this->redireccionar();
+			$this->redireccionar('index/ejecutivos');
 		}
 	}
 
