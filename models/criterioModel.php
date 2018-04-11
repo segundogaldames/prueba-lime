@@ -19,6 +19,20 @@ class criterioModel extends Model
 		return $cri->fetch();
 	}
 
+	public function getCriterioPorEncuesta($encuesta){
+		$encuesta = (int) $encuesta;
+
+		$cri = $this->_db->query("SELECT count(id) as filas FROM criterios WHERE encuesta_id = {$encuesta}");
+		$id = $cri->fetch();
+		$aleatorio = rand(0, $id['filas']-1);
+
+		$crit = $this->_db->query("SELECT id FROM criterios WHERE encuesta_id = {$encuesta} limit $aleatorio, 1");
+		$id_cri = $crit->fetch();
+		$row = $id_cri['id'];
+
+		return $row;
+	}
+
 	public function getCriteriosEncuesta($encuesta){
 		$encuesta = (int) $encuesta;
 
@@ -38,6 +52,17 @@ class criterioModel extends Model
 		$cri->execute();
 
 		return $cri->fetch();
+	}
+
+	#cuenta criterios por encuesta
+	public function getCountCriteriosEncuesta($encuesta){
+		$encuesta = (int) $encuesta;
+
+		$cri = $this->_db->query("SELECT count(id) as filas FROM criterios WHERE encuesta_id = {$encuesta}");
+		$num = $cri->fetch();
+		$row = $num['filas'];
+
+		return $row;
 	}
 
 	public function addCriterio($nombre, $encuesta){

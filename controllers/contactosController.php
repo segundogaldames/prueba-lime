@@ -61,7 +61,8 @@ class contactosController extends Controller
 		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
 			$this->redireccionar();
 		}
-		//print_r($criterio);exit;
+
+		$id_criterio = $this->_criterio->getCriterioPorEncuesta($this->filtrarInt($encuesta));
 		//se comprueba que existe el criterio
 		if ($this->filtrarInt($criterio)) {
 			#enviar a la vista el nombre del criterio
@@ -85,7 +86,26 @@ class contactosController extends Controller
 				
 			}
 			#si no hay criterio
-		}else{
+		}
+		if ($id_criterio) {
+			$cuota = $this->_cuota->getCuotaEncuestaCriterio($id_criterio);
+			print_r($id_criterio);
+			if ($cuota) {
+				$encuestados = $this->_contacto->getContactosEncuestadosCriterio($cuota['desde'], $cuota['hasta'], $cuota['criterio_id']);
+				//print_r($encuestados);exit;
+				//se comprueba que la cantidad de encuestados sea menor que la cuota
+				if ($encuestados < $cuota['valor']) {
+					$this->_view->assign('contacto', $this->_contacto->getContactoEncuestaAndCriterio($this->filtrarInt($encuesta), $id_criterio));
+				}else{
+					throw new Exception("No hay contactos disponibles... Se ha cumplido la cuota", 1);
+					
+				}
+			}else{
+				throw new Exception("No hay contactos disponibles... no hay cuota establecida", 1);
+				
+			}
+		}
+		else{
 			//se recupera la cuota asociada a la encuesta
 			$cuota = $this->_cuota->getCuotasEncuesta($this->filtrarInt($encuesta));
 			//print_r($cuota);exit;

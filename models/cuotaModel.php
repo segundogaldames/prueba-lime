@@ -55,6 +55,38 @@ class cuotaModel extends Model
 		return $cuota->fetch();
 	}
 
+	public function getCountCuotaEncuesta($encuesta){
+		$encuesta = (int) $encuesta;
+
+		$cuota = $this->_db->query("SELECT count(id) as filas FROM cuotas WHERE encuesta_id = {$encuesta}");
+		$filas = $cuota->fetch();
+		$row = $filas['filas'];
+
+		return $row;
+	}
+
+	public function getCuotaCriterioEncuesta($encuesta, $criterio){
+		#print_r($criterio);exit;
+		$encuesta = (int) $encuesta;
+		$criterio = (int) $criterio;
+
+		$cuota = $this->_db->query("SELECT valor FROM cuotas WHERE encuesta_id = {$encuesta} AND criterio_id = {$criterio}");
+		$valor = $cuota->fetch();
+		$row = $valor['valor'];
+
+		return $row;
+	}
+
+	public function getSumCuotasEncuesta($encuesta){
+		$encuesta = (int) $encuesta;
+
+		$cuota = $this->_db->query("SELECT sum(valor) as valor FROM cuotas WHERE encuesta_id = {$encuesta}");
+		$valor = $cuota->fetch();
+		$row = $valor['valor'];
+
+		return $row;
+	}
+
 	public function addCuota($encuesta, $criterio, $desde, $hasta, $valor){
 		$encuesta = (int) $encuesta;
 		$criterio = (int) $criterio;
