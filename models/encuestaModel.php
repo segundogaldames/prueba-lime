@@ -65,10 +65,15 @@ class encuestaModel extends Model
 		return $enc->fetchall();
 	}
 
-	public function getAuditorias(){
-		$enc = $this->_db->query("SELECT e.id, e.nombre, e.link, e.status, e.created_at as creado, e.updated_at as actualizado, e.campaign_id, c.nombre as campaign, e.tipo FROM encuestas as e INNER JOIN campaign as c ON e.campaign_id = c.id WHERE e.tipo = 2 ORDER BY e.id dESC");
-		
-		return $enc->fetchall();
+	#consulta la campaña vicidial por una encuesta
+	public function getCampaignViciEncuesta($encuesta){
+		$encuesta = (int) $encuesta;
+
+		$enc = $this->_db->prepare("SELECT e.id, c.cod_vicidial_id as vici FROM encuestas e INNER JOIN campaign c ON e.campaign_id = c.id WHERE e.id = ?");
+		$enc->bindParam(1, $encuesta);
+		$enc->execute();
+
+		return $enc->fetch();
 	}
 
 	public function addEncuesta($nombre, $link, $campaign, $tipo){

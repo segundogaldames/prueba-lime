@@ -12,6 +12,7 @@
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}cargas">Listas</a></li>
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}usuarios/ejecutivos" >Ejecutivos</a></li>
 			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}agendamientoscontactos">Contactos Agendados</a></li>
+			<li class="nav-item"><a class="nav-link" href="{$_layoutParams.root}grabaciones/buscarGrabaciones">Grabaciones</a></li>
 		</ul>
 
 		<!--Lista los resultados-->
