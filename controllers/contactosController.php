@@ -130,7 +130,15 @@ class contactosController extends Controller
 				//print_r($encuestados);exit;
 				//se comprueba que la cantidad de encucestados sea menor que la cuota
 				if ($encuestados < $cuota['valor']) {
-					$this->_view->assign('contacto', $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta)));
+
+					$contacto = $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta));
+
+					if ($contacto) {
+						$this->_view->assign('contacto', $contacto);
+					}else{
+						throw new Exception("No hay contactos disponibles para esta encuesta...", 1);
+						
+					}
 					
 					#recupera el criterio que viene en el contacto que lanza el sistema
 					$criterio = $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta));
