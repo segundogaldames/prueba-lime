@@ -62,7 +62,9 @@ class contactosController extends Controller
 			$this->redireccionar();
 		}
 
+		#criterio aleatorio asignado cuando no existe criterio via url
 		$id_criterio = $this->_criterio->getCriterioPorEncuesta($this->filtrarInt($encuesta));
+		
 		//se comprueba que existe el criterio
 		if ($this->filtrarInt($criterio)) {
 			#enviar a la vista el nombre del criterio
@@ -76,7 +78,13 @@ class contactosController extends Controller
 				//print_r($encuestados);exit;
 				//se comprueba que la cantidad de encuestados sea menor que la cuota
 				if ($encuestados < $cuota['valor']) {
-					$this->_view->assign('contacto', $this->_contacto->getContactoEncuestaAndCriterio($this->filtrarInt($encuesta), $this->filtrarInt($criterio)));
+					$contacto = $this->_contacto->getContactoEncuestaAndCriterio($this->filtrarInt($encuesta), $this->filtrarInt($criterio));
+					if ($contacto) {
+						$this->_view->assign('contacto', $contacto);
+					}else{
+						throw new Exception("No hay contactos disponibles para este criterio... comuníquelo a su Supervisor", 1);
+					}
+					
 				}else{
 					throw new Exception("No hay contactos disponibles... Se ha cumplido la cuota", 1);
 					
@@ -89,15 +97,23 @@ class contactosController extends Controller
 		}
 		if ($id_criterio) {
 			$cuota = $this->_cuota->getCuotaEncuestaCriterio($id_criterio);
-			print_r($id_criterio);
+			#print_r($id_criterio);
 			if ($cuota) {
 				$encuestados = $this->_contacto->getContactosEncuestadosCriterio($cuota['desde'], $cuota['hasta'], $cuota['criterio_id']);
 				//print_r($encuestados);exit;
 				//se comprueba que la cantidad de encuestados sea menor que la cuota
 				if ($encuestados < $cuota['valor']) {
-					$this->_view->assign('contacto', $this->_contacto->getContactoEncuestaAndCriterio($this->filtrarInt($encuesta), $id_criterio));
+					
+					$contacto = $this->_contacto->getContactoEncuestaAndCriterio($this->filtrarInt($encuesta), $id_criterio);
+
+						if ($contacto) {
+							$this->_view->assign('contacto', $contacto);
+						}else{
+							throw new Exception("No hay contactos disponibles para este criterio... Refresque la página o vuelva atrás hasta que salga otro contacto", 1);							
+						}
+					
 				}else{
-					throw new Exception("No hay contactos disponibles... Se ha cumplido la cuota", 1);
+					throw new Exception("No hay contactos disponibles para este criterio... Refresque la página hasta que salga otro contacto", 1);
 					
 				}
 			}else{

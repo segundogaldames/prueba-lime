@@ -34,10 +34,6 @@
 			{if isset($contacto) && count($contacto)}
 			<table class="table table-hover" id="contacto">
 				<tr>
-					<th>Criterio</th>
-					<td>{$contacto.criterio}</td>
-				</tr>
-				<tr>
 					<th>Nombre:</th>
 					<td>{ucwords($contacto.nombre)}</td>
 				</tr>

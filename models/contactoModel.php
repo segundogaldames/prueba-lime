@@ -48,6 +48,7 @@ class contactoModel extends Model
 
 	#metodo que genera contactos por encuesta y criterios
 	public function getContactoEncuestaAndCriterio($encuesta, $criterio){
+		#print_r($criterio);exit;
 		$encuesta = (int) $encuesta;
 		$criterio = (int) $criterio;
 
