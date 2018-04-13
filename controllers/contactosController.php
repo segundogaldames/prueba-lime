@@ -312,6 +312,8 @@ class contactosController extends Controller
 		$this->_view->assign('paginacion',$paginador->getView('prueba', 'contactos/contactosCarga/' . $id));
 		$this->_view->assign('num_contactos', $this->_contacto->getCountContactosCountCarga($this->filtrarInt($id)));
 		$this->_view->assign('num_estados', $this->_contacto->getCountContactosDisponiblesCarga($this->filtrarInt($id)));
+		$this->_view->assign('no_contactados', $this->_contacto->getCountNoContastadosCarga($this->filtrarInt($id)));
+		$this->_view->assign('contactados', $this->_contacto->getCountContactadosCarga($this->filtrarInt($id)));
 		$this->_view->assign('num_encuestados', $this->_contacto->getCountContactosEncuestadosCarga($this->filtrarInt($id)));
 		$this->_view->assign('carga', $this->_carga->getCargaId($this->filtrarInt($id)));
 		$this->_view->assign('enviar', CTRL);

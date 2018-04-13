@@ -16,6 +16,7 @@
 		<div class="form-group">
 			<input type="hidden" name="enviar" value="{$enviar}">
 			<input type="submit" value="Guardar Cambios" class="btn btn-success">
+			<a href="{$_layoutParams.root}cargas/view/{$dato.id}" class="btn btn-link">Volver</a>
 		</div>
 	</form>
 </div>

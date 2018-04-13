@@ -26,6 +26,14 @@
 								<td>{$num_contactos}</td>
 							</tr>
 							<tr>
+								<th>No Contactados</th>
+								<td>{$no_contactados}</td>
+							</tr>
+							<tr>
+								<th>Contactados</th>
+								<td>{$contactados}</td>
+							</tr>
+							<tr>
 								<th>Encuestados:</th>
 								<td>{$num_encuestados}</td>
 							</tr>
