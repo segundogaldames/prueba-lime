@@ -244,6 +244,17 @@ class contactoModel extends Model
 		return $cont->fetchall();
 	}
 
+	#muestra telefonos de contactos por encuesta, cuyo estado sea encuestado
+	public function getTelefonosContactosEncuesta($encuesta){
+		$encuesta = (int) $encuesta;
+
+		$cont = $this->_db->prepare("SELECT distinct telefono FROM contactos WHERE encuesta = ? AND estado_llamada = 1");
+		$cont->bindParam(1, $encuesta);
+		$cont->execute();
+
+		return $cont->fetchall();
+	}
+
 	//metodos de edicion
 	//metodo que modifica el estado de contacto y de llamada desde una encuesta
 	public function editContactoContactado($id, $estado_contacto, $llamada, $usuario){
