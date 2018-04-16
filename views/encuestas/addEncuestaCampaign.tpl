@@ -10,12 +10,8 @@
 			<input type="url" name="link" value="{$datos.link|default:""}" class="form-control" placeholder="Link de la encuesta">
 		</div>
 		<div class="form-group">
-			<label>Tipo</label>
-			<select name="tipo" class="form-control">
-				<option value="">Seleccione</option>
-				<option value="1">Encuesta</option>
-				<option value="2">Auditoria</option>
-			</select>
+			<label>Código LimeSurvey</label>
+			<input type="text" name="codigo" value="{$datos.codigo|default:""}" class="form-control" placeholder="Código LimeSurvey">
 		</div>
 		<div class="form-group">
 			<input type="hidden" name="enviar" value="{$enviar}">

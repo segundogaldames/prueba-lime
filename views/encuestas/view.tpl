@@ -3,7 +3,7 @@
 	<p><strong>Link:</strong> {$encuesta.link}</p>
 	<p><strong>Status:</strong> {if $encuesta.status==1}Activa{else}No activa{/if}</p>
 	<p><strong>Campaña:</strong> {$encuesta.campaign}</p>
-	<p><strong>Tipo:</strong> {if $encuesta.tipo==1}Encuesta{else}Auditoría{/if}</p>
+	<p><strong>Código LimeSurvey:</strong> {$encuesta.limesurvey_id}</p>
 	<p><strong>Creado:</strong> {$encuesta.creado|date_format:"%d-%m-%Y %H:%M"}</p>
 	<p><strong>Modificado:</strong> {$encuesta.actualizado|date_format:"%d-%m-%Y %H:%M"}</p>
 	
@@ -18,7 +18,6 @@
 	</p>
 
 	<hr>
-	{if $encuesta.tipo == 1}
 	<!--lista de criterios asociados-->
 		{if isset($criterios) && count($criterios)}
 			<h4>Criterios Asociados</h4>
@@ -136,7 +135,6 @@
 			{/if}
 			
 		{/if}
-	{/if}
 	<hr>
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->
 	<h4>Ejecutivos asociados</h4>
