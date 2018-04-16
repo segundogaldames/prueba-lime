@@ -101,13 +101,35 @@ class contactoModel extends Model
 		return $row;
 	}
 
-	#cuenta contactos disponibles por carga agrupados por estado de contacto
+	#cuenta contactos por carga agrupados por estado de contacto
 	public function getCountContactosDisponiblesCarga($carga){
 		$carga = (int) $carga;
 
 		$cont = $this->_db->query("SELECT count(c.id) as filas, c.estado_contacto, ec.nombre as estado FROM contactos c INNER JOIN estado_contactos ec ON c.estado_contacto = ec.id WHERE num_carga = {$carga} GROUP BY estado, c.estado_contacto");
 		
 		return $cont->fetchall();
+	}
+
+	#cuenta contactos no contactados por carga
+	public function getCountNoContastadosCarga($carga){
+		$carga = (int) $carga;
+
+		$cont = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE estado_llamada = 7 AND num_carga = {$carga}");
+		$filas = $cont->fetch();
+		$row = $filas['filas'];
+
+		return $row;
+	}
+
+	#cuenta contactos contactados,encuestados y otros estados por carga
+	public function getCountContactadosCarga($carga){
+		$carga = (int) $carga;
+
+		$cont = $this->_db->query("SELECT count(id) as filas FROM contactos WHERE estado_llamada != 7 AND num_carga = {$carga}");
+		$filas = $cont->fetch();
+		$row = $filas['filas'];
+
+		return $row;
 	}
 
 	#cuenta contactos disponibles de una encuesta agrupados por criterio
@@ -277,7 +299,7 @@ class contactoModel extends Model
 		$carga = (int) $carga;
 		$estado = (int) $estado;
 
-		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = ?, modified_at = now() WHERE num_carga = ?");
+		$cont = $this->_db->prepare("UPDATE contactos SET estado_contacto = ?, modified_at = now() WHERE num_carga = ? AND estado_llamada = 7");
 		$cont->bindParam(1, $estado);
 		$cont->bindParam(2, $carga);
 		$cont->execute();

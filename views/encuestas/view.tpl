@@ -3,7 +3,7 @@
 	<p><strong>Link:</strong> {$encuesta.link}</p>
 	<p><strong>Status:</strong> {if $encuesta.status==1}Activa{else}No activa{/if}</p>
 	<p><strong>Campaña:</strong> {$encuesta.campaign}</p>
-	<p><strong>Tipo:</strong> {if $encuesta.tipo==1}Encuesta{else}Auditoría{/if}</p>
+	<p><strong>Código LimeSurvey:</strong> {$encuesta.limesurvey_id}</p>
 	<p><strong>Creado:</strong> {$encuesta.creado|date_format:"%d-%m-%Y %H:%M"}</p>
 	<p><strong>Modificado:</strong> {$encuesta.actualizado|date_format:"%d-%m-%Y %H:%M"}</p>
 	
@@ -13,15 +13,11 @@
 		<a href="{$_layoutParams.root}encuestas/delete/{$encuesta.id}" class="btn btn-link btn-sm" onclick="return eliminar('{$_layoutParams.root}encuestas/delete/{$encuesta.id}','{$encuesta.nombre}')">Eliminar</a>
 		{/if}
 		<a href="{$_layoutParams.root}encuestas/encuestasSupervisores" class="btn btn-link btn-sm">Encuestas</a>
-		{if $encuesta.tipo == 1}
-			<a href="{$_layoutParams.root}contactos/contactoEncuesta/{$encuesta.id}" class="btn btn-link btn-sm">Probar</a>
-		{else}
-			<a href="{$_layoutParams.root}contactos/auditorias/{$encuesta.id}" class="btn btn-link btn-sm">Probar</a>
-		{/if}
+		<a href="{$_layoutParams.root}contactos/probar/{$encuesta.id}" class="btn btn-primary btn-sm">Probar Formulario</a>
+		<a href="{$_layoutParams.root}contactos/contactoEncuesta/{$encuesta.id}" class="btn btn-success btn-sm">Probar Encuesta</a>
 	</p>
 
 	<hr>
-	{if $encuesta.tipo == 1}
 	<!--lista de criterios asociados-->
 		{if isset($criterios) && count($criterios)}
 			<h4>Criterios Asociados</h4>
@@ -139,7 +135,6 @@
 			{/if}
 			
 		{/if}
-	{/if}
 	<hr>
 	<!--Lista los usuarios asociados a una encuesta y permite asociar usuarios-->
 	<h4>Ejecutivos asociados</h4>

@@ -31,12 +31,8 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label>Tipo</label>
-			<select name="tipo" class="form-control">
-				<option value="{$dato.tipo}">{if $dato.tipo==1}Encuesta{else}Auditoria{/if}</option>
-				<option value="1">Encuesta</option>
-				<option value="2">Auditoria</option>
-			</select>
+			<label>Código LimeSurvey</label>
+			<input type="text" name="codigo" value="{$dato.limesurvey_id}" class="form-control">
 		</div>
 		<div class="form-group">
 			<input type="hidden" name="enviar" value="{$enviar}">

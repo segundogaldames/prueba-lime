@@ -100,8 +100,8 @@ class encuestasController extends Controller
 				exit;
 			}
 
-			if (!$this->getInt('tipo')) {
-				$this->_view->assign('_error', 'Debe seleccionar un tipo para esta encuesta');
+			if (!$this->getInt('codigo')) {
+				$this->_view->assign('_error', 'Ingrese el código LimeSurvey para esta encuesta');
 				$this->_view->renderizar('add');
 				exit;
 			}
@@ -122,7 +122,7 @@ class encuestasController extends Controller
 				$this->getAlphaNum('nombre'), 
 				$this->getPostParam('link'), 
 				$this->getInt('campaign'),
-				$this->getInt('tipo')
+				$this->getInt('codigo')
 			);
 
 			$this->redireccionar('encuestas/encuestasSupervisores');
@@ -167,8 +167,8 @@ class encuestasController extends Controller
 				exit;
 			}
 
-			if (!$this->getInt('tipo')) {
-				$this->_view->assign('_error', 'Debe seleccionar un tipo para esta encuesta');
+			if (!$this->getInt('codigo')) {
+				$this->_view->assign('_error', 'Ingrese el código LimeSurvey para esta encuesta');
 				$this->_view->renderizar('addEncuestaCampaign');
 				exit;
 			}
@@ -189,7 +189,7 @@ class encuestasController extends Controller
 				$this->getAlphaNum('nombre'), 
 				$this->getPostParam('link'), 
 				$this->filtrarInt($campaign),
-				$this->getInt('tipo')
+				$this->getInt('codigo')
 			);
 
 			$this->redireccionar('encuestas/encuestasSupervisores');
@@ -288,8 +288,8 @@ class encuestasController extends Controller
 				exit;
 			}
 
-			if (!$this->getInt('tipo')) {
-				$this->_view->assign('_error', 'Debe seleccionar un tipo para esta encuesta');
+			if (!$this->getInt('codigo')) {
+				$this->_view->assign('_error', 'Ingrese el código LimeSurvey para esta encuesta');
 				$this->_view->renderizar('edit');
 				exit;
 			}
@@ -300,7 +300,7 @@ class encuestasController extends Controller
 				$this->getPostParam('link'), 
 				$this->getInt('status'), 
 				$this->getInt('campaign'),
-				$this->getInt('tipo')
+				$this->getInt('codigo')
 			);
 
 			$this->redireccionar('encuestas/encuestasSupervisores');

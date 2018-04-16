@@ -218,6 +218,81 @@ class contactosController extends Controller
 		$this->_view->renderizar('contactoEncuesta');
 	}
 
+	#metodo que permite probar un formulario por encuesta sin restriccion ni necesidad de carga de contactos
+	public function probar($encuesta = null){
+		$this->verificarSession();
+		$this->verificarRolAdminSuper();
+
+		if (!$this->filtrarInt($encuesta)) {
+			$this->redireccionar('encuestas/encuestasSupervisores');
+		}
+
+		if (!$this->_encuesta->getEncuestaId($this->filtrarInt($encuesta))) {
+			$this->redireccionar('encuestas/encuestasSupervisores');
+		}
+
+		$this->_view->assign('titulo', 'Contactar');
+		$this->_view->assign('encuesta', $this->_encuesta->getEncuestaId($this->filtrarInt($encuesta)));
+		$this->_view->assign('estado_llamadas', $this->_estadoLlamada->getEstadoLlamadas());
+		$this->_view->assign('campos', $this->_campoContacto->getCamposContactosEncuesta($this->filtrarInt($encuesta)));
+		$this->_view->assign('e_contacto', $this->_estadoContacto->getEstadoContactos());
+		$this->_view->assign('contacto', $this->_contacto->getContactoEncuesta($this->filtrarInt($encuesta)));
+		$this->_view->assign('enviar', CTRL);
+
+
+		if ($this->getAlphaNum('enviar') == CTRL) {
+			//print_r($_POST);exit;
+
+			if (!$this->getInt('llamada')) {
+				$this->_view->assign('_error', 'Debe seleccionar una opción de llamada');
+				$this->_view->renderizar('probar');
+				exit;
+			}
+
+			if ($this->getInt('llamada') == 20) {
+				if (!$this->getSql('fecha')) {
+					$this->_view->assign('_error', 'Ingrese la fecha del agendamiento');
+					$this->_view->renderizar('probar');
+					exit;
+				}
+
+				if (!$this->getSql('hora')) {
+					$this->_view->assign('_error', 'Ingrese la hora del agendamiento');
+					$this->_view->renderizar('probar');
+					exit;
+				}
+
+				$this->_agendamiento->addAgendamiento(
+					Session::get('id_usuario'), 
+					$this->getInt('contacto'), 
+					$this->getSql('fecha'), 
+					$this->getSql('hora'),
+					$this->filtrarInt($encuesta)
+				);
+			}
+
+
+			$row = $this->_estadoLlamada->getEstadoLlamadaId($this->getInt('llamada'));
+			$est_contacto = $row['estado_contacto'];
+			//print_r($est_contacto);exit;
+
+			$this->_contacto->editContactoContactado(
+				$this->getInt('contacto'),
+				$this->filtrarInt($est_contacto),
+				$this->getInt('llamada'),
+				Session::get('id_usuario')
+			);
+
+			if (Session::get('role_id') == 2) {
+				$this->redireccionar('index/ejecutivos');
+			}
+			
+			$this->redireccionar();
+		}
+
+		$this->_view->renderizar('probar');
+	}
+
 	#metodo que permite contactar a un contacto desde una encuesta y contacto
 	public function contactar($encuesta = null, $contacto = null, $agendamiento = false){
 		//print_r($_GET);exit;
@@ -312,6 +387,8 @@ class contactosController extends Controller
 		$this->_view->assign('paginacion',$paginador->getView('prueba', 'contactos/contactosCarga/' . $id));
 		$this->_view->assign('num_contactos', $this->_contacto->getCountContactosCountCarga($this->filtrarInt($id)));
 		$this->_view->assign('num_estados', $this->_contacto->getCountContactosDisponiblesCarga($this->filtrarInt($id)));
+		$this->_view->assign('no_contactados', $this->_contacto->getCountNoContastadosCarga($this->filtrarInt($id)));
+		$this->_view->assign('contactados', $this->_contacto->getCountContactadosCarga($this->filtrarInt($id)));
 		$this->_view->assign('num_encuestados', $this->_contacto->getCountContactosEncuestadosCarga($this->filtrarInt($id)));
 		$this->_view->assign('carga', $this->_carga->getCargaId($this->filtrarInt($id)));
 		$this->_view->assign('enviar', CTRL);
